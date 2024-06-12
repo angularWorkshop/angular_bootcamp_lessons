@@ -1,0 +1,38 @@
+{
+  "defaults": {
+    "styleExt": "scss",
+    "component": {
+      "spec": false,
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "flat": false,
+      "viewEncapsulation": "Emulated"
+    },
+    "class": {
+      "spec": false
+    },
+    "directive": {
+      "flat": true,
+      "spec": false
+    },
+    "guard": {
+      "flat": true,
+      "spec": false
+    },
+    "interface": {
+      "prefix": ""
+    },
+    "module": {
+      "flat": false,
+      "spec": false
+    },
+    "pipe": {
+      "flat": true,
+      "spec": true
+    },
+    "service": {
+      "flat": true,
+      "spec": false
+    }
+  }
+}

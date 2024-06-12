@@ -1,13 +1,19 @@
 {
   "name": "angular-definitive-guide-lessons",
   "version": "0.0.0",
+  "stackblitz": {
+    "startCommand": "concurrently \"ng serve\" \"jest --watchAll\""
+  },
   "scripts": {
     "ng": "ng",
+    "start": "ng serve",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "start:dev": "ng serve",
-    "start:test": "npx jest --watchAll",
-    "start": "concurrently \"npm run start:dev\" \"npm run start:test\""
+    "start:dev": "concurrently \"ng serve\" \"jest --watch\"",
+    "wait-and-start": "wait-on test-complete.txt && ng serve"
   },
   "private": true,
   "dependencies": {
@@ -27,14 +33,10 @@
     "@angular-devkit/build-angular": "^17.3.4",
     "@angular/cli": "^17.3.4",
     "@angular/compiler-cli": "^17.3.0",
-    "@types/jasmine": "~5.1.0",
+    "@types/jest": "^29.5.12",
     "concurrently": "^8.2.2",
-    "jasmine-core": "~5.1.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.2"
+    "jest-preset-angular": "^14.1.0",
+    "typescript": "~5.4.2",
+    "wait-on": "^7.2.0"
   }
 }
