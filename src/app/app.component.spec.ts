@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+import { HelloWorldComponent } from "./components/hello-word/hello-word.component";
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -34,5 +34,28 @@ describe('AppComponent', () => {
   it('should render "Hello, World!" text in HelloWorld component', () => {
     const helloWorldElement = fixture.debugElement.query(By.css('app-hello-world h1'));
     expect(helloWorldElement.nativeElement.textContent).toContain('Hello, World!');
+  });
+
+  it('should call lifecycle hooks in HelloWorld component', () => {
+    const helloWorldComponent = fixture.debugElement.query(By.directive(HelloWorldComponent)).componentInstance;
+    const lifecycleHooks = [
+      'ngOnChanges',
+      'ngDoCheck',
+      'ngAfterContentInit',
+      'ngAfterContentChecked',
+      'ngAfterViewInit',
+      'ngAfterViewChecked',
+      'ngOnDestroy'
+    ];
+
+    lifecycleHooks.forEach(hook => {
+      spyOn(helloWorldComponent, hook as any).and.callThrough();
+    });
+
+    fixture.detectChanges(); // trigger lifecycle hooks
+
+    lifecycleHooks.forEach(hook => {
+      expect(helloWorldComponent[hook]).toHaveBeenCalled();
+    });
   });
 });
