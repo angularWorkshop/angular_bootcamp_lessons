@@ -1,38 +1,64 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let app: AppComponent;
+
+describe('ReactiveFormComponent', () => {
+  let component: ReactiveFormComponent;
+  let fixture: ComponentFixture<ReactiveFormComponent>;
+  let consoleSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        HelloWorldComponent
-      ],
+      declarations: [ReactiveFormComponent],
+      imports: [ReactiveFormsModule]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    app = fixture.componentInstance;
+    fixture = TestBed.createComponent(ReactiveFormComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
+
+    consoleSpy = jest.spyOn(console, 'log');
   });
 
-  it('should create the app', () => {
-    expect(app).toBeTruthy();
+  afterEach(() => {
+    consoleSpy.mockRestore();
   });
 
-  it('should render HelloWorld component', () => {
-    const helloWorldElement = fixture.debugElement.query(By.css('app-hello-world'));
-    expect(helloWorldElement).toBeTruthy();
+  it('должен создать компонент', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should render "Hello, World!" text in HelloWorld component', () => {
-    const helloWorldElement = fixture.debugElement.query(By.css('app-hello-world h1'));
-    expect(helloWorldElement.nativeElement.textContent).toContain('Hello, World!');
+  it('должен содержать два поля ввода и кнопку', () => {
+    const compiled = fixture.nativeElement;
+    const nameInput = compiled.querySelector('input[formControlName="name"]');
+    const commentInput = compiled.querySelector('textarea[formControlName="comment"]');
+    const submitButton = compiled.querySelector('button[type="submit"]');
+
+    expect(nameInput).toBeTruthy();
+    expect(commentInput).toBeTruthy();
+    expect(submitButton).toBeTruthy();
+  });
+
+  it('должен выводить данные в консоль при отправке формы', () => {
+    const compiled = fixture.nativeElement;
+    const nameInput = compiled.querySelector('input[formControlName="name"]');
+    const commentInput = compiled.querySelector('textarea[formControlName="comment"]');
+    const submitButton = compiled.querySelector('button[type="submit"]');
+
+    nameInput.value = 'Иван';
+    nameInput.dispatchEvent(new Event('input'));
+
+    commentInput.value = 'Это комментарий';
+    commentInput.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    submitButton.click();
+
+    expect(consoleSpy).toHaveBeenCalledWith({
+      name: 'Иван',
+      comment: 'Это комментарий'
+    });
   });
 });
