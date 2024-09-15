@@ -1,0 +1,22 @@
+<form #userForm="ngForm">
+  <div>
+    <label for="username">Имя пользователя:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      [(ngModel)]="username"
+      required
+      minlength="3"
+      maxlength="10"
+      #usernameField="ngModel"
+    />
+
+    <div *ngIf="userForm.submitted && usernameField.errors">
+      <div *ngIf="usernameField.errors['required']">Это поле обязательно для заполнения</div>
+      <div *ngIf="usernameField.errors['minlength']">Минимум 3 символа</div>
+      <div *ngIf="usernameField.errors['maxlength']">Максимум 10 символов</div>
+    </div>
+  </div>
+  <button type="submit" (click)="onSubmit(userForm)">Отправить</button>
+</form>

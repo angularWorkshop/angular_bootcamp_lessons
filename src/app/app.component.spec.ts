@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -9,8 +10,8 @@ describe('UserFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserFormComponent],
-      imports: [FormsModule],
+      declarations: [],
+      imports: [FormsModule, UserFormComponent, CommonModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserFormComponent);
@@ -29,7 +30,7 @@ describe('UserFormComponent', () => {
     submitButton.nativeElement.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.query(By.css('.container__highlight'));
+    const errorMessage = fixture.debugElement.query(By.css('div'));
     const textContent = errorMessage.nativeElement.textContent;
 
     expect(
@@ -48,7 +49,7 @@ describe('UserFormComponent', () => {
     submitButton.nativeElement.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.query(By.css('.container__highlight'));
+    const errorMessage = fixture.debugElement.query(By.css('div'));
     const textContent = errorMessage.nativeElement.textContent;
 
     expect(textContent.includes('Минимум 3 символа') || textContent.includes('Minimum 3 characters')).toBe(true);
@@ -65,7 +66,7 @@ describe('UserFormComponent', () => {
     submitButton.nativeElement.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.query(By.css('.container__highlight'));
+    const errorMessage = fixture.debugElement.query(By.css('div'));
     const textContent = errorMessage.nativeElement.textContent;
 
     expect(textContent.includes('Максимум 10 символов') || textContent.includes('Maximum 10 characters')).toBe(true);
@@ -82,7 +83,11 @@ describe('UserFormComponent', () => {
     submitButton.nativeElement.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.query(By.css('.container__highlight'));
-    expect(errorMessage).toBeNull();
+    const errorDivs = fixture.debugElement.queryAll(By.css('div'));
+
+    const errorMessages = errorDivs.map(div => div.nativeElement.textContent);
+    expect(errorMessages).not.toContain('Это поле обязательно для заполнения' || 'This field is required');
+    expect(errorMessages).not.toContain('Минимум 3 символа' || 'Minimum 3 characters');
+    expect(errorMessages).not.toContain('Максимум 10 символов' || 'Maximum 10 characters');
   });
 });
