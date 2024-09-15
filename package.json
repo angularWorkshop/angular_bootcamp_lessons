@@ -12,8 +12,7 @@
     "test:coverage": "jest --coverage",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "start:dev": "concurrently \"ng serve\" \"jest --watch\"",
-    "wait-and-start": "wait-on test-complete.txt && ng serve"
+    "start:dev": "concurrently \"ng serve\" \"jest --watch\""
   },
   "private": true,
   "dependencies": {
@@ -37,6 +36,6 @@
     "concurrently": "^8.2.2",
     "jest-preset-angular": "^14.1.0",
     "typescript": "~5.4.2",
-    "wait-on": "^7.2.0"
+    "prettier": "3.3.3"
   }
 }
