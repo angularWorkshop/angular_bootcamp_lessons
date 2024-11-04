@@ -1,93 +1,46 @@
-import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { UserFormComponent } from './user-form.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
-describe('UserFormComponent', () => {
-  let component: UserFormComponent;
-  let fixture: ComponentFixture<UserFormComponent>;
+describe('ProductListComponent', () => {
+  let component: ProductListComponent;
+  let fixture: ComponentFixture<ProductListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [],
-      imports: [FormsModule, UserFormComponent, CommonModule],
+      declarations: [ProductListComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserFormComponent);
+    fixture = TestBed.createComponent(ProductListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should show required error if the input is empty', () => {
-    const usernameInput = fixture.debugElement.query(By.css('input[name="username"]'));
-    const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
-
-    usernameInput.nativeElement.value = '';
-    usernameInput.nativeElement.dispatchEvent(new Event('input'));
+  it('должен отображать сообщение "Нет доступных продуктов", если список пуст', () => {
+    component.products = [];
     fixture.detectChanges();
-
-    submitButton.nativeElement.click();
-    fixture.detectChanges();
-
-    const errorMessage = fixture.debugElement.query(By.css('div'));
-    const textContent = errorMessage.nativeElement.textContent;
-
-    expect(
-      textContent.includes('Это поле обязательно для заполнения') || textContent.includes('This field is required')
-    ).toBe(true);
+    const noProductsMessage = fixture.debugElement.query(By.css('p'));
+    expect(noProductsMessage.nativeElement.textContent).toContain('Нет доступных продуктов');
   });
 
-  it('should show minlength error if the input is less than 3 characters', () => {
-    const usernameInput = fixture.debugElement.query(By.css('input[name="username"]'));
-    const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
-
-    usernameInput.nativeElement.value = 'ab';
-    usernameInput.nativeElement.dispatchEvent(new Event('input'));
+  it('должен отображать список продуктов, если в массиве products есть элементы', () => {
+    component.products = [
+      { name: 'Продукт 1', description: 'Описание продукта 1', showDescription: false },
+      { name: 'Продукт 2', description: 'Описание продукта 2', showDescription: false }
+    ];
     fixture.detectChanges();
-
-    submitButton.nativeElement.click();
-    fixture.detectChanges();
-
-    const errorMessage = fixture.debugElement.query(By.css('div'));
-    const textContent = errorMessage.nativeElement.textContent;
-
-    expect(textContent.includes('Минимум 3 символа') || textContent.includes('Minimum 3 characters')).toBe(true);
+    const productItems = fixture.debugElement.queryAll(By.css('li'));
+    expect(productItems.length).toBe(2);
   });
 
-  it('should show maxlength error if the input is more than 10 characters', () => {
-    const usernameInput = fixture.debugElement.query(By.css('input[name="username"]'));
-    const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
-
-    usernameInput.nativeElement.value = 'abcdefghijkl';
-    usernameInput.nativeElement.dispatchEvent(new Event('input'));
+  it('должен отображать описание продукта при нажатии на кнопку "Показать описание"', () => {
+    component.products = [
+      { name: 'Продукт 1', description: 'Описание продукта 1', showDescription: false }
+    ];
     fixture.detectChanges();
-
-    submitButton.nativeElement.click();
+    const toggleButton = fixture.debugElement.query(By.css('button')).nativeElement;
+    toggleButton.click();
     fixture.detectChanges();
-
-    const errorMessage = fixture.debugElement.query(By.css('div'));
-    const textContent = errorMessage.nativeElement.textContent;
-
-    expect(textContent.includes('Максимум 10 символов') || textContent.includes('Maximum 10 characters')).toBe(true);
-  });
-
-  it('should not show any error if the input is between 3 and 10 characters', () => {
-    const usernameInput = fixture.debugElement.query(By.css('input[name="username"]'));
-    const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
-
-    usernameInput.nativeElement.value = 'validname';
-    usernameInput.nativeElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    submitButton.nativeElement.click();
-    fixture.detectChanges();
-
-    const errorDivs = fixture.debugElement.queryAll(By.css('div'));
-
-    const errorMessages = errorDivs.map(div => div.nativeElement.textContent);
-    expect(errorMessages).not.toContain('Это поле обязательно для заполнения' || 'This field is required');
-    expect(errorMessages).not.toContain('Минимум 3 символа' || 'Minimum 3 characters');
-    expect(errorMessages).not.toContain('Максимум 10 символов' || 'Maximum 10 characters');
+    const description = fixture.debugElement.query(By.css('p'));
+    expect(description.nativeElement.textContent).toContain('Описание продукта 1');
   });
 });
