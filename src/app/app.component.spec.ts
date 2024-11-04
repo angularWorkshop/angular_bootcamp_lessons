@@ -1,46 +1,51 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ProductListComponent } from './product-list/product-list.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
-describe('ProductListComponent', () => {
-  let component: ProductListComponent;
-  let fixture: ComponentFixture<ProductListComponent>;
+describe('UserInfoComponent', () => {
+  let component: UserInfoComponent;
+  let fixture: ComponentFixture<UserInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductListComponent]
+      declarations: [UserInfoComponent],
+      imports: [FormsModule]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProductListComponent);
+    fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('должен отображать сообщение "Нет доступных продуктов", если список пуст', () => {
-    component.products = [];
+  it('должен отображать имя пользователя через интерполяцию', () => {
+    component.username = 'Алексей';
     fixture.detectChanges();
-    const noProductsMessage = fixture.debugElement.query(By.css('p'));
-    expect(noProductsMessage.nativeElement.textContent).toContain('Нет доступных продуктов');
+    const usernameDisplay = fixture.debugElement.query(By.css('.username')).nativeElement;
+    expect(usernameDisplay.textContent).toContain('Алексей');
   });
 
-  it('должен отображать список продуктов, если в массиве products есть элементы', () => {
-    component.products = [
-      { name: 'Продукт 1', description: 'Описание продукта 1', showDescription: false },
-      { name: 'Продукт 2', description: 'Описание продукта 2', showDescription: false }
-    ];
+  it('должен обновлять изображение профиля с помощью привязки свойства', () => {
+    component.profileImageUrl = 'https://example.com/profile.jpg';
     fixture.detectChanges();
-    const productItems = fixture.debugElement.queryAll(By.css('li'));
-    expect(productItems.length).toBe(2);
+    const img = fixture.debugElement.query(By.css('img')).nativeElement;
+    expect(img.src).toContain('https://example.com/profile.jpg');
   });
 
-  it('должен отображать описание продукта при нажатии на кнопку "Показать описание"', () => {
-    component.products = [
-      { name: 'Продукт 1', description: 'Описание продукта 1', showDescription: false }
-    ];
+  it('должен увеличивать возраст пользователя при нажатии на кнопку', () => {
+    component.age = 25;
     fixture.detectChanges();
-    const toggleButton = fixture.debugElement.query(By.css('button')).nativeElement;
-    toggleButton.click();
+    const button = fixture.debugElement.query(By.css('button')).nativeElement;
+    button.click();
     fixture.detectChanges();
-    const description = fixture.debugElement.query(By.css('p'));
-    expect(description.nativeElement.textContent).toContain('Описание продукта 1');
+    expect(component.age).toBe(26);
+  });
+
+  it('должен изменять имя пользователя через поле ввода с двусторонней привязкой', () => {
+    const input = fixture.debugElement.query(By.css('input')).nativeElement;
+    input.value = 'Мария';
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(component.username).toBe('Мария');
   });
 });
