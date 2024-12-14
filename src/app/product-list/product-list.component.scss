@@ -1,3 +1,13 @@
 .product-list {
+    padding: 16px;
     font-family: Arial, sans-serif;
-}
+  }
+  
+  .product-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .product-list li {
+    padding: 8px 0;
+  }
