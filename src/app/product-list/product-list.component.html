@@ -1,15 +1,31 @@
-<div class="product-list">
-    <ng-container *ngIf="products.length; else noProducts">
-      <ul>
-        <li *ngFor="let product of products">
-          {{ product.name }}
-          <button (click)="toggleDescription(product)">Показать описание</button>
-          <p *ngIf="product.showDescription">{{ product.description }}</p>
-        </li>
-      </ul>
-    </ng-container>
-    <ng-template #noProducts>
-      <p>Нет доступных продуктов</p>
-    </ng-template>
-</div>
-  
+<h2>Список продуктов</h2>
+<ul>
+  <li *ngFor="let product of products">
+    {{ product.name }} - {{ product.price }}
+  </li>
+</ul>
+
+<h3>Добавить продукт</h3>
+<form>
+  <div>
+    <label for="name">Имя продукта:</label>
+    <input
+      id="name"
+      name="newProductName"
+      type="text"
+      [(ngModel)]="newProductName"
+      placeholder="Введите название продукта"
+    />
+  </div>
+  <div>
+    <label for="price">Цена продукта:</label>
+    <input
+      id="price"
+      name="newProductPrice"
+      type="number"
+      [(ngModel)]="newProductPrice"
+      placeholder="Введите цену продукта"
+    />
+  </div>
+  <button type="button" (click)="addProduct()">Добавить продукт</button>
+</form>
