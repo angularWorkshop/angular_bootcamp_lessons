@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Форма контактной информации</h1>
+  <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+    <div ngModelGroup="contactInfo">
+      <label for="name">Имя:</label>
+      <input id="name" type="text" name="name" ngModel required />
+
+      <label for="email">Email:</label>
+      <input id="email" type="email" name="email" ngModel required />
+
+      <label for="phone">Телефон:</label>
+      <input id="phone" type="tel" name="phone" ngModel />
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">Отправить</button>
+  </form>
+</div>
