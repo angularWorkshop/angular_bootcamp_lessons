@@ -16,20 +16,19 @@ interface Product {
 })
 export class ProductListComponent {
   public products: Product[] = [
-    { name: 'Продукт 1', price: 100 },
-    { name: 'Продукт 2', price: 200 }
+    { name: 'Product 1', price: 100 },
+    { name: 'Product 2', price: 200 }
   ];
 
   public newProductName: string = '';
   public newProductPrice: number | null = null;
 
   public addProduct() {
-    if (this.newProductName && this.newProductPrice !== null) {
+    if (this.newProductName.trim() && this.newProductPrice !== null) {
       this.products.push({
         name: this.newProductName,
         price: this.newProductPrice
       });
-
       this.newProductName = '';
       this.newProductPrice = null;
     }
