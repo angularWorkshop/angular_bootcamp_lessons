@@ -1,34 +1,37 @@
-<main class="booking-card">
-  <p class="booking-card__eyebrow">Computed Exercise</p>
-  <h1 class="booking-card__title">{{ title }}</h1>
+<main class="sync-card">
+  <p class="sync-card__eyebrow">Effect Exercise</p>
+  <h1 class="sync-card__title">{{ title }}</h1>
 
-  <section class="booking-card__group">
-    <div class="booking-card__label-row">
-      <p class="booking-card__label">Adults</p>
-      <p class="booking-card__count" data-testid="adults-count">{{ adults() }}</p>
-    </div>
+  <section class="sync-card__panel">
+    <div class="sync-card__row">
+      <div>
+        <p class="sync-card__label">Theme</p>
+        <p class="sync-card__value" data-testid="theme-label">{{ currentTitleLabel() }}</p>
+      </div>
 
-    <div class="booking-card__actions">
-      <button type="button" data-testid="decrease-adults" (click)="decreaseAdults()">-</button>
-      <button type="button" data-testid="increase-adults" (click)="increaseAdults()">+</button>
-    </div>
-  </section>
-
-  <section class="booking-card__group">
-    <div class="booking-card__label-row">
-      <p class="booking-card__label">Children</p>
-      <p class="booking-card__count" data-testid="children-count">{{ children() }}</p>
-    </div>
-
-    <div class="booking-card__actions">
-      <button type="button" data-testid="decrease-children" (click)="decreaseChildren()">-</button>
-      <button type="button" data-testid="increase-children" (click)="increaseChildren()">+</button>
+      <button type="button" data-testid="toggle-theme" (click)="toggleTheme()">Toggle theme</button>
     </div>
   </section>
 
-  <section class="booking-card__summary">
-    <p class="booking-card__summary-line" data-testid="total-tickets">Total tickets: {{ totalTickets() }}</p>
-    <p class="booking-card__summary-line" data-testid="total-price">Total price: ${{ totalPrice() }}</p>
-    <p class="booking-card__summary-line" data-testid="booking-status">{{ bookingStatus() }}</p>
+  <section class="sync-card__panel">
+    <div class="sync-card__row">
+      <div>
+        <p class="sync-card__label">Density</p>
+        <p class="sync-card__value" data-testid="compact-mode-label">{{ compactModeLabel() }}</p>
+      </div>
+
+      <button type="button" data-testid="toggle-compact-mode" (click)="toggleCompactMode()">
+        Toggle compact mode
+      </button>
+    </div>
+  </section>
+
+  <section class="sync-card__summary">
+    <p class="sync-card__summary-line" data-testid="document-title-note">
+      document.title should reflect the current preferences
+    </p>
+    <p class="sync-card__summary-line" data-testid="local-storage-note">
+      localStorage should store the latest snapshot
+    </p>
   </section>
 </main>

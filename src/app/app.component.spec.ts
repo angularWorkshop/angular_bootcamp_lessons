@@ -4,8 +4,12 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let host: HTMLElement;
+  const storageKey = 'preferences-sync';
 
   beforeEach(async () => {
+    localStorage.removeItem(storageKey);
+    document.title = '';
+
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
     }).compileComponents();
@@ -22,43 +26,48 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Booking Summary');
+    expect(heading?.textContent?.trim()).toBe('Preferences Sync');
   });
 
-  it('should render the initial derived values', () => {
-    expect(getText('total-tickets')).toBe('Total tickets: 0');
-    expect(getText('total-price')).toBe('Total price: $0');
-    expect(getText('booking-status')).toBe('No tickets selected');
+  it('should render the initial signal values', () => {
+    expect(getText('theme-label')).toBe('Light mode');
+    expect(getText('compact-mode-label')).toBe('Compact mode: Off');
   });
 
-  it('should derive ticket count and total price from source state', () => {
-    click('increase-adults');
-    click('increase-adults');
-    click('increase-children');
-
-    expect(getText('adults-count')).toBe('2');
-    expect(getText('children-count')).toBe('1');
-    expect(getText('total-tickets')).toBe('Total tickets: 3');
-    expect(getText('total-price')).toBe('Total price: $31');
+  it('should sync the initial snapshot through effect', () => {
+    expect(document.title).toBe('Light mode - Comfortable');
+    expect(readStoredPreferences()).toEqual({
+      theme: 'light',
+      compactMode: false,
+    });
   });
 
-  it('should change booking status when the booking becomes large enough', () => {
-    click('increase-adults');
-    click('increase-adults');
-    click('increase-children');
-    click('increase-children');
+  it('should update document.title when the theme changes', () => {
+    click('toggle-theme');
 
-    expect(getText('booking-status')).toBe('Group booking');
+    expect(getText('theme-label')).toBe('Dark mode');
+    expect(document.title).toBe('Dark mode - Comfortable');
   });
 
-  it('should never move counters below zero', () => {
-    click('decrease-adults');
-    click('decrease-children');
+  it('should persist the latest snapshot when compact mode changes', () => {
+    click('toggle-compact-mode');
 
-    expect(getText('adults-count')).toBe('0');
-    expect(getText('children-count')).toBe('0');
-    expect(getText('total-tickets')).toBe('Total tickets: 0');
-    expect(getText('total-price')).toBe('Total price: $0');
+    expect(getText('compact-mode-label')).toBe('Compact mode: On');
+    expect(readStoredPreferences()).toEqual({
+      theme: 'light',
+      compactMode: true,
+    });
+  });
+
+  it('should keep both preferences in sync after multiple updates', () => {
+    click('toggle-theme');
+    click('toggle-compact-mode');
+
+    expect(document.title).toBe('Dark mode - Compact');
+    expect(readStoredPreferences()).toEqual({
+      theme: 'dark',
+      compactMode: true,
+    });
   });
 
   function click(testId: string): void {
@@ -74,5 +83,11 @@ describe('AppComponent', () => {
 
     expect(element).toBeTruthy();
     return element?.textContent?.trim() ?? '';
+  }
+
+  function readStoredPreferences(): { compactMode: boolean; theme: string } | null {
+    const rawValue = localStorage.getItem(storageKey);
+
+    return rawValue ? JSON.parse(rawValue) : null;
   }
 });

@@ -1,36 +1,36 @@
-# Computed Booking Summary
+# Effect Preferences Sync
 
-This branch contains the completed solution for the computed exercise.
+This branch contains the starter version of the `effect()` exercise.
 
 ## Goal
 
-Build a `Booking Summary` screen where source state is stored in Signals, and all summary values are derived through `computed()`.
+Build a `Preferences Sync` screen where local UI state is stored in Signals, and side effects are synchronized through `effect()`.
 
 ## What the learner should build
 
 The UI must include:
 
-- a heading: `Booking Summary`
-- counters for adults and children
-- `+` and `-` buttons for both counters
-- a derived line: `Total tickets: X`
-- a derived line: `Total price: $X`
-- a derived booking status
+- a heading: `Preferences Sync`
+- the current theme
+- the current compact mode status
+- a `Toggle theme` button
+- a `Toggle compact mode` button
+- a note about `document.title`
+- a note about `localStorage`
 
 ## Source state
 
 Use these values as the main source state:
 
-- `adults`
-- `children`
+- `theme`
+- `compactMode`
 
-## Derived state
+## Side effects
 
-The learner must implement:
+The learner must implement synchronization for:
 
-- total number of tickets
-- total booking price
-- booking status based on total tickets
+- `document.title`
+- `localStorage`
 
 ## Files
 
@@ -43,7 +43,7 @@ Main exercise files:
 
 ## What can be changed
 
-The learner would usually work mainly in:
+The learner should work mainly in:
 
 - `src/app/app.component.ts`
 
@@ -51,9 +51,9 @@ Markup and styles may be adjusted if needed, but the target behavior is describe
 
 ## Notes
 
-- This is the `answer` branch.
-- It contains the finished reference implementation.
-- The test suite should stay green here.
+- This is the `lesson` branch.
+- Some tests are expected to fail until the `effect()` logic is implemented.
+- The `answer` branch contains the finished reference solution.
 
 ## Commands
 

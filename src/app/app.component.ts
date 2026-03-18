@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,46 +6,29 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'Booking Summary';
-  protected readonly adultPrice = 12;
-  protected readonly childPrice = 7;
+  protected readonly title = 'Preferences Sync';
+  protected readonly storageKey = 'preferences-sync';
+  protected readonly theme = signal<'light' | 'dark'>('light');
+  protected readonly compactMode = signal(false);
 
-  protected readonly adults = signal(0);
-  protected readonly children = signal(0);
-
-  protected readonly totalTickets = computed(() => this.adults() + this.children());
-
-  protected readonly totalPrice = computed(
-    () => this.adults() * this.adultPrice + this.children() * this.childPrice,
-  );
-
-  protected readonly bookingStatus = computed(() => {
-    const tickets = this.totalTickets();
-
-    if (tickets === 0) {
-      return 'No tickets selected';
-    }
-
-    if (tickets >= 4) {
-      return 'Group booking';
-    }
-
-    return 'Booking in progress';
-  });
-
-  protected increaseAdults(): void {
-    this.adults.update(value => value + 1);
+  constructor() {
+    // TODO: sync theme and compactMode to document.title and localStorage with effect()
+    effect(() => {});
   }
 
-  protected decreaseAdults(): void {
-    this.adults.update(value => Math.max(0, value - 1));
+  protected toggleTheme(): void {
+    this.theme.update(value => (value === 'light' ? 'dark' : 'light'));
   }
 
-  protected increaseChildren(): void {
-    this.children.update(value => value + 1);
+  protected toggleCompactMode(): void {
+    this.compactMode.update(value => !value);
   }
 
-  protected decreaseChildren(): void {
-    this.children.update(value => Math.max(0, value - 1));
+  protected currentTitleLabel(): string {
+    return this.theme() === 'light' ? 'Light mode' : 'Dark mode';
+  }
+
+  protected compactModeLabel(): string {
+    return this.compactMode() ? 'Compact mode: On' : 'Compact mode: Off';
   }
 }
