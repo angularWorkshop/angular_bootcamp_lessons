@@ -19,51 +19,46 @@ describe('AppComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the initial counter state', () => {
-    expect(getText('count-value')).toBe('0');
-    expect(getText('status-value')).toBe('No orders yet');
-    expect(getText('doubled-value')).toBe('Doubled: 0');
-  });
-
-  it('should increase the counter when clicking Increase', () => {
-    click('increase-button');
-
-    expect(getText('count-value')).toBe('1');
-    expect(getText('status-value')).toBe('Active orders: 1');
-    expect(getText('doubled-value')).toBe('Doubled: 2');
-  });
-
-  it('should render the expected heading', () => {
+  it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Order Counter');
+    expect(heading?.textContent?.trim()).toBe('Booking Summary');
   });
 
-  it('should decrease the counter but never go below zero', () => {
-    click('decrease-button');
-    expect(getText('count-value')).toBe('0');
-    expect(getText('status-value')).toBe('No orders yet');
-
-    click('increase-button');
-    click('increase-button');
-    click('decrease-button');
-    click('decrease-button');
-    click('decrease-button');
-
-    expect(getText('count-value')).toBe('0');
-    expect(getText('status-value')).toBe('No orders yet');
-    expect(getText('doubled-value')).toBe('Doubled: 0');
+  it('should render the initial derived values', () => {
+    expect(getText('total-tickets')).toBe('Total tickets: 0');
+    expect(getText('total-price')).toBe('Total price: $0');
+    expect(getText('booking-status')).toBe('No tickets selected');
   });
 
-  it('should keep derived values in sync after multiple updates', () => {
-    click('increase-button');
-    click('increase-button');
-    click('increase-button');
-    click('decrease-button');
+  it('should derive ticket count and total price from source state', () => {
+    click('increase-adults');
+    click('increase-adults');
+    click('increase-children');
 
-    expect(getText('count-value')).toBe('2');
-    expect(getText('status-value')).toBe('Active orders: 2');
-    expect(getText('doubled-value')).toBe('Doubled: 4');
+    expect(getText('adults-count')).toBe('2');
+    expect(getText('children-count')).toBe('1');
+    expect(getText('total-tickets')).toBe('Total tickets: 3');
+    expect(getText('total-price')).toBe('Total price: $31');
+  });
+
+  it('should change booking status when the booking becomes large enough', () => {
+    click('increase-adults');
+    click('increase-adults');
+    click('increase-children');
+    click('increase-children');
+
+    expect(getText('booking-status')).toBe('Group booking');
+  });
+
+  it('should never move counters below zero', () => {
+    click('decrease-adults');
+    click('decrease-children');
+
+    expect(getText('adults-count')).toBe('0');
+    expect(getText('children-count')).toBe('0');
+    expect(getText('total-tickets')).toBe('Total tickets: 0');
+    expect(getText('total-price')).toBe('Total price: $0');
   });
 
   function click(testId: string): void {

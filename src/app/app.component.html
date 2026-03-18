@@ -1,14 +1,34 @@
-<main class="counter-card">
-  <p class="counter-card__eyebrow">Signals Exercise</p>
-  <h1 class="counter-card__title">{{ title }}</h1>
+<main class="booking-card">
+  <p class="booking-card__eyebrow">Computed Exercise</p>
+  <h1 class="booking-card__title">{{ title }}</h1>
 
-  <div class="counter-card__value" data-testid="count-value">{{ count() }}</div>
+  <section class="booking-card__group">
+    <div class="booking-card__label-row">
+      <p class="booking-card__label">Adults</p>
+      <p class="booking-card__count" data-testid="adults-count">{{ adults() }}</p>
+    </div>
 
-  <div class="counter-card__actions">
-    <button type="button" data-testid="decrease-button" (click)="decrease()">Decrease</button>
-    <button type="button" data-testid="increase-button" (click)="increase()">Increase</button>
-  </div>
+    <div class="booking-card__actions">
+      <button type="button" data-testid="decrease-adults" (click)="decreaseAdults()">-</button>
+      <button type="button" data-testid="increase-adults" (click)="increaseAdults()">+</button>
+    </div>
+  </section>
 
-  <p class="counter-card__status" data-testid="status-value">{{ status() }}</p>
-  <p class="counter-card__meta" data-testid="doubled-value">Doubled: {{ doubled() }}</p>
+  <section class="booking-card__group">
+    <div class="booking-card__label-row">
+      <p class="booking-card__label">Children</p>
+      <p class="booking-card__count" data-testid="children-count">{{ children() }}</p>
+    </div>
+
+    <div class="booking-card__actions">
+      <button type="button" data-testid="decrease-children" (click)="decreaseChildren()">-</button>
+      <button type="button" data-testid="increase-children" (click)="increaseChildren()">+</button>
+    </div>
+  </section>
+
+  <section class="booking-card__summary">
+    <p class="booking-card__summary-line" data-testid="total-tickets">Total tickets: {{ totalTickets() }}</p>
+    <p class="booking-card__summary-line" data-testid="total-price">Total price: ${{ totalPrice() }}</p>
+    <p class="booking-card__summary-line" data-testid="booking-status">{{ bookingStatus() }}</p>
+  </section>
 </main>
