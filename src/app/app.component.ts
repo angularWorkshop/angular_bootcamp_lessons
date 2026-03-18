@@ -12,8 +12,19 @@ export class AppComponent {
   protected readonly compactMode = signal(false);
 
   constructor() {
-    // TODO: sync theme and compactMode to document.title and localStorage with effect()
-    effect(() => {});
+    effect(() => {
+      const theme = this.theme();
+      const compactMode = this.compactMode();
+
+      document.title = `${theme === 'light' ? 'Light mode' : 'Dark mode'} - ${compactMode ? 'Compact' : 'Comfortable'}`;
+      localStorage.setItem(
+        this.storageKey,
+        JSON.stringify({
+          theme,
+          compactMode,
+        }),
+      );
+    });
   }
 
   protected toggleTheme(): void {
