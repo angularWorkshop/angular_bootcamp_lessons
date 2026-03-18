@@ -1,28 +1,36 @@
-# Signals Counter
+# Computed Booking Summary
 
-This branch contains the completed solution for the Signals exercise.
+This branch contains the starter version of the computed exercise.
 
 ## Goal
 
-Build a small `Order Counter` screen with Angular Signals:
+Build a `Booking Summary` screen where source state is stored in Signals, and all summary values are derived through `computed()`.
 
-- `count` stores the source state
-- `doubled` is derived with `computed()`
-- `status` depends on the current counter value
-- `Decrease` must never move the value below `0`
+## What the learner should build
 
-## What the learner is expected to build
+The UI must include:
 
-The UI should include:
+- a heading: `Booking Summary`
+- counters for adults and children
+- `+` and `-` buttons for both counters
+- a derived line: `Total tickets: X`
+- a derived line: `Total price: $X`
+- a derived booking status
 
-- a heading: `Order Counter`
-- the current counter value
-- an `Increase` button
-- a `Decrease` button
-- a status line:
-  - `No orders yet` when the count is `0`
-  - `Active orders: X` when the count is greater than `0`
-- a derived line: `Doubled: X`
+## Source state
+
+Use these values as the main source state:
+
+- `adults`
+- `children`
+
+## Derived state
+
+The learner must implement:
+
+- total number of tickets
+- total booking price
+- booking status based on total tickets
 
 ## Files
 
@@ -33,11 +41,19 @@ Main exercise files:
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
+## What can be changed
+
+The learner should work mainly in:
+
+- `src/app/app.component.ts`
+
+Markup and styles may be adjusted if needed, but the target behavior is described by the tests.
+
 ## Notes
 
-- The `lesson` branch should contain the starter version.
-- This `answer` branch contains the reference implementation.
-- The tests describe the intended behavior and should stay green here.
+- This is the `lesson` branch.
+- Some tests are expected to fail until the computed logic is implemented.
+- The `answer` branch contains the finished reference solution.
 
 ## Commands
 

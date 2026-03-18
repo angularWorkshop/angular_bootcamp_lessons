@@ -6,22 +6,35 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'Order Counter';
-  protected readonly count = signal(0);
+  protected readonly title = 'Booking Summary';
+  protected readonly adultPrice = 12;
+  protected readonly childPrice = 7;
 
-  protected readonly doubled = computed(() => this.count() * 2);
+  protected readonly adults = signal(0);
+  protected readonly children = signal(0);
 
-  protected readonly status = computed(() => {
-    const currentValue = this.count();
+  // TODO: derive the total number of tickets from adults and children
+  protected readonly totalTickets = computed(() => 0);
 
-    return currentValue === 0 ? 'No orders yet' : `Active orders: ${currentValue}`;
-  });
+  // TODO: derive the total price from adults, children and prices
+  protected readonly totalPrice = computed(() => 0);
 
-  protected increase(): void {
-    this.count.update(value => value + 1);
+  // TODO: derive status from totalTickets
+  protected readonly bookingStatus = computed(() => 'No tickets selected');
+
+  protected increaseAdults(): void {
+    this.adults.update(value => value + 1);
   }
 
-  protected decrease(): void {
-    this.count.update(value => Math.max(0, value - 1));
+  protected decreaseAdults(): void {
+    this.adults.update(value => Math.max(0, value - 1));
+  }
+
+  protected increaseChildren(): void {
+    this.children.update(value => value + 1);
+  }
+
+  protected decreaseChildren(): void {
+    this.children.update(value => Math.max(0, value - 1));
   }
 }
