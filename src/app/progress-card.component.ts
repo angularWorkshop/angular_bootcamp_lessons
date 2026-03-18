@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-progress-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="progress-card">
       <p class="progress-card__eyebrow">Progress Card</p>

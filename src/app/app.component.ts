@@ -22,12 +22,16 @@ export class AppComponent {
       return;
     }
 
-    // TODO: replace object immutably so the child component can work well with OnPush
-    this.progress.completedLessons += 1;
+    this.progress = {
+      ...this.progress,
+      completedLessons: this.progress.completedLessons + 1,
+    };
   }
 
   protected resetProgress(): void {
-    // TODO: replace object immutably instead of mutating the current one
-    this.progress.completedLessons = 0;
+    this.progress = {
+      ...this.progress,
+      completedLessons: 0,
+    };
   }
 }
