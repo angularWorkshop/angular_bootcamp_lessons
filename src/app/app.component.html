@@ -1,37 +1,27 @@
-<main class="sync-card">
-  <p class="sync-card__eyebrow">Effect Exercise</p>
-  <h1 class="sync-card__title">{{ title }}</h1>
+<main class="progress-shell">
+  <p class="progress-shell__eyebrow">Change Detection Exercise</p>
+  <h1 class="progress-shell__title">{{ title }}</h1>
 
-  <section class="sync-card__panel">
-    <div class="sync-card__row">
-      <div>
-        <p class="sync-card__label">Theme</p>
-        <p class="sync-card__value" data-testid="theme-label">{{ currentTitleLabel() }}</p>
-      </div>
-
-      <button type="button" data-testid="toggle-theme" (click)="toggleTheme()">Toggle theme</button>
-    </div>
-  </section>
-
-  <section class="sync-card__panel">
-    <div class="sync-card__row">
-      <div>
-        <p class="sync-card__label">Density</p>
-        <p class="sync-card__value" data-testid="compact-mode-label">{{ compactModeLabel() }}</p>
-      </div>
-
-      <button type="button" data-testid="toggle-compact-mode" (click)="toggleCompactMode()">
-        Toggle compact mode
-      </button>
-    </div>
-  </section>
-
-  <section class="sync-card__summary">
-    <p class="sync-card__summary-line" data-testid="document-title-note">
-      document.title should reflect the current preferences
+  <section class="progress-shell__intro">
+    <p class="progress-shell__text">
+      Здесь важно не просто обновить число. Нужно перевести child component на <code>OnPush</code> и перестать менять
+      текущий объект прогресса напрямую.
     </p>
-    <p class="sync-card__summary-line" data-testid="local-storage-note">
-      localStorage should store the latest snapshot
+  </section>
+
+  <app-progress-card [progress]="progress"></app-progress-card>
+
+  <section class="progress-shell__actions">
+    <button type="button" data-testid="complete-lesson" (click)="completeLesson()">Complete lesson</button>
+    <button type="button" data-testid="reset-progress" (click)="resetProgress()">Reset progress</button>
+  </section>
+
+  <section class="progress-shell__summary">
+    <p class="progress-shell__summary-line" data-testid="onpush-note">
+      The child component should use OnPush.
+    </p>
+    <p class="progress-shell__summary-line" data-testid="immutability-note">
+      Parent updates should create a new object reference.
     </p>
   </section>
 </main>

@@ -1,36 +1,31 @@
-# Effect Preferences Sync
+# OnPush Progress Card
 
-This branch contains the completed solution for the `effect()` exercise.
+This branch contains the starter version of the `OnPush` exercise.
 
 ## Goal
 
-Build a `Preferences Sync` screen where local UI state is stored in Signals, and side effects are synchronized through `effect()`.
+Build a small `Progress Card` flow where a child component uses `OnPush`, and the parent updates its input data without mutating the old object.
 
 ## What the learner should build
 
 The UI must include:
 
-- a heading: `Preferences Sync`
-- the current theme
-- the current compact mode status
-- a `Toggle theme` button
-- a `Toggle compact mode` button
-- a note about `document.title`
-- a note about `localStorage`
+- a heading: `OnPush Progress Card`
+- a child progress card
+- current progress like `Completed 2 of 5 lessons`
+- a `Complete lesson` button
+- a `Reset progress` button
+- a note about `OnPush`
+- a note about immutable updates
 
-## Source state
+## What the learner should implement
 
-Use these values as the main source state:
+The learner must:
 
-- `theme`
-- `compactMode`
-
-## Side effects
-
-The learner must implement synchronization for:
-
-- `document.title`
-- `localStorage`
+- move the child component to `OnPush`
+- keep the UI working correctly
+- stop mutating the existing progress object
+- update state through new object references
 
 ## Files
 
@@ -40,20 +35,22 @@ Main exercise files:
 - `src/app/app.component.html`
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
+- `src/app/progress-card.component.ts`
 
 ## What can be changed
 
-The learner would usually work mainly in:
+The learner should work mainly in:
 
 - `src/app/app.component.ts`
+- `src/app/progress-card.component.ts`
 
 Markup and styles may be adjusted if needed, but the target behavior is described by the tests.
 
 ## Notes
 
-- This is the `answer` branch.
-- It contains the finished reference implementation.
-- The test suite should stay green here.
+- This is the `lesson` branch.
+- Some tests are expected to fail until `OnPush` and immutable updates are implemented.
+- The `answer` branch contains the finished reference solution.
 
 ## Commands
 

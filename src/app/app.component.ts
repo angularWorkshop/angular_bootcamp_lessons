@@ -1,4 +1,9 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface LearningProgress {
+  completedLessons: number;
+  totalLessons: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -6,40 +11,23 @@ import { Component, effect, signal } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'Preferences Sync';
-  protected readonly storageKey = 'preferences-sync';
-  protected readonly theme = signal<'light' | 'dark'>('light');
-  protected readonly compactMode = signal(false);
+  protected readonly title = 'OnPush Progress Card';
+  protected progress: LearningProgress = {
+    completedLessons: 2,
+    totalLessons: 5,
+  };
 
-  constructor() {
-    effect(() => {
-      const theme = this.theme();
-      const compactMode = this.compactMode();
+  protected completeLesson(): void {
+    if (this.progress.completedLessons >= this.progress.totalLessons) {
+      return;
+    }
 
-      document.title = `${theme === 'light' ? 'Light mode' : 'Dark mode'} - ${compactMode ? 'Compact' : 'Comfortable'}`;
-      localStorage.setItem(
-        this.storageKey,
-        JSON.stringify({
-          theme,
-          compactMode,
-        }),
-      );
-    });
+    // TODO: replace object immutably so the child component can work well with OnPush
+    this.progress.completedLessons += 1;
   }
 
-  protected toggleTheme(): void {
-    this.theme.update(value => (value === 'light' ? 'dark' : 'light'));
-  }
-
-  protected toggleCompactMode(): void {
-    this.compactMode.update(value => !value);
-  }
-
-  protected currentTitleLabel(): string {
-    return this.theme() === 'light' ? 'Light mode' : 'Dark mode';
-  }
-
-  protected compactModeLabel(): string {
-    return this.compactMode() ? 'Compact mode: On' : 'Compact mode: Off';
+  protected resetProgress(): void {
+    // TODO: replace object immutably instead of mutating the current one
+    this.progress.completedLessons = 0;
   }
 }

@@ -1,17 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ProgressCardComponent } from './progress-card.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let host: HTMLElement;
-  const storageKey = 'preferences-sync';
 
   beforeEach(async () => {
-    localStorage.removeItem(storageKey);
-    document.title = '';
-
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, ProgressCardComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -26,47 +23,34 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Preferences Sync');
+    expect(heading?.textContent?.trim()).toBe('OnPush Progress Card');
   });
 
-  it('should render the initial signal values', () => {
-    expect(getText('theme-label')).toBe('Light mode');
-    expect(getText('compact-mode-label')).toBe('Compact mode: Off');
+  it('should render the initial progress card state', () => {
+    expect(getText('progress-text')).toBe('Completed 2 of 5 lessons');
+    expect(getText('progress-percent')).toBe('40% complete');
   });
 
-  it('should sync the initial snapshot through effect', () => {
-    expect(document.title).toBe('Light mode - Comfortable');
-    expect(readStoredPreferences()).toEqual({
-      theme: 'light',
-      compactMode: false,
-    });
+  it('should update the visible progress after completing a lesson', () => {
+    click('complete-lesson');
+
+    expect(getText('progress-text')).toBe('Completed 3 of 5 lessons');
+    expect(getText('progress-percent')).toBe('60% complete');
   });
 
-  it('should update document.title when the theme changes', () => {
-    click('toggle-theme');
-
-    expect(getText('theme-label')).toBe('Dark mode');
-    expect(document.title).toBe('Dark mode - Comfortable');
+  it('should use OnPush strategy in the child component', () => {
+    expect((ProgressCardComponent as any).ɵcmp.onPush).toBe(true);
   });
 
-  it('should persist the latest snapshot when compact mode changes', () => {
-    click('toggle-compact-mode');
+  it('should replace the progress object when completing a lesson', () => {
+    const initialProgress = fixture.componentInstance['progress'];
 
-    expect(getText('compact-mode-label')).toBe('Compact mode: On');
-    expect(readStoredPreferences()).toEqual({
-      theme: 'light',
-      compactMode: true,
-    });
-  });
+    click('complete-lesson');
 
-  it('should keep both preferences in sync after multiple updates', () => {
-    click('toggle-theme');
-    click('toggle-compact-mode');
-
-    expect(document.title).toBe('Dark mode - Compact');
-    expect(readStoredPreferences()).toEqual({
-      theme: 'dark',
-      compactMode: true,
+    expect(fixture.componentInstance['progress']).not.toBe(initialProgress);
+    expect(fixture.componentInstance['progress']).toEqual({
+      completedLessons: 3,
+      totalLessons: 5,
     });
   });
 
@@ -85,9 +69,16 @@ describe('AppComponent', () => {
     return element?.textContent?.trim() ?? '';
   }
 
-  function readStoredPreferences(): { compactMode: boolean; theme: string } | null {
-    const rawValue = localStorage.getItem(storageKey);
+  it('should replace the progress object when resetting progress', () => {
+    click('complete-lesson');
+    const updatedProgress = fixture.componentInstance['progress'];
 
-    return rawValue ? JSON.parse(rawValue) : null;
-  }
+    click('reset-progress');
+
+    expect(fixture.componentInstance['progress']).not.toBe(updatedProgress);
+    expect(fixture.componentInstance['progress']).toEqual({
+      completedLessons: 0,
+      totalLessons: 5,
+    });
+  });
 });

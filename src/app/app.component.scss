@@ -3,21 +3,21 @@
   min-height: 100vh;
   padding: 2rem;
   background:
-    radial-gradient(circle at top, rgba(251, 191, 36, 0.16), transparent 34%),
-    linear-gradient(180deg, #16181d 0%, #0f1115 100%);
+    radial-gradient(circle at top, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(180deg, #07120d 0%, #0f1713 100%);
 }
 
-.sync-card {
+.progress-shell {
   display: grid;
   gap: 1.25rem;
   width: min(100%, 36rem);
   margin: 3rem auto;
   padding: 2rem;
-  color: #f5f1e8;
+  color: #ebf5ee;
   background:
-    linear-gradient(180deg, rgba(34, 26, 21, 0.96), rgba(18, 18, 19, 0.96)),
-    radial-gradient(circle at top right, rgba(249, 115, 22, 0.14), transparent 34%);
-  border: 1px solid rgba(245, 158, 11, 0.14);
+    linear-gradient(180deg, rgba(15, 23, 17, 0.96), rgba(15, 25, 19, 0.96)),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.18), transparent 34%);
+  border: 1px solid rgba(74, 222, 128, 0.14);
   border-radius: 1.5rem;
   box-shadow: 0 24px 60px rgba(2, 8, 23, 0.34);
 
@@ -27,7 +27,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #f59e0b;
+    color: #4ade80;
   }
 
   &__title {
@@ -36,44 +36,26 @@
     line-height: 1.1;
   }
 
-  &__panel,
+  &__intro,
+  &__actions,
   &__summary {
     display: grid;
     gap: 0.85rem;
     padding: 1rem;
-    background: rgba(24, 24, 27, 0.82);
-    border: 1px solid rgba(245, 158, 11, 0.1);
+    background: rgba(15, 23, 19, 0.86);
+    border: 1px solid rgba(74, 222, 128, 0.1);
     border-radius: 1rem;
   }
 
-  &__row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  &__label,
-  &__value,
+  &__text,
   &__summary-line {
     margin: 0;
   }
 
-  &__label {
-    font-size: 1rem;
-    color: #e7d7bf;
-  }
-
-  &__value {
-    margin-top: 0.35rem;
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #fff7ed;
-  }
-
+  &__text,
   &__summary-line {
     font-size: 1rem;
-    color: #f4e7d1;
+    color: #d8f2df;
   }
 }
 
@@ -84,13 +66,13 @@ button {
   font: inherit;
   font-size: 0.95rem;
   font-weight: 800;
-  color: #1c1917;
-  background: linear-gradient(135deg, #fde68a 0%, #fb923c 100%);
+  color: #052e16;
+  background: linear-gradient(135deg, #bbf7d0 0%, #4ade80 100%);
   border: 0;
   border-radius: 999px;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 10px 24px rgba(28, 25, 23, 0.28);
+  box-shadow: 0 10px 24px rgba(5, 46, 22, 0.24);
 
   &:hover {
     transform: translateY(-1px);
@@ -106,14 +88,13 @@ button {
     padding: 0.75rem;
   }
 
-  .sync-card {
+  .progress-shell {
     margin: 1rem auto;
     padding: 1.25rem;
   }
 
-  .sync-card__row {
-    flex-direction: column;
-    align-items: stretch;
+  .progress-shell__actions {
+    grid-template-columns: 1fr;
   }
 
   button {
