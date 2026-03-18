@@ -33,6 +33,12 @@ describe('AppComponent', () => {
     expect(getText('doubled-value')).toBe('Doubled: 2');
   });
 
+  it('should render the expected heading', () => {
+    const heading = host.querySelector('h1');
+
+    expect(heading?.textContent?.trim()).toBe('Order Counter');
+  });
+
   it('should decrease the counter but never go below zero', () => {
     click('decrease-button');
     expect(getText('count-value')).toBe('0');
@@ -47,6 +53,17 @@ describe('AppComponent', () => {
     expect(getText('count-value')).toBe('0');
     expect(getText('status-value')).toBe('No orders yet');
     expect(getText('doubled-value')).toBe('Doubled: 0');
+  });
+
+  it('should keep derived values in sync after multiple updates', () => {
+    click('increase-button');
+    click('increase-button');
+    click('increase-button');
+    click('decrease-button');
+
+    expect(getText('count-value')).toBe('2');
+    expect(getText('status-value')).toBe('Active orders: 2');
+    expect(getText('doubled-value')).toBe('Doubled: 4');
   });
 
   function click(testId: string): void {
