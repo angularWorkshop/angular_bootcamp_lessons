@@ -1,27 +1,29 @@
-<main class="progress-shell">
-  <p class="progress-shell__eyebrow">Change Detection Exercise</p>
-  <h1 class="progress-shell__title">{{ title }}</h1>
+<main class="checklist-shell">
+  <p class="checklist-shell__eyebrow">Immutable Update Exercise</p>
+  <h1 class="checklist-shell__title">{{ title }}</h1>
 
-  <section class="progress-shell__intro">
-    <p class="progress-shell__text">
-      Здесь важно не просто обновить число. Нужно перевести child component на <code>OnPush</code> и перестать менять
-      текущий объект прогресса напрямую.
+  <section class="checklist-shell__intro">
+    <p class="checklist-shell__text">
+      Здесь child component уже живёт на <code>OnPush</code>. Значит, если мутировать старый массив или старый lesson
+      object, список начнёт обновляться ненадёжно.
     </p>
   </section>
 
-  <app-progress-card [progress]="progress"></app-progress-card>
+  <app-lesson-checklist [lessons]="lessons"></app-lesson-checklist>
 
-  <section class="progress-shell__actions">
-    <button type="button" data-testid="complete-lesson" (click)="completeLesson()">Complete lesson</button>
-    <button type="button" data-testid="reset-progress" (click)="resetProgress()">Reset progress</button>
+  <section class="checklist-shell__actions">
+    <button type="button" data-testid="complete-first-lesson" (click)="completeFirstLesson()">
+      Complete first lesson
+    </button>
+    <button type="button" data-testid="reset-checklist" (click)="resetChecklist()">Reset checklist</button>
   </section>
 
-  <section class="progress-shell__summary">
-    <p class="progress-shell__summary-line" data-testid="onpush-note">
-      The child component should use OnPush.
+  <section class="checklist-shell__summary">
+    <p class="checklist-shell__summary-line" data-testid="immutability-note">
+      Checklist updates should create new references.
     </p>
-    <p class="progress-shell__summary-line" data-testid="immutability-note">
-      Parent updates should create a new object reference.
+    <p class="checklist-shell__summary-line" data-testid="onpush-note">
+      The OnPush child should react to those new references.
     </p>
   </section>
 </main>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { ProgressCardComponent } from './progress-card.component';
+import { LessonChecklistComponent } from './lesson-checklist.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -8,7 +8,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, ProgressCardComponent],
+      declarations: [AppComponent, LessonChecklistComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -23,34 +23,35 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('OnPush Progress Card');
+    expect(heading?.textContent?.trim()).toBe('Immutable Lesson Checklist');
   });
 
-  it('should render the initial progress card state', () => {
-    expect(getText('progress-text')).toBe('Completed 2 of 5 lessons');
-    expect(getText('progress-percent')).toBe('40% complete');
+  it('should render the initial checklist state', () => {
+    expect(getText('completed-summary')).toBe('Completed 0 of 3 lessons');
+    expect(getText('lesson-1-status')).toBe('Angular Signals - Todo');
   });
 
-  it('should update the visible progress after completing a lesson', () => {
-    click('complete-lesson');
-
-    expect(getText('progress-text')).toBe('Completed 3 of 5 lessons');
-    expect(getText('progress-percent')).toBe('60% complete');
+  it('should keep the child component on OnPush', () => {
+    expect((LessonChecklistComponent as any).ɵcmp.onPush).toBe(true);
   });
 
-  it('should use OnPush strategy in the child component', () => {
-    expect((ProgressCardComponent as any).ɵcmp.onPush).toBe(true);
+  it('should update the visible checklist after completing the first lesson', () => {
+    click('complete-first-lesson');
+
+    expect(getText('completed-summary')).toBe('Completed 1 of 3 lessons');
+    expect(getText('lesson-1-status')).toBe('Angular Signals - Done');
   });
 
-  it('should replace the progress object when completing a lesson', () => {
-    const initialProgress = fixture.componentInstance['progress'];
+  it('should replace the lessons array when completing the first lesson', () => {
+    const initialLessons = fixture.componentInstance['lessons'];
 
-    click('complete-lesson');
+    click('complete-first-lesson');
 
-    expect(fixture.componentInstance['progress']).not.toBe(initialProgress);
-    expect(fixture.componentInstance['progress']).toEqual({
-      completedLessons: 3,
-      totalLessons: 5,
+    expect(fixture.componentInstance['lessons']).not.toBe(initialLessons);
+    expect(fixture.componentInstance['lessons'][0]).toEqual({
+      id: 1,
+      title: 'Angular Signals',
+      completed: true,
     });
   });
 
@@ -69,16 +70,13 @@ describe('AppComponent', () => {
     return element?.textContent?.trim() ?? '';
   }
 
-  it('should replace the progress object when resetting progress', () => {
-    click('complete-lesson');
-    const updatedProgress = fixture.componentInstance['progress'];
+  it('should replace the lessons array when resetting the checklist', () => {
+    click('complete-first-lesson');
+    const updatedLessons = fixture.componentInstance['lessons'];
 
-    click('reset-progress');
+    click('reset-checklist');
 
-    expect(fixture.componentInstance['progress']).not.toBe(updatedProgress);
-    expect(fixture.componentInstance['progress']).toEqual({
-      completedLessons: 0,
-      totalLessons: 5,
-    });
+    expect(fixture.componentInstance['lessons']).not.toBe(updatedLessons);
+    expect(fixture.componentInstance['lessons'].every((lesson: any) => !lesson.completed)).toBe(true);
   });
 });

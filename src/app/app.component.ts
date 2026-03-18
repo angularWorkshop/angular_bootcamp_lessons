@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 interface LearningProgress {
-  completedLessons: number;
-  totalLessons: number;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
 @Component({
@@ -11,27 +12,28 @@ interface LearningProgress {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'OnPush Progress Card';
-  protected progress: LearningProgress = {
-    completedLessons: 2,
-    totalLessons: 5,
-  };
+  protected readonly title = 'Immutable Lesson Checklist';
+  protected lessons: LearningProgress[] = [
+    { id: 1, title: 'Angular Signals', completed: false },
+    { id: 2, title: 'Computed Values', completed: false },
+    { id: 3, title: 'Effect Basics', completed: false },
+  ];
 
-  protected completeLesson(): void {
-    if (this.progress.completedLessons >= this.progress.totalLessons) {
+  protected completeFirstLesson(): void {
+    const firstLesson = this.lessons[0];
+
+    if (!firstLesson || firstLesson.completed) {
       return;
     }
 
-    this.progress = {
-      ...this.progress,
-      completedLessons: this.progress.completedLessons + 1,
-    };
+    // TODO: update the checklist through a new array and a new lesson object
+    firstLesson.completed = true;
   }
 
-  protected resetProgress(): void {
-    this.progress = {
-      ...this.progress,
-      completedLessons: 0,
-    };
+  protected resetChecklist(): void {
+    // TODO: reset the checklist through new references instead of mutating existing lesson objects
+    this.lessons.forEach((lesson) => {
+      lesson.completed = false;
+    });
   }
 }
