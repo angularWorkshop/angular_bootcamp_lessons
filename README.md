@@ -1,6 +1,6 @@
 # Immutable Lesson Checklist
 
-This branch contains the starter version of the immutable state exercise.
+This branch contains the completed solution for the immutable state exercise.
 
 ## Goal
 
@@ -38,7 +38,7 @@ Main exercise files:
 
 ## What can be changed
 
-The learner should work mainly in:
+The learner would usually work mainly in:
 
 - `src/app/app.component.ts`
 
@@ -46,9 +46,9 @@ Markup and styles may be adjusted if needed, but the target behavior is describe
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail until the checklist starts updating through new references.
-- The `answer` branch contains the finished reference solution.
+- This is the `answer` branch.
+- It contains the finished reference implementation.
+- The test suite should stay green here.
 
 ## Commands
 

@@ -26,14 +26,15 @@ export class AppComponent {
       return;
     }
 
-    // TODO: update the checklist through a new array and a new lesson object
-    firstLesson.completed = true;
+    this.lessons = this.lessons.map((lesson) =>
+      lesson.id === firstLesson.id ? { ...lesson, completed: true } : lesson,
+    );
   }
 
   protected resetChecklist(): void {
-    // TODO: reset the checklist through new references instead of mutating existing lesson objects
-    this.lessons.forEach((lesson) => {
-      lesson.completed = false;
-    });
+    this.lessons = this.lessons.map((lesson) => ({
+      ...lesson,
+      completed: false,
+    }));
   }
 }
