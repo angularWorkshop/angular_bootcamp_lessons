@@ -1,0 +1,14 @@
+<main class="counter-card">
+  <p class="counter-card__eyebrow">Signals Exercise</p>
+  <h1 class="counter-card__title">{{ title }}</h1>
+
+  <div class="counter-card__value" data-testid="count-value">{{ count() }}</div>
+
+  <div class="counter-card__actions">
+    <button type="button" data-testid="decrease-button" (click)="decrease()">Decrease</button>
+    <button type="button" data-testid="increase-button" (click)="increase()">Increase</button>
+  </div>
+
+  <p class="counter-card__status" data-testid="status-value">{{ status() }}</p>
+  <p class="counter-card__meta" data-testid="doubled-value">Doubled: {{ doubled() }}</p>
+</main>
