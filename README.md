@@ -1,17 +1,17 @@
 # Passing Data with @Input
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Pass typed lesson data from the parent component into a standalone child card through `@Input`.
 
-## What you need to do
+## What the solution demonstrates
 
-- keep `LessonPreviewCardComponent` standalone
-- pass different lesson objects from the parent component
-- render the incoming data in the child template
-- make sure the UI shows the title, format, duration, and level from the input model
+- a parent component that passes two different lesson objects
+- a standalone `LessonPreviewCardComponent`
+- typed `@Input` data rendered in the child template
+- visible title, format, duration, and level values in both cards
 
 ## Files
 
@@ -25,9 +25,9 @@ Pass typed lesson data from the parent component into a standalone child card th
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests should fail before the exercise is completed.
-- Fix the data flow through `@Input` instead of hardcoding values inside the child component.
+- This is the `answer` branch.
+- It contains the finished reference implementation.
+- The test suite should stay green here.
 
 ## Commands
 

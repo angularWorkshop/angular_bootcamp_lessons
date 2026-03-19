@@ -22,6 +22,25 @@
   color: #f8fafc;
 }
 
+.lesson-preview-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.lesson-preview-card__pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.14);
+  color: #bfdbfe;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
 .lesson-preview-card__summary {
   margin: 1rem 0 0;
   color: #cbd5e1;
