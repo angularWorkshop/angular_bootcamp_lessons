@@ -1,0 +1,19 @@
+<main class="input-lab">
+  <p class="input-lab__eyebrow">Standalone Components Exercise</p>
+  <h1 class="input-lab__title">{{ title }}</h1>
+  <p class="input-lab__intro">
+    Pass typed lesson data from the parent component into a reusable standalone child card.
+  </p>
+
+  <section class="input-lab__grid">
+    <app-lesson-preview-card
+      data-testid="lesson-card"
+      [lesson]="introLesson"
+    ></app-lesson-preview-card>
+
+    <app-lesson-preview-card
+      data-testid="lesson-card"
+      [lesson]="introLesson"
+    ></app-lesson-preview-card>
+  </section>
+</main>

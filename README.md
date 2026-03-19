@@ -1,27 +1,44 @@
-# AngularDefinitiveGuideLessons
+# Passing Data with @Input
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Pass typed lesson data from the parent component into a standalone child card through `@Input`.
 
-## Code scaffolding
+## What you need to do
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- keep `LessonPreviewCardComponent` standalone
+- pass different lesson objects from the parent component
+- render the incoming data in the child template
+- make sure the UI shows the title, format, duration, and level from the input model
 
-## Build
+## Files
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
+- `src/app/app.component.spec.ts`
+- `src/app/lesson-preview-card/lesson-preview-card.component.ts`
+- `src/app/lesson-preview-card/lesson-preview-card.component.html`
+- `src/app/lesson-preview-card/lesson-preview-card.component.scss`
 
-## Running unit tests
+## Notes
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- This is the `lesson` branch.
+- Some tests should fail before the exercise is completed.
+- Fix the data flow through `@Input` instead of hardcoding values inside the child component.
 
-## Running end-to-end tests
+## Commands
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run the app:
 
-## Further help
+```bash
+npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run tests:
+
+```bash
+npm test -- --runInBand
+```

@@ -1,0 +1,29 @@
+.lesson-preview-card {
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+}
+
+.lesson-preview-card__eyebrow {
+  margin: 0 0 0.85rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+
+.lesson-preview-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: #f8fafc;
+}
+
+.lesson-preview-card__summary {
+  margin: 1rem 0 0;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
