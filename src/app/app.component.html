@@ -6,9 +6,9 @@
     <img
       class="profile-card__avatar"
       data-testid="user-avatar"
-      src=""
-      alt=""
-      title=""
+      [src]="user.avatarUrl"
+      [alt]="user.fullName"
+      [title]="user.fullName"
     />
 
     <div class="profile-card__content">
@@ -17,11 +17,15 @@
       <p class="profile-card__city" data-testid="user-city">{{ user.city }}</p>
 
       <div class="profile-card__meta">
-        <span class="profile-card__status" data-testid="user-status">
+        <span
+          class="profile-card__status"
+          [class.profile-card__status--online]="user.isOnline"
+          data-testid="user-status"
+        >
           {{ user.isOnline ? 'Online' : 'Offline' }}
         </span>
 
-        <a class="profile-card__contact" data-testid="contact-link" href="">
+        <a class="profile-card__contact" data-testid="contact-link" [href]="'mailto:' + user.email">
           Contact user
         </a>
       </div>
