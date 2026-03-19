@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 
-interface LearningProgress {
-  id: number;
-  title: string;
-  completed: boolean;
+interface UserProfile {
+  fullName: string;
+  role: string;
+  city: string;
+  email: string;
+  avatarUrl: string;
+  isOnline: boolean;
 }
 
 @Component({
@@ -12,29 +15,13 @@ interface LearningProgress {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'Immutable Lesson Checklist';
-  protected lessons: LearningProgress[] = [
-    { id: 1, title: 'Angular Signals', completed: false },
-    { id: 2, title: 'Computed Values', completed: false },
-    { id: 3, title: 'Effect Basics', completed: false },
-  ];
-
-  protected completeFirstLesson(): void {
-    const firstLesson = this.lessons[0];
-
-    if (!firstLesson || firstLesson.completed) {
-      return;
-    }
-
-    this.lessons = this.lessons.map((lesson) =>
-      lesson.id === firstLesson.id ? { ...lesson, completed: true } : lesson,
-    );
-  }
-
-  protected resetChecklist(): void {
-    this.lessons = this.lessons.map((lesson) => ({
-      ...lesson,
-      completed: false,
-    }));
-  }
+  protected readonly title = 'User Profile Card';
+  protected readonly user: UserProfile = {
+    fullName: 'Annie Case',
+    role: 'Angular Student',
+    city: 'Minsk',
+    email: 'annie.case@example.com',
+    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+    isOnline: true,
+  };
 }

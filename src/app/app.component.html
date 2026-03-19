@@ -1,29 +1,30 @@
-<main class="checklist-shell">
-  <p class="checklist-shell__eyebrow">Immutable Update Exercise</p>
-  <h1 class="checklist-shell__title">{{ title }}</h1>
+<main class="profile-shell">
+  <p class="profile-shell__eyebrow">Template Bindings Exercise</p>
+  <h1 class="profile-shell__title">{{ title }}</h1>
 
-  <section class="checklist-shell__intro">
-    <p class="checklist-shell__text">
-      Здесь child component уже живёт на <code>OnPush</code>. Значит, если мутировать старый массив или старый lesson
-      object, список начнёт обновляться ненадёжно.
-    </p>
-  </section>
+  <section class="profile-card">
+    <img
+      class="profile-card__avatar"
+      data-testid="user-avatar"
+      src=""
+      alt=""
+      title=""
+    />
 
-  <app-lesson-checklist [lessons]="lessons"></app-lesson-checklist>
+    <div class="profile-card__content">
+      <p class="profile-card__name" data-testid="user-name">{{ user.fullName }}</p>
+      <p class="profile-card__role" data-testid="user-role">{{ user.role }}</p>
+      <p class="profile-card__city" data-testid="user-city">{{ user.city }}</p>
 
-  <section class="checklist-shell__actions">
-    <button type="button" data-testid="complete-first-lesson" (click)="completeFirstLesson()">
-      Complete first lesson
-    </button>
-    <button type="button" data-testid="reset-checklist" (click)="resetChecklist()">Reset checklist</button>
-  </section>
+      <div class="profile-card__meta">
+        <span class="profile-card__status" data-testid="user-status">
+          {{ user.isOnline ? 'Online' : 'Offline' }}
+        </span>
 
-  <section class="checklist-shell__summary">
-    <p class="checklist-shell__summary-line" data-testid="immutability-note">
-      Checklist updates should create new references.
-    </p>
-    <p class="checklist-shell__summary-line" data-testid="onpush-note">
-      The OnPush child should react to those new references.
-    </p>
+        <a class="profile-card__contact" data-testid="contact-link" href="">
+          Contact user
+        </a>
+      </div>
+    </div>
   </section>
 </main>

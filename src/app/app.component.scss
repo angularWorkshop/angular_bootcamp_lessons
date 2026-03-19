@@ -7,17 +7,17 @@
   padding: 2rem;
 }
 
-.checklist-shell {
+.profile-shell {
   display: grid;
   gap: 1.25rem;
-  width: min(100%, 40rem);
+  width: min(100%, 38rem);
   margin: 3rem auto;
   padding: 2rem;
-  color: #e8f0fb;
+  color: #eef5f3;
   background:
-    linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.96)),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 34%);
-  border: 1px solid rgba(96, 165, 250, 0.14);
+    linear-gradient(180deg, rgba(22, 28, 33, 0.96), rgba(15, 20, 24, 0.96)),
+    radial-gradient(circle at top right, rgba(45, 212, 191, 0.16), transparent 34%);
+  border: 1px solid rgba(94, 234, 212, 0.14);
   border-radius: 1.5rem;
   box-shadow: 0 24px 60px rgba(2, 8, 23, 0.34);
 
@@ -27,7 +27,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #60a5fa;
+    color: #5eead4;
   }
 
   &__title {
@@ -36,50 +36,74 @@
     line-height: 1.1;
   }
 
-  &__intro,
-  &__actions,
-  &__summary {
-    display: grid;
-    gap: 0.85rem;
-    padding: 1rem;
-    background: rgba(15, 23, 42, 0.82);
-    border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+.profile-card {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(15, 23, 24, 0.82);
+  border: 1px solid rgba(94, 234, 212, 0.1);
+  border-radius: 1rem;
+
+  &__avatar {
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
     border-radius: 1rem;
+    background: rgba(148, 163, 184, 0.16);
   }
 
-  &__text,
-  &__summary-line {
+  &__content {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+  }
+
+  &__name,
+  &__role,
+  &__city,
+  &__status,
+  &__contact {
     margin: 0;
   }
 
-  &__text,
-  &__summary-line {
-    font-size: 1rem;
-    color: #dbeafe;
-  }
-}
-
-button {
-  min-width: 11rem;
-  min-height: 3rem;
-  padding: 0.85rem 1rem;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #0f172a;
-  background: linear-gradient(135deg, #dbeafe 0%, #60a5fa 100%);
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.24);
-
-  &:hover {
-    transform: translateY(-1px);
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f0fdfa;
   }
 
-  &:active {
-    transform: translateY(0);
+  &__role,
+  &__city {
+    color: #d5f5f0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  &__status {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.12);
+    color: #e2e8f0;
+  }
+
+  &__status--online {
+    background: rgba(45, 212, 191, 0.16);
+    color: #5eead4;
+  }
+
+  &__contact {
+    color: #99f6e4;
+    text-decoration: none;
   }
 }
 
@@ -88,16 +112,12 @@ button {
     padding: 0.75rem;
   }
 
-  .checklist-shell {
+  .profile-shell {
     margin: 1rem auto;
     padding: 1.25rem;
   }
 
-  .checklist-shell__actions {
+  .profile-card {
     grid-template-columns: 1fr;
-  }
-
-  button {
-    width: 100%;
   }
 }

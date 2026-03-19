@@ -1,30 +1,32 @@
-# Immutable Lesson Checklist
+# User Profile Bindings
 
-This branch contains the completed solution for the immutable state exercise.
+This branch contains the starter version of the template bindings exercise.
 
 ## Goal
 
-Build a `Lesson Checklist` flow where a child component already works with `OnPush`, and the parent updates the list through new array references instead of mutations.
+Build a `User Profile Card` that renders a user model through interpolation and property binding.
 
 ## What the learner should build
 
 The UI must include:
 
-- a heading: `Immutable Lesson Checklist`
-- a child checklist component
-- a completed summary like `Completed 0 of 3 lessons`
-- a `Complete first lesson` button
-- a `Reset checklist` button
-- a note about immutable updates
+- a heading: `User Profile Card`
+- the user's full name
+- the user's role
+- the user's city
+- the user's email
+- a user avatar
+- an online status badge
+- a contact link
 
 ## What the learner should implement
 
 The learner must:
 
-- stop mutating the existing lessons array
-- stop mutating lesson objects in place
-- update the checklist through new array references
-- keep the `OnPush` child component working correctly
+- display model values with interpolation
+- bind avatar properties through Angular bindings
+- bind the email link correctly
+- reflect the online state in the badge
 
 ## Files
 
@@ -34,21 +36,20 @@ Main exercise files:
 - `src/app/app.component.html`
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
-- `src/app/lesson-checklist.component.ts`
 
 ## What can be changed
 
-The learner would usually work mainly in:
+The learner should work mainly in:
 
-- `src/app/app.component.ts`
+- `src/app/app.component.html`
 
 Markup and styles may be adjusted if needed, but the target behavior is described by the tests.
 
 ## Notes
 
-- This is the `answer` branch.
-- It contains the finished reference implementation.
-- The test suite should stay green here.
+- This is the `lesson` branch.
+- Some tests are expected to fail until the bindings are connected correctly.
+- The `answer` branch contains the finished reference solution.
 
 ## Commands
 
