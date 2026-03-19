@@ -1,0 +1,30 @@
+.practice-reminder-card {
+  display: grid;
+  gap: 0.8rem;
+  height: 100%;
+  padding: 1.3rem;
+  color: #fdf2f8;
+  background: rgba(58, 28, 68, 0.82);
+  border: 1px dashed rgba(244, 114, 182, 0.28);
+  border-radius: 1.25rem;
+
+  &__eyebrow {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f9a8d4;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.45rem;
+    line-height: 1.1;
+  }
+
+  &__text {
+    margin: 0;
+    color: #f5d0fe;
+  }
+}

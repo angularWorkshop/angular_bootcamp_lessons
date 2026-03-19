@@ -1,17 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
-
+import { LearningPlanCardComponent } from './learning-plan-card/learning-plan-card.component';
+import { PracticeReminderCardComponent } from './practice-reminder-card/practice-reminder-card.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    BrowserModule
-  ],
+  imports: [BrowserModule, LearningPlanCardComponent, PracticeReminderCardComponent],
   declarations: [AppComponent],
-  bootstrap:  [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,25 @@
+.learning-plan-card {
+  &__eyebrow {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fbbf24;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.45rem;
+    line-height: 1.1;
+    color: #fef3c7;
+  }
+
+  &__list {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #ede9fe;
+  }
+}

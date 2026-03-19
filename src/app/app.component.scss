@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 30%),
+    linear-gradient(180deg, #120f1e 0%, #1a1530 100%);
+}
+
+.composition-shell {
+  display: grid;
+  gap: 1.5rem;
+  width: min(100%, 62rem);
+  margin: 2rem auto;
+  color: #f8f4ff;
+
+  &__eyebrow {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fbbf24;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 2.4rem;
+    line-height: 1.05;
+  }
+
+  &__intro {
+    width: min(100%, 42rem);
+    margin: 0;
+    color: #ddd6fe;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 720px) {
+  :host {
+    padding: 1rem;
+  }
+
+  .composition-shell {
+    margin: 0;
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
