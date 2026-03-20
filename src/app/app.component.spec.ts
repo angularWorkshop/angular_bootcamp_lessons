@@ -3,7 +3,6 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
   let host: HTMLElement;
 
   beforeEach(async () => {
@@ -12,76 +11,83 @@ describe('AppComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
     host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
   it('should create the app component', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the heading', () => {
-    const heading = host.querySelector('h1');
-
-    expect(heading?.textContent?.trim()).toBe('User Profile');
+  it('should render the task title', () => {
+    expect(getText('task-title')).toBe('Learn Angular Bindings');
   });
 
-  it('should render the initial user data', () => {
-    expect(getText('user-name')).toBe('Annie Case');
-    expect(getText('user-role')).toBe('Junior Developer');
-    expect(getText('user-city')).toBe('Minsk');
+  it('should show "todo" as initial status', () => {
+    expect(getText('task-status')).toBe('todo');
   });
 
-  it('should show Offline status initially', () => {
-    expect(getText('user-status')).toBe('Offline');
+  it('should not have the urgent class initially', () => {
+    const card = getEl('task-card');
+
+    expect(card.classList.contains('task-card--urgent')).toBe(false);
   });
 
-  it('should show "Go Online" on the toggle button when user is offline', () => {
-    const btn = host.querySelector('[data-testid="toggle-btn"]');
+  it('should add the urgent class after clicking "Mark Urgent"', () => {
+    clickButton('urgent-btn');
 
-    expect(btn?.textContent?.trim()).toBe('Go Online');
+    const card = getEl('task-card');
+    expect(card.classList.contains('task-card--urgent')).toBe(true);
   });
 
-  it('should switch to Online after clicking the toggle button', () => {
-    clickButton('toggle-btn');
+  it('should remove the urgent class after toggling twice', () => {
+    clickButton('urgent-btn');
+    clickButton('urgent-btn');
 
-    expect(getText('user-status')).toBe('Online');
+    const card = getEl('task-card');
+    expect(card.classList.contains('task-card--urgent')).toBe(false);
   });
 
-  it('should update toggle button label after going online', () => {
-    clickButton('toggle-btn');
+  it('should advance status to "in-progress" on first Next Status click', () => {
+    clickButton('status-btn');
 
-    const btn = host.querySelector('[data-testid="toggle-btn"]');
-    expect(btn?.textContent?.trim()).toBe('Go Offline');
+    expect(getText('task-status')).toBe('in-progress');
   });
 
-  it('should toggle back to Offline after clicking the toggle button twice', () => {
-    clickButton('toggle-btn');
-    clickButton('toggle-btn');
+  it('should advance status to "done" on second Next Status click', () => {
+    clickButton('status-btn');
+    clickButton('status-btn');
 
-    expect(getText('user-status')).toBe('Offline');
+    expect(getText('task-status')).toBe('done');
   });
 
-  it('should promote user from Junior Developer to Middle Developer', () => {
-    clickButton('promote-btn');
+  it('should add the done class when status is "done"', () => {
+    clickButton('status-btn');
+    clickButton('status-btn');
 
-    expect(getText('user-role')).toBe('Middle Developer');
+    const card = getEl('task-card');
+    expect(card.classList.contains('task-card--done')).toBe(true);
   });
 
-  it('should promote user to Senior Developer on the second promote click', () => {
-    clickButton('promote-btn');
-    clickButton('promote-btn');
+  it('should set progress bar width to 0% initially', () => {
+    const bar = getEl('progress-bar') as HTMLElement;
 
-    expect(getText('user-role')).toBe('Senior Developer');
+    expect(bar.style.width).toBe('0%');
   });
 
-  it('should not promote beyond Senior Developer', () => {
-    clickButton('promote-btn');
-    clickButton('promote-btn');
-    clickButton('promote-btn');
+  it('should set progress bar width to 50% when in-progress', () => {
+    clickButton('status-btn');
 
-    expect(getText('user-role')).toBe('Senior Developer');
+    const bar = getEl('progress-bar') as HTMLElement;
+    expect(bar.style.width).toBe('50%');
+  });
+
+  it('should set progress bar width to 100% when done', () => {
+    clickButton('status-btn');
+    clickButton('status-btn');
+
+    const bar = getEl('progress-bar') as HTMLElement;
+    expect(bar.style.width).toBe('100%');
   });
 
   function clickButton(testId: string): void {
@@ -92,10 +98,14 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   }
 
-  function getText(testId: string): string {
-    const element = host.querySelector(`[data-testid="${testId}"]`);
+  function getEl(testId: string): Element {
+    const el = host.querySelector(`[data-testid="${testId}"]`);
 
-    expect(element).toBeTruthy();
-    return element?.textContent?.trim() ?? '';
+    expect(el).toBeTruthy();
+    return el!;
+  }
+
+  function getText(testId: string): string {
+    return getEl(testId).textContent?.trim() ?? '';
   }
 });

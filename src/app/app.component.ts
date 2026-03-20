@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 
-type Role = 'Junior Developer' | 'Middle Developer' | 'Senior Developer';
+type TaskStatus = 'todo' | 'in-progress' | 'done';
 
-interface UserProfile {
-  fullName: string;
-  role: Role;
-  city: string;
-  isOnline: boolean;
+interface Task {
+  title: string;
+  status: TaskStatus;
+  isUrgent: boolean;
 }
 
 @Component({
@@ -15,18 +14,25 @@ interface UserProfile {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected user: UserProfile = {
-    fullName: 'Annie Case',
-    role: 'Junior Developer',
-    city: 'Minsk',
-    isOnline: false,
+  protected task: Task = {
+    title: 'Learn Angular Bindings',
+    status: 'todo',
+    isUrgent: false,
   };
 
-  // TODO: реализуй метод — переключай user.isOnline между true и false
-  toggleOnlineStatus(): void {}
+  protected progress = 0;
 
-  // TODO: реализуй метод — переводи роль по цепочке:
-  // 'Junior Developer' → 'Middle Developer' → 'Senior Developer'
-  // на 'Senior Developer' застываем
-  promote(): void {}
+  toggleUrgent(): void {
+    this.task.isUrgent = !this.task.isUrgent;
+  }
+
+  nextStatus(): void {
+    if (this.task.status === 'todo') {
+      this.task.status = 'in-progress';
+      this.progress = 50;
+    } else if (this.task.status === 'in-progress') {
+      this.task.status = 'done';
+      this.progress = 100;
+    }
+  }
 }

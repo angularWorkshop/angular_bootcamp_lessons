@@ -7,7 +7,7 @@
   padding: 2rem;
 }
 
-.profile-shell {
+.task-shell {
   display: grid;
   gap: 1.25rem;
   width: min(100%, 38rem);
@@ -37,57 +37,59 @@
   }
 }
 
-.profile-card {
+.task-card {
   display: grid;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.75rem;
+  padding: 1.25rem;
   background: rgba(15, 23, 24, 0.82);
-  border: 1px solid rgba(94, 234, 212, 0.1);
+  border: 2px solid rgba(94, 234, 212, 0.1);
   border-radius: 1rem;
+  transition: border-color 0.2s, opacity 0.2s;
 
-  &__content {
-    display: grid;
-    gap: 0.5rem;
-    align-content: start;
+  &--urgent {
+    border-color: #f87171;
+    box-shadow: 0 0 16px rgba(248, 113, 113, 0.15);
   }
 
-  &__name,
-  &__role,
-  &__city,
-  &__status {
+  &--done {
+    opacity: 0.55;
+  }
+
+  &__title {
     margin: 0;
-  }
-
-  &__name {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #f0fdfa;
   }
 
-  &__role,
-  &__city {
-    color: #d5f5f0;
-  }
-
   &__status {
-    display: inline-block;
-    padding: 0.35rem 0.65rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border-radius: 999px;
-    background: rgba(148, 163, 184, 0.12);
-    color: #e2e8f0;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #94a3b8;
   }
 
-  &__status--online {
-    background: rgba(45, 212, 191, 0.16);
-    color: #5eead4;
+  &__progress {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.15);
+    overflow: hidden;
+  }
+
+  &__bar {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #5eead4, #2dd4bf);
+    transition: width 0.3s ease;
   }
 
   &__actions {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+    margin-top: 0.25rem;
   }
 }
 
@@ -122,7 +124,7 @@
     padding: 0.75rem;
   }
 
-  .profile-shell {
+  .task-shell {
     margin: 1rem auto;
     padding: 1.25rem;
   }

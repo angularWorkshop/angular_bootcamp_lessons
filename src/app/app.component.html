@@ -1,38 +1,36 @@
-<main class="profile-shell">
-  <p class="profile-shell__eyebrow">Event Binding Exercise</p>
-  <h1 class="profile-shell__title">User Profile</h1>
+<main class="task-shell">
+  <p class="task-shell__eyebrow">Class &amp; Style Binding Exercise</p>
+  <h1 class="task-shell__title">Task Tracker</h1>
 
-  <section class="profile-card">
-    <div class="profile-card__content">
-      <p class="profile-card__name" data-testid="user-name">{{ user.fullName }}</p>
-      <p class="profile-card__role" data-testid="user-role">{{ user.role }}</p>
-      <p class="profile-card__city" data-testid="user-city">{{ user.city }}</p>
+  <!-- TODO: добавь [class.task-card--urgent]="task.isUrgent" -->
+  <!-- TODO: добавь [class.task-card--done]="task.status === 'done'" -->
+  <section class="task-card" data-testid="task-card">
+    <p class="task-card__title" data-testid="task-title">{{ task.title }}</p>
 
-      <span
-        class="profile-card__status"
-        data-testid="user-status"
-      >
-        {{ user.isOnline ? 'Online' : 'Offline' }}
-      </span>
+    <p class="task-card__status" data-testid="task-status">{{ task.status }}</p>
+
+    <div class="task-card__progress">
+      <!-- TODO: добавь [style.width.%]="progress" на этот элемент -->
+      <div class="task-card__bar" data-testid="progress-bar"></div>
     </div>
 
-    <div class="profile-card__actions">
-      <!-- TODO: привяжи событие click к методу toggleOnlineStatus -->
+    <div class="task-card__actions">
       <button
         class="btn"
-        data-testid="toggle-btn"
+        data-testid="urgent-btn"
         type="button"
+        (click)="toggleUrgent()"
       >
-        {{ user.isOnline ? 'Go Offline' : 'Go Online' }}
+        {{ task.isUrgent ? 'Remove Urgent' : 'Mark Urgent' }}
       </button>
 
-      <!-- TODO: привяжи событие click к методу promote -->
       <button
         class="btn btn--secondary"
-        data-testid="promote-btn"
+        data-testid="status-btn"
         type="button"
+        (click)="nextStatus()"
       >
-        Promote
+        Next Status
       </button>
     </div>
   </section>
