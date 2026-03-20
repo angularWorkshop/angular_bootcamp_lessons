@@ -50,6 +50,8 @@ describe('AppComponent', () => {
   it('should clear the input after adding a todo', async () => {
     await typeInInput('Walk the dog');
     clickButton('add-btn');
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     const input = host.querySelector('[data-testid="new-todo-input"]') as HTMLInputElement;
     expect(input.value).toBe('');

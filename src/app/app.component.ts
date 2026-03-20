@@ -20,11 +20,18 @@ export class AppComponent {
 
   protected newTodoText = '';
 
-  // TODO: реализуй метод — добавь новый todo из newTodoText
-  // если текст пустой или только пробелы — не добавляй
-  // после добавления очисти newTodoText
-  addTodo(): void {}
+  addTodo(): void {
+    const text = this.newTodoText.trim();
 
-  // TODO: реализуй метод — удали todo по id
-  removeTodo(id: number): void {}
+    if (!text) {
+      return;
+    }
+
+    this.todos.push({ id: nextId++, text });
+    this.newTodoText = '';
+  }
+
+  removeTodo(id: number): void {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
 }
