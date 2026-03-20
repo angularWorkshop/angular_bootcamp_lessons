@@ -13,7 +13,7 @@ import { User, USERS } from './user.model';
         @for (user of users; track user.id) {
           <!-- TODO: Add a routerLink that navigates to /users/:id -->
           <li class="page__list-item">
-            <a data-testid="user-link-{{ user.id }}">
+            <a [attr.data-testid]="'user-link-' + user.id">
               {{ user.name }}
             </a>
           </li>
