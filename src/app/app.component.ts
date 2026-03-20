@@ -21,7 +21,18 @@ export class AppComponent {
     this.hasError = false;
     this.lessons = [];
 
-    // TODO: request lessons through LessonApiService and update loading, success, empty, and error states
+    this.lessonApiService.getLessons().subscribe({
+      next: (lessons) => {
+        this.lessons = lessons;
+        this.hasError = false;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.lessons = [];
+        this.hasError = true;
+        this.isLoading = false;
+      },
+    });
   }
 
   protected get publishedCount(): number {
