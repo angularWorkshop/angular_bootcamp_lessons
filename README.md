@@ -1,36 +1,28 @@
-# User Profile Bindings
+# Event State Management
 
-This branch contains the starter version of the template bindings exercise.
+This branch contains the starter version of the event binding exercise.
 
 ## Goal
 
-Build a `User Profile Card` that renders a user model through interpolation and property binding.
+Make the user profile card interactive: wire up two buttons so that clicking them changes the component state and updates the UI without a page reload.
 
 ## What the learner should build
 
 The UI must include:
 
-- a heading: `User Profile Card`
-- the user's full name
-- the user's role
-- the user's city
-- the user's email
-- a user avatar
-- an online status badge
-- a contact link
+- a heading: `User Profile`
+- the user's full name, role, and city
+- an online status badge showing `Online` or `Offline`
+- a toggle button labeled `Go Online` / `Go Offline`
+- a promote button labeled `Promote`
 
 ## What the learner should implement
 
-The learner must:
-
-- display model values with interpolation
-- bind avatar properties through Angular bindings
-- bind the email link correctly
-- reflect the online state in the badge
+- implement `toggleOnlineStatus()` — flip `user.isOnline` between `true` and `false`
+- implement `promote()` — advance the role: `Junior Developer` → `Middle Developer` → `Senior Developer` (stay at Senior)
+- bind both buttons to their methods using Angular event binding `(click)`
 
 ## Files
-
-Main exercise files:
 
 - `src/app/app.component.ts`
 - `src/app/app.component.html`
@@ -39,16 +31,13 @@ Main exercise files:
 
 ## What can be changed
 
-The learner should work mainly in:
-
-- `src/app/app.component.html`
-
-Markup and styles may be adjusted if needed, but the target behavior is described by the tests.
+- `src/app/app.component.ts` — implement the two methods
+- `src/app/app.component.html` — add `(click)` bindings to the buttons
 
 ## Notes
 
 - This is the `lesson` branch.
-- Some tests are expected to fail until the bindings are connected correctly.
+- Tests that check click behavior will fail until the methods and event bindings are in place.
 - The `answer` branch contains the finished reference solution.
 
 ## Commands

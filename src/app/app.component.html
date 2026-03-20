@@ -1,30 +1,39 @@
 <main class="profile-shell">
-  <p class="profile-shell__eyebrow">Template Bindings Exercise</p>
-  <h1 class="profile-shell__title">{{ title }}</h1>
+  <p class="profile-shell__eyebrow">Event Binding Exercise</p>
+  <h1 class="profile-shell__title">User Profile</h1>
 
   <section class="profile-card">
-    <img
-      class="profile-card__avatar"
-      data-testid="user-avatar"
-      src=""
-      alt=""
-      title=""
-    />
-
     <div class="profile-card__content">
       <p class="profile-card__name" data-testid="user-name">{{ user.fullName }}</p>
       <p class="profile-card__role" data-testid="user-role">{{ user.role }}</p>
       <p class="profile-card__city" data-testid="user-city">{{ user.city }}</p>
 
-      <div class="profile-card__meta">
-        <span class="profile-card__status" data-testid="user-status">
-          {{ user.isOnline ? 'Online' : 'Offline' }}
-        </span>
+      <span
+        class="profile-card__status"
+        data-testid="user-status"
+      >
+        {{ user.isOnline ? 'Online' : 'Offline' }}
+      </span>
+    </div>
 
-        <a class="profile-card__contact" data-testid="contact-link" href="">
-          Contact user
-        </a>
-      </div>
+    <div class="profile-card__actions">
+      <!-- TODO: привяжи событие click к методу toggleOnlineStatus -->
+      <button
+        class="btn"
+        data-testid="toggle-btn"
+        type="button"
+      >
+        {{ user.isOnline ? 'Go Offline' : 'Go Online' }}
+      </button>
+
+      <!-- TODO: привяжи событие click к методу promote -->
+      <button
+        class="btn btn--secondary"
+        data-testid="promote-btn"
+        type="button"
+      >
+        Promote
+      </button>
     </div>
   </section>
 </main>

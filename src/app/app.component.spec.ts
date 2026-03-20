@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
   let host: HTMLElement;
 
   beforeEach(async () => {
@@ -11,51 +12,85 @@ describe('AppComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
 
   it('should create the app component', () => {
-    expect(fixture.componentInstance).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('User Profile Card');
+    expect(heading?.textContent?.trim()).toBe('User Profile');
   });
 
-  it('should render the basic user model', () => {
+  it('should render the initial user data', () => {
     expect(getText('user-name')).toBe('Annie Case');
-    expect(getText('user-role')).toBe('Angular Student');
+    expect(getText('user-role')).toBe('Junior Developer');
     expect(getText('user-city')).toBe('Minsk');
   });
 
-  it('should bind avatar properties from the user model', () => {
-    const avatar = host.querySelector('[data-testid="user-avatar"]') as HTMLImageElement | null;
-
-    expect(avatar).toBeTruthy();
-    expect(avatar?.getAttribute('src')).toBe('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80');
-    expect(avatar?.getAttribute('alt')).toBe('Annie Case');
-    expect(avatar?.getAttribute('title')).toBe('Annie Case');
+  it('should show Offline status initially', () => {
+    expect(getText('user-status')).toBe('Offline');
   });
 
-  it('should render the current online state', () => {
+  it('should show "Go Online" on the toggle button when user is offline', () => {
+    const btn = host.querySelector('[data-testid="toggle-btn"]');
+
+    expect(btn?.textContent?.trim()).toBe('Go Online');
+  });
+
+  it('should switch to Online after clicking the toggle button', () => {
+    clickButton('toggle-btn');
+
     expect(getText('user-status')).toBe('Online');
   });
 
-  it('should apply the online status class through binding', () => {
-    const status = host.querySelector('[data-testid="user-status"]');
+  it('should update toggle button label after going online', () => {
+    clickButton('toggle-btn');
 
-    expect(status?.classList.contains('profile-card__status--online')).toBe(true);
+    const btn = host.querySelector('[data-testid="toggle-btn"]');
+    expect(btn?.textContent?.trim()).toBe('Go Offline');
   });
 
-  it('should bind the contact link to the user email', () => {
-    const contactLink = host.querySelector('[data-testid="contact-link"]') as HTMLAnchorElement | null;
+  it('should toggle back to Offline after clicking the toggle button twice', () => {
+    clickButton('toggle-btn');
+    clickButton('toggle-btn');
 
-    expect(contactLink).toBeTruthy();
-    expect(contactLink?.getAttribute('href')).toBe('mailto:annie.case@example.com');
+    expect(getText('user-status')).toBe('Offline');
   });
+
+  it('should promote user from Junior Developer to Middle Developer', () => {
+    clickButton('promote-btn');
+
+    expect(getText('user-role')).toBe('Middle Developer');
+  });
+
+  it('should promote user to Senior Developer on the second promote click', () => {
+    clickButton('promote-btn');
+    clickButton('promote-btn');
+
+    expect(getText('user-role')).toBe('Senior Developer');
+  });
+
+  it('should not promote beyond Senior Developer', () => {
+    clickButton('promote-btn');
+    clickButton('promote-btn');
+    clickButton('promote-btn');
+
+    expect(getText('user-role')).toBe('Senior Developer');
+  });
+
+  function clickButton(testId: string): void {
+    const btn = host.querySelector(`[data-testid="${testId}"]`) as HTMLButtonElement | null;
+
+    expect(btn).toBeTruthy();
+    btn?.click();
+    fixture.detectChanges();
+  }
 
   function getText(testId: string): string {
     const element = host.querySelector(`[data-testid="${testId}"]`);

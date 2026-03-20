@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
+type Role = 'Junior Developer' | 'Middle Developer' | 'Senior Developer';
+
 interface UserProfile {
   fullName: string;
-  role: string;
+  role: Role;
   city: string;
-  email: string;
-  avatarUrl: string;
   isOnline: boolean;
 }
 
@@ -15,13 +15,18 @@ interface UserProfile {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly title = 'User Profile Card';
-  protected readonly user: UserProfile = {
+  protected user: UserProfile = {
     fullName: 'Annie Case',
-    role: 'Angular Student',
+    role: 'Junior Developer',
     city: 'Minsk',
-    email: 'annie.case@example.com',
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
-    isOnline: true,
+    isOnline: false,
   };
+
+  // TODO: реализуй метод — переключай user.isOnline между true и false
+  toggleOnlineStatus(): void {}
+
+  // TODO: реализуй метод — переводи роль по цепочке:
+  // 'Junior Developer' → 'Middle Developer' → 'Senior Developer'
+  // на 'Senior Developer' застываем
+  promote(): void {}
 }
