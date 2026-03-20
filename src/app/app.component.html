@@ -1,0 +1,15 @@
+<main class="starter-page">
+  <section class="starter-page__hero">
+    <p class="starter-page__eyebrow">Section 1</p>
+    <h1>{{ title }}</h1>
+    <p class="starter-page__description">{{ description }}</p>
+    <button class="starter-page__cta" type="button">{{ ctaLabel }}</button>
+  </section>
+
+  <section class="starter-grid" aria-label="Starter page blocks">
+    <article class="starter-card" *ngFor="let block of blocks; let index = index" [attr.data-testid]="'starter-block-' + index">
+      <h2>{{ block.title }}</h2>
+      <p>{{ block.text }}</p>
+    </article>
+  </section>
+</main>

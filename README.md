@@ -1,27 +1,52 @@
-# AngularDefinitiveGuideLessons
+# Angular App Shell Structure
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Build a custom starter screen that replaces the empty app shell with a presentable layout for future lessons.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- a heading titled `Angular Starter Workspace`
+- a short description for the starter shell
+- a CTA button leading into the next topic
+- three visible starter content blocks
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- keep the page readable and structured instead of leaving the template empty
+- finish the missing final content block
+- make the starter layout match the target behavior described by the tests
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
+- `src/app/app.component.spec.ts`
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```
