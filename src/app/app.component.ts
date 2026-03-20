@@ -21,6 +21,8 @@ export class AppComponent {
   // 4. Inject the service here via inject(TaskService)
   // 5. Delegate all data access to the service
 
+  private nextId = 1;
+
   protected readonly tasks = signal<Task[]>([]);
 
   protected readonly totalCount = computed(() => this.tasks().length);
@@ -37,7 +39,7 @@ export class AppComponent {
     const title = this.newTaskTitle.trim();
     if (!title) return;
     // TODO: delegate to service
-    this.tasks.update(list => [...list, { id: Date.now(), title, done: false }]);
+    this.tasks.update(list => [...list, { id: this.nextId++, title, done: false }]);
     this.newTaskTitle = '';
   }
 
