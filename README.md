@@ -1,27 +1,51 @@
-# AngularDefinitiveGuideLessons
+# Legacy Standalone Integration
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Learn how to integrate a legacy `NgModule` feature into a modern standalone component without rewriting the old feature.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- A standalone dashboard screen
+- A legacy activity widget rendered inside that dashboard
+- A clean integration boundary where the dashboard imports the legacy module
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Export the legacy widget from `LegacyActivityModule`
+- Import `LegacyActivityModule` into `DashboardComponent`
+- Replace the placeholder state with the real legacy widget
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/dashboard.component.ts` — standalone host component
+- `src/app/legacy-activity.module.ts` — legacy module
+- `src/app/legacy-activity-widget.component.ts` — legacy widget
+- `src/app/app.module.ts` — app bootstrap module
+- `src/app/app.component.spec.ts` — tests
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/dashboard.component.ts`
+- `src/app/legacy-activity.module.ts`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```
