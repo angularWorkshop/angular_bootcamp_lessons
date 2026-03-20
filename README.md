@@ -1,24 +1,21 @@
-# Track & Empty
+# Dynamic List Management
 
-This branch contains the starter version of the track and `@empty` exercise.
+This branch contains the starter version of the dynamic list exercise.
 
 ## Goal
 
-Render a task list using `@for` with `track`, display a 1-based index via `$index`, and show a fallback message using `@empty` when the list is cleared.
+Implement add and remove operations on a todo list. The UI must update correctly after each action, and empty state must be handled.
 
 ## What the learner should build
 
-- a task list rendered with `@for`
-- each item shows its 1-based number and title
-- an empty-state message when there are no tasks
+- an input field + Add button to create new todos
+- each todo has a Remove button
+- empty-state message when no todos remain
 
 ## What the learner should implement
 
-- `@for (task of tasks; track task.id)` to iterate
-- `$index + 1` displayed in a `<span data-testid="task-index">`
-- task title in a `<span data-testid="task-title">`
-- each `<li>` must have `data-testid="task-item"`
-- `@empty` block with a `<li data-testid="empty-message">No tasks</li>`
+- `addTodo()` — push a new item from `newTodoText`, skip empty/whitespace input, clear `newTodoText` after
+- `removeTodo(id)` — remove the todo with the given id from the array
 
 ## Files
 
@@ -26,15 +23,17 @@ Render a task list using `@for` with `track`, display a 1-based index via `$inde
 - `src/app/app.component.html`
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
+- `src/app/app.module.ts`
 
 ## What can be changed
 
-- `src/app/app.component.html` — add `@for` with track, $index, and `@empty`
+- `src/app/app.component.ts` — implement the two methods
 
 ## Notes
 
 - This is the `lesson` branch.
-- Tests for list rendering, indices, and empty state will fail until the template is complete.
+- Template and `@for` are already in place. Only the methods need implementation.
+- Tests for add/remove behavior will fail until the methods work.
 - The `answer` branch contains the finished reference solution.
 
 ## Commands
