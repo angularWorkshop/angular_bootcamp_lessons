@@ -1,6 +1,6 @@
-# Exercise 18.1 — Extract Business Logic into a Service (starter version)
+# Exercise 18.1 — Extract Business Logic into a Service (completed solution)
 
-**Branch:** `lesson-topic-18-exercise-01-extract-service`
+**Branch:** `answer-topic-18-exercise-01-extract-service`
 
 ## Goal
 

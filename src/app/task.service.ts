@@ -6,29 +6,37 @@ export interface Task {
   done: boolean;
 }
 
-// TODO: Implement this service.
-// Move all task logic from AppComponent here:
-// - tasks signal (private)
-// - allTasks (readonly)
-// - totalCount, completedCount, remainingCount (computed)
-// - addTask, toggleTask, removeTask methods
-
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  // TODO: Add tasks signal and expose it as readonly
-  readonly allTasks = signal<Task[]>([]).asReadonly();
+  private readonly tasks = signal<Task[]>([]);
+  private nextId = 1;
 
-  // TODO: Add computed fields
-  readonly totalCount = computed(() => 0);
-  readonly completedCount = computed(() => 0);
-  readonly remainingCount = computed(() => 0);
+  readonly allTasks = this.tasks.asReadonly();
 
-  // TODO: Implement addTask
-  addTask(title: string): void {}
+  readonly totalCount = computed(() => this.tasks().length);
+  readonly completedCount = computed(
+    () => this.tasks().filter(t => t.done).length
+  );
+  readonly remainingCount = computed(
+    () => this.totalCount() - this.completedCount()
+  );
 
-  // TODO: Implement toggleTask
-  toggleTask(id: number): void {}
+  addTask(title: string): void {
+    const trimmed = title.trim();
+    if (!trimmed) return;
+    this.tasks.update(list => [
+      ...list,
+      { id: this.nextId++, title: trimmed, done: false },
+    ]);
+  }
 
-  // TODO: Implement removeTask
-  removeTask(id: number): void {}
+  toggleTask(id: number): void {
+    this.tasks.update(list =>
+      list.map(t => (t.id === id ? { ...t, done: !t.done } : t))
+    );
+  }
+
+  removeTask(id: number): void {
+    this.tasks.update(list => list.filter(t => t.id !== id));
+  }
 }

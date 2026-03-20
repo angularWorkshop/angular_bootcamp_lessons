@@ -1,12 +1,5 @@
-import { Component, signal, computed } from '@angular/core';
-
-// TODO: Import TaskService and inject it instead of keeping logic here
-
-export interface Task {
-  id: number;
-  title: string;
-  done: boolean;
-}
+import { Component, inject } from '@angular/core';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-root',
@@ -14,42 +7,25 @@ export interface Task {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  // TODO: Replace all fields and methods below with a TaskService.
-  // 1. Create task.service.ts with @Injectable({ providedIn: 'root' })
-  // 2. Move tasks signal, addTask, removeTask, toggleTask into the service
-  // 3. Add computed fields: totalCount, completedCount, remainingCount
-  // 4. Inject the service here via inject(TaskService)
-  // 5. Delegate all data access to the service
+  protected readonly service = inject(TaskService);
 
-  protected readonly tasks = signal<Task[]>([]);
-
-  protected readonly totalCount = computed(() => this.tasks().length);
-  protected readonly completedCount = computed(
-    () => this.tasks().filter(t => t.done).length
-  );
-  protected readonly remainingCount = computed(
-    () => this.totalCount() - this.completedCount()
-  );
+  protected readonly tasks = this.service.allTasks;
+  protected readonly totalCount = this.service.totalCount;
+  protected readonly completedCount = this.service.completedCount;
+  protected readonly remainingCount = this.service.remainingCount;
 
   protected newTaskTitle = '';
 
   protected addTask(): void {
-    const title = this.newTaskTitle.trim();
-    if (!title) return;
-    // TODO: delegate to service
-    this.tasks.update(list => [...list, { id: Date.now(), title, done: false }]);
+    this.service.addTask(this.newTaskTitle);
     this.newTaskTitle = '';
   }
 
   protected toggleTask(id: number): void {
-    // TODO: delegate to service
-    this.tasks.update(list =>
-      list.map(t => (t.id === id ? { ...t, done: !t.done } : t))
-    );
+    this.service.toggleTask(id);
   }
 
   protected removeTask(id: number): void {
-    // TODO: delegate to service
-    this.tasks.update(list => list.filter(t => t.id !== id));
+    this.service.removeTask(id);
   }
 }
