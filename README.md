@@ -1,27 +1,54 @@
-# AngularDefinitiveGuideLessons
+# Route Guards
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Learn to protect routes with functional guards: `canActivate` to restrict access and `canDeactivate` to prevent losing unsaved changes.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- An auth guard that blocks `/admin` for unauthenticated users and redirects to `/login`
+- An unsaved-changes guard that shows a confirmation dialog before leaving `/editor` with unsaved work
+- Guards wired up to the routes in `app.routes.ts`
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Implement `authGuard` in `auth.guard.ts`: check `AuthService.isLoggedIn()`, redirect to `/login` if false
+- Implement `unsavedChangesGuard` in `unsaved-changes.guard.ts`: check `component.hasUnsavedChanges`, show `window.confirm()` if true
+- Add `canActivate: [authGuard]` to the `/admin` route in `app.routes.ts`
+- Add `canDeactivate: [unsavedChangesGuard]` to the `/editor` route in `app.routes.ts`
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/auth.guard.ts` — implement auth guard
+- `src/app/unsaved-changes.guard.ts` — implement unsaved changes guard
+- `src/app/app.routes.ts` — wire guards to routes
+- `src/app/auth.service.ts` — auth service (read-only)
+- `src/app/editor.component.ts` — editor with unsaved state (read-only)
+- `src/app/app.component.spec.ts` — tests
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/auth.guard.ts`
+- `src/app/unsaved-changes.guard.ts`
+- `src/app/app.routes.ts`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```

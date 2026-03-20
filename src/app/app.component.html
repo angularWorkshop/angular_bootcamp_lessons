@@ -1,0 +1,11 @@
+<main class="app-shell">
+  <h1 class="app-shell__title">{{ title }}</h1>
+
+  <nav class="app-shell__nav" data-testid="nav">
+    <a routerLink="/public" routerLinkActive="active" data-testid="nav-public">Public</a>
+    <a routerLink="/admin" routerLinkActive="active" data-testid="nav-admin">Admin</a>
+    <a routerLink="/editor" routerLinkActive="active" data-testid="nav-editor">Editor</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</main>
