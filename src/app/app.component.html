@@ -1,0 +1,28 @@
+<main class="api-shell">
+  <p class="api-shell__eyebrow">HttpClient Practice</p>
+  <h1 class="api-shell__title" data-testid="lab-title">{{ title }}</h1>
+
+  <section class="api-shell__intro">
+    <p class="api-shell__text">
+      Before a component renders remote data, Angular usually delegates the request to a dedicated service. In this
+      exercise, the screen is already ready. Your job is to complete the API layer behind it.
+    </p>
+  </section>
+
+  <section class="api-shell__grid">
+    <article class="api-shell__card" *ngFor="let goal of serviceGoals" [attr.data-testid]="'goal-' + goal.id">
+      <p class="api-shell__step">{{ goal.step }}</p>
+      <h2 class="api-shell__card-title">{{ goal.title }}</h2>
+      <p class="api-shell__card-text">{{ goal.description }}</p>
+    </article>
+  </section>
+
+  <section class="api-shell__footer">
+    <p class="api-shell__footer-line" data-testid="endpoint-hint">
+      Expected endpoint: <code>{{ endpoint }}</code>
+    </p>
+    <p class="api-shell__footer-line" data-testid="observable-hint">
+      The service should return an <code>Observable</code> with typed lesson items.
+    </p>
+  </section>
+</main>

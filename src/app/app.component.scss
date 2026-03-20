@@ -1,0 +1,107 @@
+.api-shell {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 32%),
+    linear-gradient(180deg, #07111f 0%, #0f172a 52%, #111827 100%);
+  color: #e2e8f0;
+}
+
+.api-shell__eyebrow,
+.api-shell__title,
+.api-shell__text,
+.api-shell__step,
+.api-shell__card-title,
+.api-shell__card-text,
+.api-shell__footer-line {
+  margin: 0;
+}
+
+.api-shell__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #67e8f9;
+}
+
+.api-shell__title {
+  max-width: 32rem;
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  line-height: 1;
+  font-weight: 900;
+  color: #f8fafc;
+}
+
+.api-shell__intro,
+.api-shell__footer {
+  max-width: 56rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.api-shell__text,
+.api-shell__card-text,
+.api-shell__footer-line {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.api-shell__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 72rem;
+}
+
+.api-shell__card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.96));
+  box-shadow: 0 20px 45px rgba(2, 6, 23, 0.28);
+}
+
+.api-shell__step {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.api-shell__card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.api-shell__footer {
+  display: grid;
+  gap: 0.55rem;
+}
+
+code {
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(8, 47, 73, 0.88);
+  color: #67e8f9;
+}
+
+@media (max-width: 640px) {
+  .api-shell {
+    padding: 2rem 1rem;
+  }
+
+  .api-shell__title {
+    font-size: 2.35rem;
+  }
+}
