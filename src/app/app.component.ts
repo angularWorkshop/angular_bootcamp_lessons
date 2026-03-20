@@ -17,6 +17,6 @@ export class AppComponent {
   protected submittedProfile: UserProfilePayload | null = null;
 
   protected saveProfile(form: NgForm): void {
-    // TODO: read the template-driven form payload and store the submitted profile
+    this.submittedProfile = form.value as UserProfilePayload;
   }
 }

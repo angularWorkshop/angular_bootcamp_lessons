@@ -14,17 +14,17 @@
     <form class="profile-form" data-testid="user-form" #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
       <label class="profile-form__field">
         <span class="profile-form__label">Full name</span>
-        <input class="profile-form__input" type="text" name="fullName" data-testid="full-name-input" />
+        <input class="profile-form__input" type="text" name="fullName" ngModel data-testid="full-name-input" />
       </label>
 
       <label class="profile-form__field">
         <span class="profile-form__label">Email</span>
-        <input class="profile-form__input" type="email" name="email" data-testid="email-input" />
+        <input class="profile-form__input" type="email" name="email" ngModel data-testid="email-input" />
       </label>
 
       <label class="profile-form__field">
         <span class="profile-form__label">Learning track</span>
-        <select class="profile-form__input" name="learningTrack" data-testid="track-select">
+        <select class="profile-form__input" name="learningTrack" ngModel data-testid="track-select">
           <option value="">Choose a track</option>
           <option value="Frontend">Frontend</option>
           <option value="Architecture">Architecture</option>
