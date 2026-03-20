@@ -1,0 +1,70 @@
+.flow-page {
+  min-height: 100vh;
+  padding: 48px 24px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 36%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: #111827;
+}
+
+.flow-page__hero,
+.stage-list {
+  width: min(920px, 100%);
+  margin: 0 auto;
+}
+
+.flow-page__hero {
+  margin-bottom: 28px;
+}
+
+.flow-page__hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.flow-page__hero p {
+  margin: 0;
+  max-width: 44rem;
+  font-size: 1.05rem;
+  color: #4b5563;
+}
+
+.stage-list {
+  display: grid;
+  gap: 16px;
+}
+
+.stage-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 20px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 18px 38px rgba(30, 64, 175, 0.08);
+}
+
+.stage-card__index {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+.stage-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.stage-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.55;
+}

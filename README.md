@@ -1,27 +1,53 @@
-# AngularDefinitiveGuideLessons
+# Angular Application Entry Point
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Explain and visualize how Angular reaches the first screen through `main.ts`, `AppModule`, and `AppComponent`.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- a page titled `Application Entry Flow`
+- a short explanation of the bootstrap chain
+- three visible stages that describe how the app starts
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- complete the missing final bootstrap stage for `AppComponent`
+- keep the project bootstrapped through `main.ts` and `AppModule`
+- make the rendered flow match the expectations from the tests
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/main.ts`
+- `src/app/app.module.ts`
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
+- `src/app/app.component.spec.ts`
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```

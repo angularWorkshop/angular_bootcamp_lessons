@@ -1,0 +1,16 @@
+<main class="flow-page">
+  <section class="flow-page__hero">
+    <h1>{{ title }}</h1>
+    <p>{{ summary }}</p>
+  </section>
+
+  <section class="stage-list" aria-label="Bootstrap flow">
+    <article class="stage-card" *ngFor="let stage of stages; let index = index" [attr.data-testid]="'entry-stage-' + index">
+      <span class="stage-card__index">0{{ index + 1 }}</span>
+      <div>
+        <h2>{{ stage.title }}</h2>
+        <p>{{ stage.detail }}</p>
+      </div>
+    </article>
+  </section>
+</main>
