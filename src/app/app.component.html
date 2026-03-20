@@ -1,0 +1,52 @@
+<main class="legacy-form-shell">
+  <p class="legacy-form-shell__eyebrow">Template-Driven Forms</p>
+  <h1 class="legacy-form-shell__title" data-testid="form-title">{{ title }}</h1>
+
+  <section class="legacy-form-shell__intro">
+    <p class="legacy-form-shell__text">
+      This exercise focuses on a legacy Angular pattern: a template-driven form that sends its payload through
+      <code>NgForm</code>. The layout is ready. Your task is to wire the controls into the form model and handle the
+      submission.
+    </p>
+  </section>
+
+  <section class="legacy-form-shell__grid">
+    <form class="profile-form" data-testid="user-form" #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
+      <label class="profile-form__field">
+        <span class="profile-form__label">Full name</span>
+        <input class="profile-form__input" type="text" name="fullName" data-testid="full-name-input" />
+      </label>
+
+      <label class="profile-form__field">
+        <span class="profile-form__label">Email</span>
+        <input class="profile-form__input" type="email" name="email" data-testid="email-input" />
+      </label>
+
+      <label class="profile-form__field">
+        <span class="profile-form__label">Learning track</span>
+        <select class="profile-form__input" name="learningTrack" data-testid="track-select">
+          <option value="">Choose a track</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Architecture">Architecture</option>
+          <option value="Testing">Testing</option>
+        </select>
+      </label>
+
+      <button class="profile-form__button" type="submit" data-testid="submit-profile-btn">Submit profile</button>
+    </form>
+
+    <section class="profile-summary" *ngIf="submittedProfile; else emptySummary" data-testid="submitted-state">
+      <p class="profile-summary__eyebrow">Submitted Payload</p>
+      <p class="profile-summary__line" data-testid="submitted-name">Name: {{ submittedProfile?.fullName }}</p>
+      <p class="profile-summary__line" data-testid="submitted-email">Email: {{ submittedProfile?.email }}</p>
+      <p class="profile-summary__line" data-testid="submitted-track">Track: {{ submittedProfile?.learningTrack }}</p>
+    </section>
+
+    <ng-template #emptySummary>
+      <section class="profile-summary profile-summary--empty" data-testid="empty-state">
+        <p class="profile-summary__eyebrow">Submitted Payload</p>
+        <p class="profile-summary__line">No profile submitted yet.</p>
+      </section>
+    </ng-template>
+  </section>
+</main>

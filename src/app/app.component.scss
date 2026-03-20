@@ -1,0 +1,127 @@
+.legacy-form-shell {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  background:
+    radial-gradient(circle at top right, rgba(251, 191, 36, 0.16), transparent 26%),
+    linear-gradient(180deg, #16111f 0%, #111827 48%, #0f172a 100%);
+  color: #e5e7eb;
+}
+
+.legacy-form-shell__eyebrow,
+.legacy-form-shell__title,
+.legacy-form-shell__text,
+.profile-form__label,
+.profile-summary__eyebrow,
+.profile-summary__line {
+  margin: 0;
+}
+
+.legacy-form-shell__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fbbf24;
+}
+
+.legacy-form-shell__title {
+  font-size: clamp(2.35rem, 5vw, 3.9rem);
+  line-height: 1;
+  font-weight: 900;
+  color: #f9fafb;
+}
+
+.legacy-form-shell__intro,
+.profile-form,
+.profile-summary {
+  max-width: 72rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(17, 24, 39, 0.82);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.22);
+}
+
+.legacy-form-shell__text,
+.profile-summary__line {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #d1d5db;
+}
+
+.legacy-form-shell__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.profile-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-form__field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.profile-form__label,
+.profile-summary__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fcd34d;
+}
+
+.profile-form__input {
+  width: 100%;
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: 0.95rem;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  color: #f9fafb;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.profile-form__button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #422006;
+  background: linear-gradient(135deg, #fcd34d, #f59e0b);
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(245, 158, 11, 0.24);
+}
+
+.profile-summary {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.profile-summary--empty {
+  border-style: dashed;
+}
+
+code {
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(120, 53, 15, 0.82);
+  color: #fde68a;
+}
+
+@media (max-width: 640px) {
+  .legacy-form-shell {
+    padding: 2rem 1rem;
+  }
+
+  .legacy-form-shell__title {
+    font-size: 2.45rem;
+  }
+}
