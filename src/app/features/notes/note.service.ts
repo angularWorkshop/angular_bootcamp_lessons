@@ -1,5 +1,5 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { IdService } from './id.service';
+import { IdService } from '../../core/id.service';
 
 export interface Note {
   id: number;

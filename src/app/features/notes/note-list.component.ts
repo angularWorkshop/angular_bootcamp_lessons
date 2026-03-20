@@ -1,36 +1,36 @@
 import { Component, inject } from '@angular/core';
-import { ContactService } from './contact.service';
-import { CardComponent } from './card.component';
+import { NoteService } from './note.service';
+import { CardComponent } from '../../shared/card/card.component';
 
 @Component({
-  selector: 'app-contact-list',
+  selector: 'app-note-list',
   standalone: true,
   imports: [CardComponent],
   template: `
-    <div class="feature" data-testid="contact-list">
+    <div class="feature" data-testid="note-list">
       <div class="feature__header">
-        <h2 class="feature__title">Contacts ({{ service.count() }})</h2>
+        <h2 class="feature__title">Notes ({{ service.count() }})</h2>
       </div>
       <div class="feature__input-row">
         <input
           class="feature__input"
-          data-testid="contact-input"
-          placeholder="New contact..."
-          [value]="newName"
-          (input)="newName = $any($event.target).value"
+          data-testid="note-input"
+          placeholder="New note..."
+          [value]="newText"
+          (input)="newText = $any($event.target).value"
           (keydown.enter)="add()"
         />
-        <button class="feature__add-btn" data-testid="contact-add-btn" (click)="add()">Add</button>
+        <button class="feature__add-btn" data-testid="note-add-btn" (click)="add()">Add</button>
       </div>
       <div class="feature__list">
-        @for (contact of service.allContacts(); track contact.id) {
+        @for (note of service.allNotes(); track note.id) {
           <app-card
-            [text]="contact.name"
-            [cardId]="contact.id"
-            (remove)="service.remove(contact.id)"
+            [text]="note.text"
+            [cardId]="note.id"
+            (remove)="service.remove(note.id)"
           ></app-card>
         } @empty {
-          <p class="feature__empty" data-testid="contact-empty">No contacts yet</p>
+          <p class="feature__empty" data-testid="note-empty">No notes yet</p>
         }
       </div>
     </div>
@@ -54,12 +54,12 @@ import { CardComponent } from './card.component';
     .feature__empty { text-align: center; color: #64748b; font-size: 14px; padding: 24px; }
   `],
 })
-export class ContactListComponent {
-  protected readonly service = inject(ContactService);
-  protected newName = '';
+export class NoteListComponent {
+  protected readonly service = inject(NoteService);
+  protected newText = '';
 
   protected add(): void {
-    this.service.add(this.newName);
-    this.newName = '';
+    this.service.add(this.newText);
+    this.newText = '';
   }
 }

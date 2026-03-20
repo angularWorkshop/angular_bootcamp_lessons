@@ -1,6 +1,6 @@
-# Exercise 19.1 — Feature-Based Project Structure (starter version)
+# Exercise 19.1 — Feature-Based Project Structure (completed solution)
 
-**Branch:** `lesson-topic-19-exercise-01-feature-based-structure`
+**Branch:** `answer-topic-19-exercise-01-feature-based-structure`
 
 ## Goal
 
