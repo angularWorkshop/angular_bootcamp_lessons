@@ -1,0 +1,48 @@
+<main class="preview-shell">
+  <p class="preview-shell__eyebrow">Two-Way Binding Lab</p>
+  <h1 class="preview-shell__title" data-testid="preview-title">{{ title }}</h1>
+
+  <section class="preview-shell__intro">
+    <p class="preview-shell__text">
+      This exercise is about the most recognizable legacy pattern in template-driven forms: two-way binding through
+      <code>[(ngModel)]</code>. As the user edits the draft, the preview card should update immediately.
+    </p>
+  </section>
+
+  <section class="preview-shell__grid">
+    <form class="draft-form">
+      <label class="draft-form__field">
+        <span class="draft-form__label">Full name</span>
+        <input class="draft-form__input" type="text" data-testid="draft-name-input" />
+      </label>
+
+      <label class="draft-form__field">
+        <span class="draft-form__label">City</span>
+        <input class="draft-form__input" type="text" data-testid="draft-city-input" />
+      </label>
+
+      <label class="draft-form__field">
+        <span class="draft-form__label">Preferred format</span>
+        <select class="draft-form__input" data-testid="draft-format-select">
+          <option value="">Choose a format</option>
+          <option value="Video">Video</option>
+          <option value="Workshop">Workshop</option>
+          <option value="Mentorship">Mentorship</option>
+        </select>
+      </label>
+
+      <label class="draft-form__field">
+        <span class="draft-form__label">Learning goal</span>
+        <textarea class="draft-form__input draft-form__input--textarea" data-testid="draft-goal-input"></textarea>
+      </label>
+    </form>
+
+    <section class="draft-preview" data-testid="preview-card">
+      <p class="draft-preview__eyebrow">Live Preview</p>
+      <p class="draft-preview__line" data-testid="preview-name">Name: {{ previewName }}</p>
+      <p class="draft-preview__line" data-testid="preview-city">City: {{ previewCity }}</p>
+      <p class="draft-preview__line" data-testid="preview-format">Format: {{ previewFormat }}</p>
+      <p class="draft-preview__line" data-testid="preview-goal">Goal: {{ previewGoal }}</p>
+    </section>
+  </section>
+</main>
