@@ -1,0 +1,61 @@
+<main class="validation-shell">
+  <p class="validation-shell__eyebrow">Template-Driven Validation</p>
+  <h1 class="validation-shell__title" data-testid="validation-title">{{ title }}</h1>
+
+  <section class="validation-shell__intro">
+    <p class="validation-shell__text">
+      This legacy form should validate inputs directly through the template. Your task is to wire validators, show
+      errors with proper UX timing, and block submit until the payload becomes valid.
+    </p>
+  </section>
+
+  <section class="validation-shell__grid">
+    <form class="enrollment-form" data-testid="enrollment-form" #enrollmentForm="ngForm" (ngSubmit)="saveEnrollment(enrollmentForm)" novalidate>
+      <label class="enrollment-form__field">
+        <span class="enrollment-form__label">Full name</span>
+        <input class="enrollment-form__input" type="text" name="fullName" data-testid="full-name-input" />
+      </label>
+
+      <div class="field-error" data-testid="full-name-required-error">Full name is required.</div>
+      <div class="field-error" data-testid="full-name-minlength-error">Full name must be at least 3 characters.</div>
+
+      <label class="enrollment-form__field">
+        <span class="enrollment-form__label">Email</span>
+        <input class="enrollment-form__input" type="email" name="email" data-testid="email-input" />
+      </label>
+
+      <div class="field-error" data-testid="email-required-error">Email is required.</div>
+      <div class="field-error" data-testid="email-invalid-error">Enter a valid email address.</div>
+
+      <label class="enrollment-form__field">
+        <span class="enrollment-form__label">Learning track</span>
+        <select class="enrollment-form__input" name="learningTrack" data-testid="track-select">
+          <option value="">Choose a track</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Architecture">Architecture</option>
+          <option value="Testing">Testing</option>
+        </select>
+      </label>
+
+      <div class="field-error" data-testid="track-required-error">Choose a learning track.</div>
+
+      <button class="enrollment-form__button" type="submit" data-testid="submit-enrollment-btn">
+        Submit enrollment
+      </button>
+    </form>
+
+    <section class="enrollment-summary" *ngIf="submittedEnrollment; else emptyState" data-testid="submitted-state">
+      <p class="enrollment-summary__eyebrow">Saved Enrollment</p>
+      <p class="enrollment-summary__line" data-testid="submitted-name">Name: {{ submittedEnrollment?.fullName }}</p>
+      <p class="enrollment-summary__line" data-testid="submitted-email">Email: {{ submittedEnrollment?.email }}</p>
+      <p class="enrollment-summary__line" data-testid="submitted-track">Track: {{ submittedEnrollment?.learningTrack }}</p>
+    </section>
+
+    <ng-template #emptyState>
+      <section class="enrollment-summary enrollment-summary--empty" data-testid="empty-state">
+        <p class="enrollment-summary__eyebrow">Saved Enrollment</p>
+        <p class="enrollment-summary__line">No valid enrollment submitted yet.</p>
+      </section>
+    </ng-template>
+  </section>
+</main>

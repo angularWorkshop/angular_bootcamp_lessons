@@ -1,0 +1,134 @@
+.validation-shell {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(244, 114, 182, 0.16), transparent 26%),
+    linear-gradient(180deg, #1f1023 0%, #111827 48%, #0f172a 100%);
+  color: #e5e7eb;
+}
+
+.validation-shell__eyebrow,
+.validation-shell__title,
+.validation-shell__text,
+.enrollment-form__label,
+.field-error,
+.enrollment-summary__eyebrow,
+.enrollment-summary__line {
+  margin: 0;
+}
+
+.validation-shell__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f9a8d4;
+}
+
+.validation-shell__title {
+  font-size: clamp(2.35rem, 5vw, 3.9rem);
+  line-height: 1;
+  font-weight: 900;
+  color: #f9fafb;
+}
+
+.validation-shell__intro,
+.enrollment-form,
+.enrollment-summary {
+  max-width: 72rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(17, 24, 39, 0.82);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.22);
+}
+
+.validation-shell__text,
+.enrollment-summary__line {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #d1d5db;
+}
+
+.validation-shell__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.enrollment-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.enrollment-form__field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.enrollment-form__label,
+.enrollment-summary__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fbcfe8;
+}
+
+.enrollment-form__input {
+  width: 100%;
+  border: 1px solid rgba(244, 114, 182, 0.18);
+  border-radius: 0.95rem;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  color: #f9fafb;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.field-error {
+  display: none;
+  font-size: 0.92rem;
+  color: #fda4af;
+}
+
+.enrollment-form__button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #4a044e;
+  background: linear-gradient(135deg, #f9a8d4, #f472b6);
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(244, 114, 182, 0.24);
+}
+
+.enrollment-summary {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.enrollment-summary--empty {
+  border-style: dashed;
+}
+
+code {
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(131, 24, 67, 0.82);
+  color: #fbcfe8;
+}
+
+@media (max-width: 640px) {
+  .validation-shell {
+    padding: 2rem 1rem;
+  }
+
+  .validation-shell__title {
+    font-size: 2.45rem;
+  }
+}
