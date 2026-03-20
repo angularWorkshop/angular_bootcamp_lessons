@@ -17,20 +17,20 @@
     </div>
 
     <div class="profile-card__actions">
-      <!-- TODO: привяжи событие click к методу toggleOnlineStatus -->
       <button
         class="btn"
         data-testid="toggle-btn"
         type="button"
+        (click)="toggleOnlineStatus()"
       >
         {{ user.isOnline ? 'Go Offline' : 'Go Online' }}
       </button>
 
-      <!-- TODO: привяжи событие click к методу promote -->
       <button
         class="btn btn--secondary"
         data-testid="promote-btn"
         type="button"
+        (click)="promote()"
       >
         Promote
       </button>

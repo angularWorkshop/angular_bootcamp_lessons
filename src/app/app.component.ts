@@ -22,11 +22,15 @@ export class AppComponent {
     isOnline: false,
   };
 
-  // TODO: реализуй метод — переключай user.isOnline между true и false
-  toggleOnlineStatus(): void {}
+  toggleOnlineStatus(): void {
+    this.user.isOnline = !this.user.isOnline;
+  }
 
-  // TODO: реализуй метод — переводи роль по цепочке:
-  // 'Junior Developer' → 'Middle Developer' → 'Senior Developer'
-  // на 'Senior Developer' застываем
-  promote(): void {}
+  promote(): void {
+    if (this.user.role === 'Junior Developer') {
+      this.user.role = 'Middle Developer';
+    } else if (this.user.role === 'Middle Developer') {
+      this.user.role = 'Senior Developer';
+    }
+  }
 }

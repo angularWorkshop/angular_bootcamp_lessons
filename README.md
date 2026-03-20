@@ -1,26 +1,17 @@
 # Event State Management
 
-This branch contains the starter version of the event binding exercise.
+This branch contains the completed solution for the event binding exercise.
 
 ## Goal
 
-Make the user profile card interactive: wire up two buttons so that clicking them changes the component state and updates the UI without a page reload.
+A user profile card with two interactive buttons: one toggles the online status, the other promotes the user through a role chain.
 
-## What the learner should build
+## What the solution demonstrates
 
-The UI must include:
-
-- a heading: `User Profile`
-- the user's full name, role, and city
-- an online status badge showing `Online` or `Offline`
-- a toggle button labeled `Go Online` / `Go Offline`
-- a promote button labeled `Promote`
-
-## What the learner should implement
-
-- implement `toggleOnlineStatus()` — flip `user.isOnline` between `true` and `false`
-- implement `promote()` — advance the role: `Junior Developer` → `Middle Developer` → `Senior Developer` (stay at Senior)
-- bind both buttons to their methods using Angular event binding `(click)`
+- `toggleOnlineStatus()` flips `user.isOnline` on each click
+- `promote()` advances the role: `Junior Developer` → `Middle Developer` → `Senior Developer`
+- both buttons are connected via Angular `(click)` event binding
+- the template reflects state changes through interpolation and conditional expressions
 
 ## Files
 
@@ -29,16 +20,10 @@ The UI must include:
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
-## What can be changed
-
-- `src/app/app.component.ts` — implement the two methods
-- `src/app/app.component.html` — add `(click)` bindings to the buttons
-
 ## Notes
 
-- This is the `lesson` branch.
-- Tests that check click behavior will fail until the methods and event bindings are in place.
-- The `answer` branch contains the finished reference solution.
+- This is the `answer` branch — reference implementation.
+- All tests should pass.
 
 ## Commands
 
