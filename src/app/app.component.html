@@ -13,17 +13,34 @@
     <form class="draft-form">
       <label class="draft-form__field">
         <span class="draft-form__label">Full name</span>
-        <input class="draft-form__input" type="text" data-testid="draft-name-input" />
+        <input
+          class="draft-form__input"
+          type="text"
+          name="fullName"
+          [(ngModel)]="profileDraft.fullName"
+          data-testid="draft-name-input"
+        />
       </label>
 
       <label class="draft-form__field">
         <span class="draft-form__label">City</span>
-        <input class="draft-form__input" type="text" data-testid="draft-city-input" />
+        <input
+          class="draft-form__input"
+          type="text"
+          name="city"
+          [(ngModel)]="profileDraft.city"
+          data-testid="draft-city-input"
+        />
       </label>
 
       <label class="draft-form__field">
         <span class="draft-form__label">Preferred format</span>
-        <select class="draft-form__input" data-testid="draft-format-select">
+        <select
+          class="draft-form__input"
+          name="preferredFormat"
+          [(ngModel)]="profileDraft.preferredFormat"
+          data-testid="draft-format-select"
+        >
           <option value="">Choose a format</option>
           <option value="Video">Video</option>
           <option value="Workshop">Workshop</option>
@@ -33,7 +50,12 @@
 
       <label class="draft-form__field">
         <span class="draft-form__label">Learning goal</span>
-        <textarea class="draft-form__input draft-form__input--textarea" data-testid="draft-goal-input"></textarea>
+        <textarea
+          class="draft-form__input draft-form__input--textarea"
+          name="learningGoal"
+          [(ngModel)]="profileDraft.learningGoal"
+          data-testid="draft-goal-input"
+        ></textarea>
       </label>
     </form>
 
