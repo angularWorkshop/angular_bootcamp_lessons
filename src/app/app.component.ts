@@ -25,5 +25,9 @@ export class AppComponent {
       title: 'Inspect',
       text: 'Use the browser and the Angular files together to understand the project shape.',
     },
+    {
+      title: 'Launch',
+      text: 'Prepare the app shell for the next exercises and keep the layout ready for growth.',
+    },
   ];
 }
