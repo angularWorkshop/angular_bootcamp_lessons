@@ -8,10 +8,13 @@
   </div>
 
   <ol class="task-list" data-testid="task-list">
-    <!-- TODO: используй @for для отрисовки tasks -->
-    <!-- Используй track task.id -->
-    <!-- Покажи номер через $index + 1 в <span data-testid="task-index"> -->
-    <!-- Покажи название в <span data-testid="task-title"> -->
-    <!-- Добавь @empty блок с <li data-testid="empty-message">No tasks</li> -->
+    @for (task of tasks; track task.id; let i = $index) {
+      <li class="task-item" data-testid="task-item">
+        <span class="task-item__index" data-testid="task-index">{{ i + 1 }}</span>
+        <span class="task-item__title" data-testid="task-title">{{ task.title }}</span>
+      </li>
+    } @empty {
+      <li class="empty-message" data-testid="empty-message">No tasks</li>
+    }
   </ol>
 </main>

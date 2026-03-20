@@ -1,24 +1,16 @@
 # Track & Empty
 
-This branch contains the starter version of the track and `@empty` exercise.
+This branch contains the completed solution for the track and `@empty` exercise.
 
 ## Goal
 
-Render a task list using `@for` with `track`, display a 1-based index via `$index`, and show a fallback message using `@empty` when the list is cleared.
+A task list with `@for`, `track`, `$index`, and `@empty` fallback.
 
-## What the learner should build
+## What the solution demonstrates
 
-- a task list rendered with `@for`
-- each item shows its 1-based number and title
-- an empty-state message when there are no tasks
-
-## What the learner should implement
-
-- `@for (task of tasks; track task.id)` to iterate
-- `$index + 1` displayed in a `<span data-testid="task-index">`
-- task title in a `<span data-testid="task-title">`
-- each `<li>` must have `data-testid="task-item"`
-- `@empty` block with a `<li data-testid="empty-message">No tasks</li>`
+- `@for (task of tasks; track task.id; let i = $index)` with proper tracking
+- 1-based numbering via `{{ i + 1 }}`
+- `@empty` block showing "No tasks" when the array is empty
 
 ## Files
 
@@ -27,15 +19,10 @@ Render a task list using `@for` with `track`, display a 1-based index via `$inde
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
-## What can be changed
-
-- `src/app/app.component.html` — add `@for` with track, $index, and `@empty`
-
 ## Notes
 
-- This is the `lesson` branch.
-- Tests for list rendering, indices, and empty state will fail until the template is complete.
-- The `answer` branch contains the finished reference solution.
+- This is the `answer` branch — reference implementation.
+- All tests should pass.
 
 ## Commands
 
