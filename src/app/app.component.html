@@ -13,23 +13,72 @@
     <form class="enrollment-form" data-testid="enrollment-form" #enrollmentForm="ngForm" (ngSubmit)="saveEnrollment(enrollmentForm)" novalidate>
       <label class="enrollment-form__field">
         <span class="enrollment-form__label">Full name</span>
-        <input class="enrollment-form__input" type="text" name="fullName" data-testid="full-name-input" />
+        <input
+          class="enrollment-form__input"
+          type="text"
+          name="fullName"
+          ngModel
+          required
+          minlength="3"
+          #fullNameModel="ngModel"
+          data-testid="full-name-input"
+        />
       </label>
 
-      <div class="field-error" data-testid="full-name-required-error">Full name is required.</div>
-      <div class="field-error" data-testid="full-name-minlength-error">Full name must be at least 3 characters.</div>
+      <div
+        class="field-error"
+        *ngIf="fullNameModel.errors?.['required'] && (fullNameModel.touched || enrollmentForm.submitted)"
+        data-testid="full-name-required-error"
+      >
+        Full name is required.
+      </div>
+      <div
+        class="field-error"
+        *ngIf="fullNameModel.errors?.['minlength'] && (fullNameModel.touched || enrollmentForm.submitted)"
+        data-testid="full-name-minlength-error"
+      >
+        Full name must be at least 3 characters.
+      </div>
 
       <label class="enrollment-form__field">
         <span class="enrollment-form__label">Email</span>
-        <input class="enrollment-form__input" type="email" name="email" data-testid="email-input" />
+        <input
+          class="enrollment-form__input"
+          type="email"
+          name="email"
+          ngModel
+          required
+          email
+          #emailModel="ngModel"
+          data-testid="email-input"
+        />
       </label>
 
-      <div class="field-error" data-testid="email-required-error">Email is required.</div>
-      <div class="field-error" data-testid="email-invalid-error">Enter a valid email address.</div>
+      <div
+        class="field-error"
+        *ngIf="emailModel.errors?.['required'] && (emailModel.touched || enrollmentForm.submitted)"
+        data-testid="email-required-error"
+      >
+        Email is required.
+      </div>
+      <div
+        class="field-error"
+        *ngIf="emailModel.errors?.['email'] && (emailModel.touched || enrollmentForm.submitted)"
+        data-testid="email-invalid-error"
+      >
+        Enter a valid email address.
+      </div>
 
       <label class="enrollment-form__field">
         <span class="enrollment-form__label">Learning track</span>
-        <select class="enrollment-form__input" name="learningTrack" data-testid="track-select">
+        <select
+          class="enrollment-form__input"
+          name="learningTrack"
+          ngModel
+          required
+          #trackModel="ngModel"
+          data-testid="track-select"
+        >
           <option value="">Choose a track</option>
           <option value="Frontend">Frontend</option>
           <option value="Architecture">Architecture</option>
@@ -37,9 +86,20 @@
         </select>
       </label>
 
-      <div class="field-error" data-testid="track-required-error">Choose a learning track.</div>
+      <div
+        class="field-error"
+        *ngIf="trackModel.errors?.['required'] && (trackModel.touched || enrollmentForm.submitted)"
+        data-testid="track-required-error"
+      >
+        Choose a learning track.
+      </div>
 
-      <button class="enrollment-form__button" type="submit" data-testid="submit-enrollment-btn">
+      <button
+        class="enrollment-form__button"
+        type="submit"
+        [disabled]="enrollmentForm.invalid || enrollmentForm.pristine"
+        data-testid="submit-enrollment-btn"
+      >
         Submit enrollment
       </button>
     </form>

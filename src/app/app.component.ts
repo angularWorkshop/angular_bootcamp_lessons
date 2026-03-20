@@ -17,6 +17,10 @@ export class AppComponent {
   protected submittedEnrollment: EnrollmentPayload | null = null;
 
   protected saveEnrollment(form: NgForm): void {
-    // TODO: prevent invalid form submission and store the valid enrollment payload
+    if (form.invalid) {
+      return;
+    }
+
+    this.submittedEnrollment = form.value as EnrollmentPayload;
   }
 }
