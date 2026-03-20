@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-interface User {
+interface Task {
   id: number;
-  name: string;
-  role: string;
+  title: string;
 }
+
+let nextId = 4;
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,21 @@ interface User {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly users: User[] = [
-    { id: 1, name: 'Annie Case', role: 'Frontend Developer' },
-    { id: 2, name: 'Mark Stone', role: 'Backend Developer' },
-    { id: 3, name: 'Lily Chen', role: 'Designer' },
-    { id: 4, name: 'Tom Walker', role: 'QA Engineer' },
+  protected tasks: Task[] = [
+    { id: 1, title: 'Set up project' },
+    { id: 2, title: 'Create components' },
+    { id: 3, title: 'Write tests' },
   ];
+
+  refresh(): void {
+    this.tasks = [
+      { id: 2, title: 'Create components' },
+      { id: 3, title: 'Write tests' },
+      { id: nextId++, title: 'Deploy to production' },
+    ];
+  }
+
+  clearAll(): void {
+    this.tasks = [];
+  }
 }

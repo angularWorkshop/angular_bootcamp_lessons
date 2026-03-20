@@ -1,21 +1,24 @@
-# User List Rendering
+# Track & Empty
 
-This branch contains the starter version of the `@for` exercise.
+This branch contains the starter version of the track and `@empty` exercise.
 
 ## Goal
 
-Render a list of team members from an array using Angular's built-in `@for` control flow.
+Render a task list using `@for` with `track`, display a 1-based index via `$index`, and show a fallback message using `@empty` when the list is cleared.
 
 ## What the learner should build
 
-- a heading: `Team Members`
-- a list of 4 user cards, each showing name and role
+- a task list rendered with `@for`
+- each item shows its 1-based number and title
+- an empty-state message when there are no tasks
 
 ## What the learner should implement
 
-- use `@for (user of users; track user.id)` to iterate over the array
-- render each user in a `<li>` with `data-testid="user-card"`
-- inside each `<li>` render name (`data-testid="user-name"`) and role (`data-testid="user-role"`)
+- `@for (task of tasks; track task.id)` to iterate
+- `$index + 1` displayed in a `<span data-testid="task-index">`
+- task title in a `<span data-testid="task-title">`
+- each `<li>` must have `data-testid="task-item"`
+- `@empty` block with a `<li data-testid="empty-message">No tasks</li>`
 
 ## Files
 
@@ -26,12 +29,12 @@ Render a list of team members from an array using Angular's built-in `@for` cont
 
 ## What can be changed
 
-- `src/app/app.component.html` — add the `@for` block
+- `src/app/app.component.html` — add `@for` with track, $index, and `@empty`
 
 ## Notes
 
 - This is the `lesson` branch.
-- Tests that check rendered cards will fail until `@for` is added.
+- Tests for list rendering, indices, and empty state will fail until the template is complete.
 - The `answer` branch contains the finished reference solution.
 
 ## Commands

@@ -1,13 +1,17 @@
 <main class="list-shell">
-  <p class="list-shell__eyebrow">List Rendering Exercise</p>
-  <h1 class="list-shell__title">Team Members</h1>
+  <p class="list-shell__eyebrow">Track &amp; Empty Exercise</p>
+  <h1 class="list-shell__title">Task List</h1>
 
-  <ul class="user-list" data-testid="user-list">
-    <!-- TODO: используй @for для отрисовки пользователей из массива users -->
-    <!-- Для каждого пользователя отрисуй <li> с классом user-card и data-testid="user-card" -->
-    <!-- Внутри каждого <li>: -->
-    <!--   <p data-testid="user-name"> с именем пользователя -->
-    <!--   <p data-testid="user-role"> с ролью пользователя -->
-    <!-- Не забудь track user.id -->
-  </ul>
+  <div class="list-shell__actions">
+    <button class="btn" data-testid="refresh-btn" type="button" (click)="refresh()">Refresh</button>
+    <button class="btn btn--secondary" data-testid="clear-btn" type="button" (click)="clearAll()">Clear All</button>
+  </div>
+
+  <ol class="task-list" data-testid="task-list">
+    <!-- TODO: используй @for для отрисовки tasks -->
+    <!-- Используй track task.id -->
+    <!-- Покажи номер через $index + 1 в <span data-testid="task-index"> -->
+    <!-- Покажи название в <span data-testid="task-title"> -->
+    <!-- Добавь @empty блок с <li data-testid="empty-message">No tasks</li> -->
+  </ol>
 </main>

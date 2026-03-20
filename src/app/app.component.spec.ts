@@ -22,40 +22,80 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Team Members');
+    expect(heading?.textContent?.trim()).toBe('Task List');
   });
 
-  it('should render exactly 4 user cards', () => {
-    const cards = host.querySelectorAll('[data-testid="user-card"]');
+  it('should render 3 task items initially', () => {
+    const items = host.querySelectorAll('[data-testid="task-item"]');
 
-    expect(cards.length).toBe(4);
+    expect(items.length).toBe(3);
   });
 
-  it('should render all user names in correct order', () => {
-    const names = getAll('user-name');
+  it('should show 1-based index for each task', () => {
+    const indices = getAll('task-index');
 
-    expect(names).toEqual(['Annie Case', 'Mark Stone', 'Lily Chen', 'Tom Walker']);
+    expect(indices).toEqual(['1', '2', '3']);
   });
 
-  it('should render all user roles in correct order', () => {
-    const roles = getAll('user-role');
+  it('should render task titles in order', () => {
+    const titles = getAll('task-title');
 
-    expect(roles).toEqual(['Frontend Developer', 'Backend Developer', 'Designer', 'QA Engineer']);
+    expect(titles).toEqual(['Set up project', 'Create components', 'Write tests']);
   });
 
-  it('should render each card with both a name and a role', () => {
-    const cards = host.querySelectorAll('[data-testid="user-card"]');
+  it('should update the list after clicking Refresh', () => {
+    clickButton('refresh-btn');
 
-    cards.forEach(card => {
-      const name = card.querySelector('[data-testid="user-name"]');
-      const role = card.querySelector('[data-testid="user-role"]');
-
-      expect(name).toBeTruthy();
-      expect(role).toBeTruthy();
-      expect(name?.textContent?.trim().length).toBeGreaterThan(0);
-      expect(role?.textContent?.trim().length).toBeGreaterThan(0);
-    });
+    const titles = getAll('task-title');
+    expect(titles).toEqual(['Create components', 'Write tests', 'Deploy to production']);
   });
+
+  it('should re-number indices after refresh', () => {
+    clickButton('refresh-btn');
+
+    const indices = getAll('task-index');
+    expect(indices).toEqual(['1', '2', '3']);
+  });
+
+  it('should show empty message after clicking Clear All', () => {
+    clickButton('clear-btn');
+
+    const empty = host.querySelector('[data-testid="empty-message"]');
+    expect(empty).toBeTruthy();
+    expect(empty?.textContent?.trim()).toBe('No tasks');
+  });
+
+  it('should not show task items when list is empty', () => {
+    clickButton('clear-btn');
+
+    const items = host.querySelectorAll('[data-testid="task-item"]');
+    expect(items.length).toBe(0);
+  });
+
+  it('should not show empty message when list has items', () => {
+    const empty = host.querySelector('[data-testid="empty-message"]');
+
+    expect(empty).toBeNull();
+  });
+
+  it('should show items again after clear then refresh', () => {
+    clickButton('clear-btn');
+    clickButton('refresh-btn');
+
+    const items = host.querySelectorAll('[data-testid="task-item"]');
+    expect(items.length).toBe(3);
+
+    const empty = host.querySelector('[data-testid="empty-message"]');
+    expect(empty).toBeNull();
+  });
+
+  function clickButton(testId: string): void {
+    const btn = host.querySelector(`[data-testid="${testId}"]`) as HTMLButtonElement | null;
+
+    expect(btn).toBeTruthy();
+    btn?.click();
+    fixture.detectChanges();
+  }
 
   function getAll(testId: string): string[] {
     return Array.from(host.querySelectorAll(`[data-testid="${testId}"]`)).map(
