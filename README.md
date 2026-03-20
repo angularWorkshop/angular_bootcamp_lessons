@@ -1,21 +1,15 @@
 # User List Rendering
 
-This branch contains the starter version of the `@for` exercise.
+This branch contains the completed solution for the `@for` exercise.
 
 ## Goal
 
 Render a list of team members from an array using Angular's built-in `@for` control flow.
 
-## What the learner should build
+## What the solution demonstrates
 
-- a heading: `Team Members`
-- a list of 4 user cards, each showing name and role
-
-## What the learner should implement
-
-- use `@for (user of users; track user.id)` to iterate over the array
-- render each user in a `<li>` with `data-testid="user-card"`
-- inside each `<li>` render name (`data-testid="user-name"`) and role (`data-testid="user-role"`)
+- `@for (user of users; track user.id)` iterates over the array
+- each user is rendered as a card with name and role
 
 ## Files
 
@@ -24,15 +18,10 @@ Render a list of team members from an array using Angular's built-in `@for` cont
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
-## What can be changed
-
-- `src/app/app.component.html` — add the `@for` block
-
 ## Notes
 
-- This is the `lesson` branch.
-- Tests that check rendered cards will fail until `@for` is added.
-- The `answer` branch contains the finished reference solution.
+- This is the `answer` branch — reference implementation.
+- All tests should pass.
 
 ## Commands
 

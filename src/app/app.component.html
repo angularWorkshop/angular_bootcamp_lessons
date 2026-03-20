@@ -3,11 +3,11 @@
   <h1 class="list-shell__title">Team Members</h1>
 
   <ul class="user-list" data-testid="user-list">
-    <!-- TODO: используй @for для отрисовки пользователей из массива users -->
-    <!-- Для каждого пользователя отрисуй <li> с классом user-card и data-testid="user-card" -->
-    <!-- Внутри каждого <li>: -->
-    <!--   <p data-testid="user-name"> с именем пользователя -->
-    <!--   <p data-testid="user-role"> с ролью пользователя -->
-    <!-- Не забудь track user.id -->
+    @for (user of users; track user.id) {
+      <li class="user-card" data-testid="user-card">
+        <p class="user-card__name" data-testid="user-name">{{ user.name }}</p>
+        <p class="user-card__role" data-testid="user-role">{{ user.role }}</p>
+      </li>
+    }
   </ul>
 </main>
