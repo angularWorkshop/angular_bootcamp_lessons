@@ -1,27 +1,43 @@
-# AngularDefinitiveGuideLessons
+# Exercise 19.1 — Feature-Based Project Structure (starter version)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+**Branch:** `lesson-topic-19-exercise-01-feature-based-structure`
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Learn to organize an Angular project using feature-based architecture: features/, shared/, core/.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+An Organizer app with Notes and Contacts features, reorganized from flat structure into:
+- `features/notes/` — NoteListComponent, NoteService
+- `features/contacts/` — ContactListComponent, ContactService
+- `shared/card/` — CardComponent
+- `core/` — IdService
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Create the folder structure: features/notes/, features/contacts/, shared/card/, core/
+2. Move files into their respective folders
+3. Update all imports (components, services, module)
+4. Ensure features don't import from each other
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+| File | Role |
+|------|------|
+| `app.component.ts` | Shell with tab navigation |
+| `app.module.ts` | Root module (update imports after moving files) |
+| `note-list.component.ts` | **Move to features/notes/** |
+| `note.service.ts` | **Move to features/notes/** |
+| `contact-list.component.ts` | **Move to features/contacts/** |
+| `contact.service.ts` | **Move to features/contacts/** |
+| `card.component.ts` | **Move to shared/card/** |
+| `id.service.ts` | **Move to core/** |
+| `app.component.spec.ts` | Tests (do not modify) |
 
-## Running end-to-end tests
+## Commands
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm start          # dev server
+npm test -- --runInBand   # run tests
+```

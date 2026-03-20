@@ -1,0 +1,54 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 48px 16px;
+  background: #0f172a;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.app {
+  width: 100%;
+  max-width: 560px;
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  &__title {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  &__tab {
+    padding: 8px 20px;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+
+    &:hover {
+      color: #e2e8f0;
+    }
+
+    &--active {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="app" data-testid="app">
+  <h1 class="app__title" data-testid="title">Organizer</h1>
+
+  <nav class="app__nav" data-testid="nav">
+    <button
+      class="app__tab"
+      [class.app__tab--active]="activeTab === 'notes'"
+      data-testid="tab-notes"
+      (click)="switchTab('notes')"
+    >Notes</button>
+    <button
+      class="app__tab"
+      [class.app__tab--active]="activeTab === 'contacts'"
+      data-testid="tab-contacts"
+      (click)="switchTab('contacts')"
+    >Contacts</button>
+  </nav>
+
+  @if (activeTab === 'notes') {
+    <app-note-list></app-note-list>
+  } @else {
+    <app-contact-list></app-contact-list>
+  }
+</div>
