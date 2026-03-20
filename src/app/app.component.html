@@ -1,0 +1,47 @@
+<main class="stream-shell">
+  <p class="stream-shell__eyebrow">RxJS Operators Exercise</p>
+  <h1 class="stream-shell__title" data-testid="stream-title">{{ title }}</h1>
+
+  <section class="stream-shell__intro">
+    <p class="stream-shell__text">
+      This exercise focuses on moving the loading flow into an observable pipeline. The service already exposes a
+      lesson stream. Your job is to wire the component to that stream and let the UI react when data arrives.
+    </p>
+  </section>
+
+  <section class="stream-shell__actions">
+    <button class="stream-shell__button" type="button" data-testid="load-stream-btn" (click)="loadLessons()">
+      Load stream
+    </button>
+  </section>
+
+  <section class="stream-shell__content">
+    <div class="state-box state-box--empty" *ngIf="!isLoading && lessons.length === 0" data-testid="empty-state">
+      <p class="state-box__title">No lessons loaded</p>
+      <p class="state-box__text">Start the stream to see the next batch of lesson previews.</p>
+    </div>
+
+    <div class="state-box state-box--loading" *ngIf="isLoading" data-testid="loading-state">
+      <p class="state-box__title">Loading lesson stream...</p>
+      <p class="state-box__text">The component is waiting for the next observable emission.</p>
+    </div>
+
+    <section class="stream-results" *ngIf="!isLoading && lessons.length > 0" data-testid="success-state">
+      <div class="stream-results__summary">
+        <p class="stream-results__line" data-testid="summary-total">Loaded {{ lessons.length }} lessons</p>
+        <p class="stream-results__line" data-testid="summary-duration">Total duration {{ totalDuration }} min</p>
+      </div>
+
+      <ul class="stream-results__list">
+        <li class="lesson-preview" *ngFor="let lesson of lessons" [attr.data-testid]="'lesson-card-' + lesson.id">
+          <p class="lesson-preview__title" data-testid="lesson-title">{{ lesson.title }}</p>
+          <p class="lesson-preview__meta">
+            <span data-testid="lesson-format">{{ lesson.format }}</span>
+            <span data-testid="lesson-duration">{{ lesson.durationMinutes }} min</span>
+            <span data-testid="lesson-badge">{{ lesson.isNew ? 'New' : 'Ready' }}</span>
+          </p>
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
