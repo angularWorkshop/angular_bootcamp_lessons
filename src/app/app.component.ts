@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap, tap, Subject } from 'rxjs';
 import { SearchLesson } from './lesson-search.models';
 import { LessonSearchService } from './lesson-search.service';
 
@@ -28,6 +28,25 @@ export class AppComponent implements OnInit {
   }
 
   private bindSearchFlow(): void {
-    // TODO: debounce input, cancel previous requests through switchMap, and keep only the latest search result in UI
+    this.searchTerms
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap((query) => {
+          this.activeQuery = query.trim();
+          this.results = [];
+          this.isSearching = this.activeQuery.length > 0;
+        }),
+        filter((query) => query.trim().length > 0),
+        switchMap((query) =>
+          this.lessonSearchService.searchLessons(query).pipe(
+            tap((results) => {
+              this.results = results;
+              this.isSearching = false;
+            }),
+          ),
+        ),
+      )
+      .subscribe();
   }
 }

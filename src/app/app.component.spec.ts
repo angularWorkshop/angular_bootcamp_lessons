@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { AppComponent } from './app.component';
 import { SearchLesson } from './lesson-search.models';
@@ -46,25 +46,25 @@ describe('AppComponent', () => {
     expectOnlyState('idle-state');
   });
 
-  it('should debounce the input before calling the search service', fakeAsync(() => {
+  it('should debounce the input before calling the search service', async () => {
     const pendingResults = new Subject<SearchLesson[]>();
     lessonSearchService.searchLessons.mockReturnValue(pendingResults.asObservable());
 
     typeQuery('rx');
-    tick(250);
+    await wait(250);
     fixture.detectChanges();
 
     expect(lessonSearchService.searchLessons).not.toHaveBeenCalled();
 
-    tick(50);
+    await wait(100);
     fixture.detectChanges();
 
     expect(lessonSearchService.searchLessons).toHaveBeenCalledTimes(1);
     expect(lessonSearchService.searchLessons).toHaveBeenCalledWith('rx');
     expectOnlyState('searching-state');
-  }));
+  });
 
-  it('should cancel the previous request when a newer query starts', fakeAsync(() => {
+  it('should cancel the previous request when a newer query starts', async () => {
     const firstRequest = new Subject<SearchLesson[]>();
     const latestRequest = new Subject<SearchLesson[]>();
 
@@ -73,14 +73,14 @@ describe('AppComponent', () => {
       .mockReturnValueOnce(latestRequest.asObservable());
 
     typeQuery('rxjs');
-    tick(300);
+    await wait(350);
     fixture.detectChanges();
 
     expect(lessonSearchService.searchLessons).toHaveBeenNthCalledWith(1, 'rxjs');
     expectOnlyState('searching-state');
 
     typeQuery('rxjs operators');
-    tick(300);
+    await wait(350);
     fixture.detectChanges();
 
     expect(lessonSearchService.searchLessons).toHaveBeenNthCalledWith(2, 'rxjs operators');
@@ -100,14 +100,14 @@ describe('AppComponent', () => {
     expectOnlyState('results-state');
     expect(getText('summary-query')).toBe('Latest query: rxjs operators');
     expect(getText('summary-count')).toBe('Found 2 lessons');
-  }));
+  });
 
-  it('should render only the latest search results in the UI', fakeAsync(() => {
+  it('should render only the latest search results in the UI', async () => {
     const pendingRequest = new Subject<SearchLesson[]>();
     lessonSearchService.searchLessons.mockReturnValue(pendingRequest.asObservable());
 
     typeQuery('switch');
-    tick(300);
+    await wait(350);
     fixture.detectChanges();
 
     pendingRequest.next(latestResults);
@@ -117,7 +117,7 @@ describe('AppComponent', () => {
     expect(getAll('result-title')).toEqual(['switchMap in Angular', 'Debounce Input Patterns']);
     expect(getAll('result-format')).toEqual(['Guide', 'Workshop']);
     expect(getAll('result-level')).toEqual(['Advanced', 'Beginner']);
-  }));
+  });
 
   function typeQuery(value: string): void {
     const input = getInput();
@@ -159,5 +159,9 @@ describe('AppComponent', () => {
         expect(element).toBeNull();
       }
     }
+  }
+
+  function wait(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 });
