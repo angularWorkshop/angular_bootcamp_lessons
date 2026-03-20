@@ -1,0 +1,49 @@
+<main class="fallback-shell">
+  <p class="fallback-shell__eyebrow">RxJS Recovery Exercise</p>
+  <h1 class="fallback-shell__title" data-testid="suggestions-title">{{ title }}</h1>
+
+  <section class="fallback-shell__intro">
+    <p class="fallback-shell__text">
+      Request failures should not leave the screen blank. In this exercise, the component must recover through an RxJS
+      fallback flow and still render a safe suggestion list.
+    </p>
+  </section>
+
+  <section class="fallback-shell__actions">
+    <button class="fallback-shell__button" type="button" data-testid="load-suggestions-btn" (click)="loadSuggestions()">
+      Load suggestions
+    </button>
+  </section>
+
+  <section class="fallback-shell__content">
+    <div class="state-pane state-pane--empty" *ngIf="!isLoading && suggestions.length === 0" data-testid="empty-state">
+      <p class="state-pane__title">No suggestions loaded</p>
+      <p class="state-pane__text">Run the request to see either live suggestions or the fallback pack.</p>
+    </div>
+
+    <div class="state-pane state-pane--loading" *ngIf="isLoading" data-testid="loading-state">
+      <p class="state-pane__title">Loading suggestions...</p>
+      <p class="state-pane__text">The component is waiting for the request result.</p>
+    </div>
+
+    <section class="suggestions-panel" *ngIf="!isLoading && suggestions.length > 0" data-testid="results-state">
+      <div class="suggestions-panel__banner suggestions-panel__banner--fallback" *ngIf="isUsingFallback" data-testid="fallback-note">
+        The live request failed, so the dashboard switched to fallback suggestions.
+      </div>
+
+      <div class="suggestions-panel__summary">
+        <p class="suggestions-panel__line" data-testid="summary-count">Showing {{ suggestions.length }} suggestions</p>
+      </div>
+
+      <ul class="suggestions-panel__list">
+        <li class="suggestion-card" *ngFor="let suggestion of suggestions" [attr.data-testid]="'suggestion-card-' + suggestion.id">
+          <p class="suggestion-card__title" data-testid="suggestion-title">{{ suggestion.title }}</p>
+          <p class="suggestion-card__meta">
+            <span data-testid="suggestion-format">{{ suggestion.format }}</span>
+            <span data-testid="suggestion-duration">{{ suggestion.durationMinutes }} min</span>
+          </p>
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
