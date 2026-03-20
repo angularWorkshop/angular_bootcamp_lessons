@@ -5,11 +5,27 @@
   </section>
 
   <section class="stage-list" aria-label="Bootstrap flow">
-    <article class="stage-card" *ngFor="let stage of stages; let index = index" [attr.data-testid]="'entry-stage-' + index">
-      <span class="stage-card__index">0{{ index + 1 }}</span>
+    <article class="stage-card" data-testid="entry-stage-main">
+      <span class="stage-card__index">01</span>
       <div>
-        <h2>{{ stage.title }}</h2>
-        <p>{{ stage.detail }}</p>
+        <h2>{{ entryStageTitle }}</h2>
+        <p>{{ entryStageDetail }}</p>
+      </div>
+    </article>
+
+    <article class="stage-card" data-testid="entry-stage-module">
+      <span class="stage-card__index">02</span>
+      <div>
+        <h2>{{ moduleStageTitle }}</h2>
+        <p>{{ moduleStageDetail }}</p>
+      </div>
+    </article>
+
+    <article class="stage-card" data-testid="entry-stage-render">
+      <span class="stage-card__index">03</span>
+      <div>
+        <h2>{{ renderStageTitle }}</h2>
+        <p>{{ renderStageDetail }}</p>
       </div>
     </article>
   </section>

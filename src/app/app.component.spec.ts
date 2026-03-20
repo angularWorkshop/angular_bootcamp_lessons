@@ -29,13 +29,35 @@ describe('AppComponent', () => {
     expect(host.textContent).toContain('Trace how Angular moves from main.ts to the first rendered component.');
   });
 
-  it('should render three bootstrap stages', () => {
+  it('should render three bootstrap stage cards', () => {
     expect(host.querySelectorAll('[data-testid^="entry-stage-"]').length).toBe(3);
   });
 
+  it('should explain the main.ts entry stage', () => {
+    const mainCard = host.querySelector('[data-testid="entry-stage-main"]');
+
+    expect(mainCard?.textContent).toContain('main.ts');
+    expect(mainCard?.textContent).toContain('bootstrapModule(AppModule)');
+  });
+
+  it('should explain the AppModule stage', () => {
+    const moduleCard = host.querySelector('[data-testid="entry-stage-module"]');
+
+    expect(moduleCard?.textContent).toContain('AppModule');
+    expect(moduleCard?.textContent).toContain('bootstrap component');
+  });
+
   it('should show the final AppComponent render stage', () => {
-    expect(host.textContent).toContain('AppComponent');
-    expect(host.textContent).toContain('renders the first visible screen');
+    const renderCard = host.querySelector('[data-testid="entry-stage-render"]');
+
+    expect(renderCard?.textContent).toContain('AppComponent');
+  });
+
+  it('should explain that AppComponent renders inside app-root', () => {
+    const renderCard = host.querySelector('[data-testid="entry-stage-render"]');
+
+    expect(renderCard?.textContent).toContain('app-root');
+    expect(renderCard?.textContent).toContain('first visible screen');
   });
 
   it('should keep main.ts bootstrapping AppModule', () => {

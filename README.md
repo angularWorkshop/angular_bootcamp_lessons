@@ -14,7 +14,7 @@ Explain and visualize how Angular reaches the first screen through `main.ts`, `A
 
 ## What the learner should implement
 
-- complete the missing final bootstrap stage for `AppComponent`
+- replace the placeholder final stage with the `AppComponent` render step
 - keep the project bootstrapped through `main.ts` and `AppModule`
 - make the rendered flow match the expectations from the tests
 
