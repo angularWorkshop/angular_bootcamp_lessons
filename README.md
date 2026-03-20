@@ -1,6 +1,6 @@
 # Page Navigation
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
@@ -35,8 +35,9 @@ Learn to navigate between pages using route parameters, `routerLink` with dynami
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before the learner completes the task.
+- This is the `answer` branch.
+- It contains the finished reference implementation.
+- The test suite should stay green here.
 
 ## Commands
 

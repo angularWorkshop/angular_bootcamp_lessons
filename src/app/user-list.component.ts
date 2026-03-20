@@ -11,9 +11,8 @@ import { User, USERS } from './user.model';
       <h2 class="page__title" data-testid="list-title">Users</h2>
       <ul class="page__list" data-testid="user-list">
         @for (user of users; track user.id) {
-          <!-- TODO: Add a routerLink that navigates to /users/:id -->
           <li class="page__list-item">
-            <a data-testid="user-link-{{ user.id }}">
+            <a [routerLink]="['/users', user.id]" [attr.data-testid]="'user-link-' + user.id">
               {{ user.name }}
             </a>
           </li>
