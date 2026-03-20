@@ -10,28 +10,27 @@
   </div>
 
   <div class="page-shell__content">
-    <!-- TODO: используй @if / @else if / @else чтобы показывать только одно состояние -->
-    <!-- Сейчас все блоки видны одновременно — это неправильно -->
-
-    <div class="state-loading" data-testid="loading-state">
-      <p>Loading products...</p>
-    </div>
-
-    <div class="state-error" data-testid="error-state">
-      <p>Something went wrong. Please try again.</p>
-    </div>
-
-    <div class="state-empty" data-testid="empty-state">
-      <p>No products found.</p>
-    </div>
-
-    <ul class="product-list" data-testid="success-state">
-      @for (product of products; track product.id) {
-        <li class="product-item" data-testid="product-item">
-          <span data-testid="product-name">{{ product.name }}</span>
-          <span class="product-item__price" data-testid="product-price">${{ product.price }}</span>
-        </li>
-      }
-    </ul>
+    @if (isLoading) {
+      <div class="state-loading" data-testid="loading-state">
+        <p>Loading products...</p>
+      </div>
+    } @else if (hasError) {
+      <div class="state-error" data-testid="error-state">
+        <p>Something went wrong. Please try again.</p>
+      </div>
+    } @else if (products.length === 0) {
+      <div class="state-empty" data-testid="empty-state">
+        <p>No products found.</p>
+      </div>
+    } @else {
+      <ul class="product-list" data-testid="success-state">
+        @for (product of products; track product.id) {
+          <li class="product-item" data-testid="product-item">
+            <span data-testid="product-name">{{ product.name }}</span>
+            <span class="product-item__price" data-testid="product-price">${{ product.price }}</span>
+          </li>
+        }
+      </ul>
+    }
   </div>
 </main>
