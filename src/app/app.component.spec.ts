@@ -35,7 +35,7 @@ describe('AppComponent', () => {
     expectOnlyState('loading-state');
   });
 
-  it('should show only success state with products after clicking Show Data', () => {
+  it('should show only success state with 3 products after clicking Show Data', () => {
     clickButton('success-btn');
 
     expectOnlyState('success-state');
@@ -44,13 +44,17 @@ describe('AppComponent', () => {
     expect(items.length).toBe(3);
   });
 
-  it('should render product names and prices', () => {
+  it('should render correct product names', () => {
     clickButton('success-btn');
 
     const names = getAll('product-name');
-    const prices = getAll('product-price');
-
     expect(names).toEqual(['Laptop', 'Keyboard', 'Monitor']);
+  });
+
+  it('should render correct product prices', () => {
+    clickButton('success-btn');
+
+    const prices = getAll('product-price');
     expect(prices).toEqual(['$1200', '$85', '$450']);
   });
 
@@ -67,31 +71,26 @@ describe('AppComponent', () => {
     expectOnlyState('error-state');
   });
 
-  it('should switch from error back to loading', () => {
+  it('should transition from error to loading', () => {
     clickButton('error-btn');
     clickButton('loading-btn');
 
     expectOnlyState('loading-state');
   });
 
-  it('should switch from loading to success', () => {
+  it('should transition from loading to success', () => {
     clickButton('loading-btn');
     clickButton('success-btn');
 
     expectOnlyState('success-state');
   });
 
-  it('should display correct empty state text', () => {
-    const empty = host.querySelector('[data-testid="empty-state"]');
+  it('should use a single state property, not multiple booleans', () => {
+    const component = fixture.componentInstance as any;
 
-    expect(empty?.textContent).toContain('No products found');
-  });
-
-  it('should display correct error state text', () => {
-    clickButton('error-btn');
-
-    const error = host.querySelector('[data-testid="error-state"]');
-    expect(error?.textContent).toContain('Something went wrong');
+    expect(component.state).toBeDefined();
+    expect(component.isLoading).toBeUndefined();
+    expect(component.hasError).toBeUndefined();
   });
 
   function clickButton(testId: string): void {

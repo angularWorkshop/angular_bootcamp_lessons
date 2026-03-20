@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+type PageState = 'loading' | 'success' | 'empty' | 'error';
+
 interface Product {
   id: number;
   name: string;
@@ -12,35 +14,19 @@ interface Product {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected isLoading = false;
-  protected hasError = false;
+  protected state: PageState = 'empty';
   protected products: Product[] = [];
 
-  showLoading(): void {
-    this.isLoading = true;
-    this.hasError = false;
-    this.products = [];
-  }
+  // TODO: реализуй метод — установи state в 'loading', очисти products
+  showLoading(): void {}
 
-  showSuccess(): void {
-    this.isLoading = false;
-    this.hasError = false;
-    this.products = [
-      { id: 1, name: 'Laptop', price: 1200 },
-      { id: 2, name: 'Keyboard', price: 85 },
-      { id: 3, name: 'Monitor', price: 450 },
-    ];
-  }
+  // TODO: реализуй метод — установи state в 'success', заполни products
+  // [{ id: 1, name: 'Laptop', price: 1200 }, { id: 2, name: 'Keyboard', price: 85 }, { id: 3, name: 'Monitor', price: 450 }]
+  showSuccess(): void {}
 
-  showEmpty(): void {
-    this.isLoading = false;
-    this.hasError = false;
-    this.products = [];
-  }
+  // TODO: реализуй метод — установи state в 'empty', очисти products
+  showEmpty(): void {}
 
-  showError(): void {
-    this.isLoading = false;
-    this.hasError = true;
-    this.products = [];
-  }
+  // TODO: реализуй метод — установи state в 'error', очисти products
+  showError(): void {}
 }

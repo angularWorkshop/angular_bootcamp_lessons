@@ -1,19 +1,21 @@
-# UI States with @if
+# Centralized State with @switch
 
-This branch contains the starter version of the conditional rendering exercise.
+This branch contains the starter version of the `@switch` exercise.
 
 ## Goal
 
-Ensure that a product catalog page shows only one UI state at a time: loading, error, empty, or success. Use Angular's `@if` / `@else if` / `@else` to conditionally render each state.
+Replace multiple boolean flags with a single `PageState` union type and render the correct UI state using `@switch`.
 
 ## What the learner should implement
 
-Wrap the four state blocks with `@if` / `@else if` / `@else` so that only one is visible:
+**In TypeScript:**
+- `showLoading()` — set `state` to `'loading'`, clear `products`
+- `showSuccess()` — set `state` to `'success'`, fill `products` with 3 items
+- `showEmpty()` — set `state` to `'empty'`, clear `products`
+- `showError()` — set `state` to `'error'`, clear `products`
 
-- `isLoading` → show loading state
-- `hasError` → show error state
-- `products.length === 0` → show empty state
-- otherwise → show product list
+**In template:**
+- `@switch (state)` with `@case ('loading')`, `@case ('error')`, `@case ('empty')`, `@case ('success')`
 
 ## Files
 
@@ -24,24 +26,17 @@ Wrap the four state blocks with `@if` / `@else if` / `@else` so that only one is
 
 ## What can be changed
 
-- `src/app/app.component.html` — add `@if` / `@else if` / `@else`
+- `src/app/app.component.ts` — implement the four methods
+- `src/app/app.component.html` — add `@switch` / `@case` blocks
 
 ## Notes
 
 - This is the `lesson` branch.
-- Currently all four state blocks are visible simultaneously.
-- Tests that check "only one state visible" will fail until the conditions are added.
+- Tests check both behavior and that there is no `isLoading`/`hasError` — only a single `state` property.
 
 ## Commands
 
-Run the app:
-
 ```bash
 npm start
-```
-
-Run tests:
-
-```bash
 npm test -- --runInBand
 ```
