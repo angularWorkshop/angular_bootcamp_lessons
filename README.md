@@ -1,27 +1,53 @@
-# AngularDefinitiveGuideLessons
+# Page Navigation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Learn to navigate between pages using route parameters, `routerLink` with dynamic segments, and programmatic navigation via `Router.navigate()`.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- A user list page at `/users` with clickable names
+- A user detail page at `/users/:id` showing the selected user's name and email
+- A "Back to list" button that navigates back programmatically
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Add a `users/:id` route in `app.routes.ts`
+- Add `[routerLink]` with dynamic path to each user in `user-list.component.ts`
+- Read the `:id` param via `ActivatedRoute` in `user-detail.component.ts`
+- Implement `goBack()` using `Router.navigate()` in `user-detail.component.ts`
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/app.routes.ts` — add the detail route
+- `src/app/user-list.component.ts` — add routerLink
+- `src/app/user-detail.component.ts` — read params, implement back navigation
+- `src/app/user.model.ts` — user data (read-only)
+- `src/app/app.component.spec.ts` — tests
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/app.routes.ts`
+- `src/app/user-list.component.ts`
+- `src/app/user-detail.component.ts`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```

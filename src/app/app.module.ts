@@ -4,14 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
   ],
   declarations: [AppComponent],
-  bootstrap:  [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
