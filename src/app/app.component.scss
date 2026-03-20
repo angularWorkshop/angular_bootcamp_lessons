@@ -40,9 +40,11 @@ h1 {
 .checklist {
   display: grid;
   gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .checklist__card {
+  min-height: 168px;
   padding: 22px;
   border: 1px solid #dbe7ff;
   border-radius: 20px;
