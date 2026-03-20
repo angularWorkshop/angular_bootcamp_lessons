@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
+import { CourseOverviewCardComponent } from './course-overview-card/course-overview-card.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    CourseOverviewCardComponent,
   ],
   declarations: [AppComponent],
   bootstrap:  [AppComponent]
