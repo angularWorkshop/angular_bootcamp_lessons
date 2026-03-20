@@ -22,6 +22,10 @@ export class AppComponent {
       description: 'Create the Angular workspace and keep the default root component available.',
     },
     {
+      label: 'Root component',
+      description: 'Render the first application screen through AppComponent and keep the app-root selector stable.',
+    },
+    {
       label: 'Dev server',
       description: 'Start the app locally and verify the browser can render the shell.',
     },
