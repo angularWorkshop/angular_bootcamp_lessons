@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
-type TaskStatus = 'todo' | 'in-progress' | 'done';
-
-interface Task {
-  title: string;
-  status: TaskStatus;
-  isUrgent: boolean;
+interface User {
+  id: number;
+  name: string;
+  role: string;
 }
 
 @Component({
@@ -14,25 +12,10 @@ interface Task {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected task: Task = {
-    title: 'Learn Angular Bindings',
-    status: 'todo',
-    isUrgent: false,
-  };
-
-  protected progress = 0;
-
-  toggleUrgent(): void {
-    this.task.isUrgent = !this.task.isUrgent;
-  }
-
-  nextStatus(): void {
-    if (this.task.status === 'todo') {
-      this.task.status = 'in-progress';
-      this.progress = 50;
-    } else if (this.task.status === 'in-progress') {
-      this.task.status = 'done';
-      this.progress = 100;
-    }
-  }
+  protected readonly users: User[] = [
+    { id: 1, name: 'Annie Case', role: 'Frontend Developer' },
+    { id: 2, name: 'Mark Stone', role: 'Backend Developer' },
+    { id: 3, name: 'Lily Chen', role: 'Designer' },
+    { id: 4, name: 'Tom Walker', role: 'QA Engineer' },
+  ];
 }

@@ -1,37 +1,13 @@
-<main class="task-shell">
-  <p class="task-shell__eyebrow">Class &amp; Style Binding Exercise</p>
-  <h1 class="task-shell__title">Task Tracker</h1>
+<main class="list-shell">
+  <p class="list-shell__eyebrow">List Rendering Exercise</p>
+  <h1 class="list-shell__title">Team Members</h1>
 
-  <!-- TODO: добавь [class.task-card--urgent]="task.isUrgent" -->
-  <!-- TODO: добавь [class.task-card--done]="task.status === 'done'" -->
-  <section class="task-card" data-testid="task-card">
-    <p class="task-card__title" data-testid="task-title">{{ task.title }}</p>
-
-    <p class="task-card__status" data-testid="task-status">{{ task.status }}</p>
-
-    <div class="task-card__progress">
-      <!-- TODO: добавь [style.width.%]="progress" на этот элемент -->
-      <div class="task-card__bar" data-testid="progress-bar"></div>
-    </div>
-
-    <div class="task-card__actions">
-      <button
-        class="btn"
-        data-testid="urgent-btn"
-        type="button"
-        (click)="toggleUrgent()"
-      >
-        {{ task.isUrgent ? 'Remove Urgent' : 'Mark Urgent' }}
-      </button>
-
-      <button
-        class="btn btn--secondary"
-        data-testid="status-btn"
-        type="button"
-        (click)="nextStatus()"
-      >
-        Next Status
-      </button>
-    </div>
-  </section>
+  <ul class="user-list" data-testid="user-list">
+    <!-- TODO: используй @for для отрисовки пользователей из массива users -->
+    <!-- Для каждого пользователя отрисуй <li> с классом user-card и data-testid="user-card" -->
+    <!-- Внутри каждого <li>: -->
+    <!--   <p data-testid="user-name"> с именем пользователя -->
+    <!--   <p data-testid="user-role"> с ролью пользователя -->
+    <!-- Не забудь track user.id -->
+  </ul>
 </main>
