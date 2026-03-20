@@ -1,22 +1,16 @@
 # Angular Application Entry Point
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Explain and visualize how Angular reaches the first screen through `main.ts`, `AppModule`, and `AppComponent`.
 
-## What the learner should build
+## What the solution demonstrates
 
-- a page titled `Application Entry Flow`
-- a short explanation of the bootstrap chain
-- three visible stages that describe how the app starts
-
-## What the learner should implement
-
-- complete the missing final bootstrap stage for `AppComponent`
-- keep the project bootstrapped through `main.ts` and `AppModule`
-- make the rendered flow match the expectations from the tests
+- a complete three-step bootstrap flow
+- a clear explanation of `main.ts -> AppModule -> AppComponent`
+- a rendered screen that matches the test expectations for the app entry chain
 
 ## Files
 
@@ -27,16 +21,11 @@ Explain and visualize how Angular reaches the first screen through `main.ts`, `A
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
-## What can be changed
-
-- `src/app/app.component.ts`
-- `src/app/app.component.html`
-- `src/app/app.component.scss`
-
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before the learner completes the task.
+- This is the `answer` branch.
+- It contains the finished reference implementation.
+- The test suite should stay green here.
 
 ## Commands
 

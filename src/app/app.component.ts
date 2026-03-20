@@ -24,5 +24,9 @@ export class AppComponent {
       title: 'AppModule',
       detail: 'The root module wires Angular dependencies and defines the bootstrap component.',
     },
+    {
+      title: 'AppComponent',
+      detail: 'Angular creates AppComponent and renders the first visible screen inside the app-root host element.',
+    },
   ];
 }
