@@ -1,21 +1,19 @@
-# Dynamic List Management
+# UI States with @if
 
-This branch contains the starter version of the dynamic list exercise.
+This branch contains the starter version of the conditional rendering exercise.
 
 ## Goal
 
-Implement add and remove operations on a todo list. The UI must update correctly after each action, and empty state must be handled.
-
-## What the learner should build
-
-- an input field + Add button to create new todos
-- each todo has a Remove button
-- empty-state message when no todos remain
+Ensure that a product catalog page shows only one UI state at a time: loading, error, empty, or success. Use Angular's `@if` / `@else if` / `@else` to conditionally render each state.
 
 ## What the learner should implement
 
-- `addTodo()` — push a new item from `newTodoText`, skip empty/whitespace input, clear `newTodoText` after
-- `removeTodo(id)` — remove the todo with the given id from the array
+Wrap the four state blocks with `@if` / `@else if` / `@else` so that only one is visible:
+
+- `isLoading` → show loading state
+- `hasError` → show error state
+- `products.length === 0` → show empty state
+- otherwise → show product list
 
 ## Files
 
@@ -23,18 +21,16 @@ Implement add and remove operations on a todo list. The UI must update correctly
 - `src/app/app.component.html`
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
-- `src/app/app.module.ts`
 
 ## What can be changed
 
-- `src/app/app.component.ts` — implement the two methods
+- `src/app/app.component.html` — add `@if` / `@else if` / `@else`
 
 ## Notes
 
 - This is the `lesson` branch.
-- Template and `@for` are already in place. Only the methods need implementation.
-- Tests for add/remove behavior will fail until the methods work.
-- The `answer` branch contains the finished reference solution.
+- Currently all four state blocks are visible simultaneously.
+- Tests that check "only one state visible" will fail until the conditions are added.
 
 ## Commands
 

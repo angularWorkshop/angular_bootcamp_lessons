@@ -1,40 +1,37 @@
-<main class="list-shell">
-  <p class="list-shell__eyebrow">Dynamic List Exercise</p>
-  <h1 class="list-shell__title">Todo List</h1>
+<main class="page-shell">
+  <p class="page-shell__eyebrow">Conditional Rendering Exercise</p>
+  <h1 class="page-shell__title">Product Catalog</h1>
 
-  <div class="add-form">
-    <input
-      class="add-form__input"
-      data-testid="new-todo-input"
-      type="text"
-      placeholder="New task..."
-      [(ngModel)]="newTodoText"
-    />
-    <button
-      class="btn"
-      data-testid="add-btn"
-      type="button"
-      (click)="addTodo()"
-    >
-      Add
-    </button>
+  <div class="page-shell__actions">
+    <button class="btn" data-testid="loading-btn" type="button" (click)="showLoading()">Load</button>
+    <button class="btn" data-testid="success-btn" type="button" (click)="showSuccess()">Show Data</button>
+    <button class="btn" data-testid="empty-btn" type="button" (click)="showEmpty()">Show Empty</button>
+    <button class="btn btn--danger" data-testid="error-btn" type="button" (click)="showError()">Show Error</button>
   </div>
 
-  <ul class="todo-list" data-testid="todo-list">
-    @for (todo of todos; track todo.id) {
-      <li class="todo-item" data-testid="todo-item">
-        <span class="todo-item__text" data-testid="todo-text">{{ todo.text }}</span>
-        <button
-          class="todo-item__remove"
-          data-testid="remove-btn"
-          type="button"
-          (click)="removeTodo(todo.id)"
-        >
-          Remove
-        </button>
-      </li>
-    } @empty {
-      <li class="empty-message" data-testid="empty-message">No todos yet</li>
-    }
-  </ul>
+  <div class="page-shell__content">
+    <!-- TODO: используй @if / @else if / @else чтобы показывать только одно состояние -->
+    <!-- Сейчас все блоки видны одновременно — это неправильно -->
+
+    <div class="state-loading" data-testid="loading-state">
+      <p>Loading products...</p>
+    </div>
+
+    <div class="state-error" data-testid="error-state">
+      <p>Something went wrong. Please try again.</p>
+    </div>
+
+    <div class="state-empty" data-testid="empty-state">
+      <p>No products found.</p>
+    </div>
+
+    <ul class="product-list" data-testid="success-state">
+      @for (product of products; track product.id) {
+        <li class="product-item" data-testid="product-item">
+          <span data-testid="product-name">{{ product.name }}</span>
+          <span class="product-item__price" data-testid="product-price">${{ product.price }}</span>
+        </li>
+      }
+    </ul>
+  </div>
 </main>

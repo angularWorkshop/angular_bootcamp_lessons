@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
-interface TodoItem {
+interface Product {
   id: number;
-  text: string;
+  name: string;
+  price: number;
 }
-
-let nextId = 3;
 
 @Component({
   selector: 'app-root',
@@ -13,18 +12,35 @@ let nextId = 3;
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected todos: TodoItem[] = [
-    { id: 1, text: 'Buy groceries' },
-    { id: 2, text: 'Read Angular docs' },
-  ];
+  protected isLoading = false;
+  protected hasError = false;
+  protected products: Product[] = [];
 
-  protected newTodoText = '';
+  showLoading(): void {
+    this.isLoading = true;
+    this.hasError = false;
+    this.products = [];
+  }
 
-  // TODO: реализуй метод — добавь новый todo из newTodoText
-  // если текст пустой или только пробелы — не добавляй
-  // после добавления очисти newTodoText
-  addTodo(): void {}
+  showSuccess(): void {
+    this.isLoading = false;
+    this.hasError = false;
+    this.products = [
+      { id: 1, name: 'Laptop', price: 1200 },
+      { id: 2, name: 'Keyboard', price: 85 },
+      { id: 3, name: 'Monitor', price: 450 },
+    ];
+  }
 
-  // TODO: реализуй метод — удали todo по id
-  removeTodo(id: number): void {}
+  showEmpty(): void {
+    this.isLoading = false;
+    this.hasError = false;
+    this.products = [];
+  }
+
+  showError(): void {
+    this.isLoading = false;
+    this.hasError = true;
+    this.products = [];
+  }
 }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -8,7 +7,6 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule],
       declarations: [AppComponent],
     }).compileComponents();
 
@@ -24,86 +22,76 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Todo List');
+    expect(heading?.textContent?.trim()).toBe('Product Catalog');
   });
 
-  it('should render 2 initial todo items', () => {
-    const items = host.querySelectorAll('[data-testid="todo-item"]');
-
-    expect(items.length).toBe(2);
+  it('should show only empty state initially', () => {
+    expectOnlyState('empty-state');
   });
 
-  it('should render initial todo texts', () => {
-    const texts = getAll('todo-text');
+  it('should show only loading state after clicking Load', () => {
+    clickButton('loading-btn');
 
-    expect(texts).toEqual(['Buy groceries', 'Read Angular docs']);
+    expectOnlyState('loading-state');
   });
 
-  it('should add a new todo when clicking Add with text', async () => {
-    await typeInInput('Walk the dog');
-    clickButton('add-btn');
+  it('should show only success state with products after clicking Show Data', () => {
+    clickButton('success-btn');
 
-    const texts = getAll('todo-text');
-    expect(texts).toEqual(['Buy groceries', 'Read Angular docs', 'Walk the dog']);
+    expectOnlyState('success-state');
+
+    const items = host.querySelectorAll('[data-testid="product-item"]');
+    expect(items.length).toBe(3);
   });
 
-  it('should clear the input after adding a todo', async () => {
-    await typeInInput('Walk the dog');
-    clickButton('add-btn');
-    await fixture.whenStable();
-    fixture.detectChanges();
+  it('should render product names and prices', () => {
+    clickButton('success-btn');
 
-    const input = host.querySelector('[data-testid="new-todo-input"]') as HTMLInputElement;
-    expect(input.value).toBe('');
+    const names = getAll('product-name');
+    const prices = getAll('product-price');
+
+    expect(names).toEqual(['Laptop', 'Keyboard', 'Monitor']);
+    expect(prices).toEqual(['$1200', '$85', '$450']);
   });
 
-  it('should not add a todo when input is empty', () => {
-    clickButton('add-btn');
+  it('should show only empty state after clicking Show Empty', () => {
+    clickButton('success-btn');
+    clickButton('empty-btn');
 
-    const items = host.querySelectorAll('[data-testid="todo-item"]');
-    expect(items.length).toBe(2);
+    expectOnlyState('empty-state');
   });
 
-  it('should not add a todo when input is only whitespace', async () => {
-    await typeInInput('   ');
-    clickButton('add-btn');
+  it('should show only error state after clicking Show Error', () => {
+    clickButton('error-btn');
 
-    const items = host.querySelectorAll('[data-testid="todo-item"]');
-    expect(items.length).toBe(2);
+    expectOnlyState('error-state');
   });
 
-  it('should remove a todo when clicking its Remove button', () => {
-    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
-    (removeBtns[0] as HTMLButtonElement).click();
-    fixture.detectChanges();
+  it('should switch from error back to loading', () => {
+    clickButton('error-btn');
+    clickButton('loading-btn');
 
-    const texts = getAll('todo-text');
-    expect(texts).toEqual(['Read Angular docs']);
+    expectOnlyState('loading-state');
   });
 
-  it('should show empty message after removing all todos', () => {
-    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
-    (removeBtns[0] as HTMLButtonElement).click();
-    fixture.detectChanges();
+  it('should switch from loading to success', () => {
+    clickButton('loading-btn');
+    clickButton('success-btn');
 
-    const removeBtns2 = host.querySelectorAll('[data-testid="remove-btn"]');
-    (removeBtns2[0] as HTMLButtonElement).click();
-    fixture.detectChanges();
-
-    const empty = host.querySelector('[data-testid="empty-message"]');
-    expect(empty?.textContent?.trim()).toBe('No todos yet');
+    expectOnlyState('success-state');
   });
 
-  it('should handle add after remove correctly', async () => {
-    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
-    (removeBtns[0] as HTMLButtonElement).click();
-    fixture.detectChanges();
+  it('should display correct empty state text', () => {
+    const empty = host.querySelector('[data-testid="empty-state"]');
 
-    await typeInInput('New task');
-    clickButton('add-btn');
+    expect(empty?.textContent).toContain('No products found');
+  });
 
-    const texts = getAll('todo-text');
-    expect(texts).toEqual(['Read Angular docs', 'New task']);
+  it('should display correct error state text', () => {
+    clickButton('error-btn');
+
+    const error = host.querySelector('[data-testid="error-state"]');
+    expect(error?.textContent).toContain('Something went wrong');
   });
 
   function clickButton(testId: string): void {
@@ -114,13 +102,18 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   }
 
-  async function typeInInput(value: string): Promise<void> {
-    const input = host.querySelector('[data-testid="new-todo-input"]') as HTMLInputElement;
+  function expectOnlyState(activeTestId: string): void {
+    const allStates = ['loading-state', 'error-state', 'empty-state', 'success-state'];
 
-    input.value = value;
-    input.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-    await fixture.whenStable();
+    for (const state of allStates) {
+      const el = host.querySelector(`[data-testid="${state}"]`);
+
+      if (state === activeTestId) {
+        expect(el).toBeTruthy();
+      } else {
+        expect(el).toBeNull();
+      }
+    }
   }
 
   function getAll(testId: string): string[] {
