@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-interface Task {
+interface TodoItem {
   id: number;
-  title: string;
+  text: string;
 }
 
-let nextId = 4;
+let nextId = 3;
 
 @Component({
   selector: 'app-root',
@@ -13,21 +13,18 @@ let nextId = 4;
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected tasks: Task[] = [
-    { id: 1, title: 'Set up project' },
-    { id: 2, title: 'Create components' },
-    { id: 3, title: 'Write tests' },
+  protected todos: TodoItem[] = [
+    { id: 1, text: 'Buy groceries' },
+    { id: 2, text: 'Read Angular docs' },
   ];
 
-  refresh(): void {
-    this.tasks = [
-      { id: 2, title: 'Create components' },
-      { id: 3, title: 'Write tests' },
-      { id: nextId++, title: 'Deploy to production' },
-    ];
-  }
+  protected newTodoText = '';
 
-  clearAll(): void {
-    this.tasks = [];
-  }
+  // TODO: реализуй метод — добавь новый todo из newTodoText
+  // если текст пустой или только пробелы — не добавляй
+  // после добавления очисти newTodoText
+  addTodo(): void {}
+
+  // TODO: реализуй метод — удали todo по id
+  removeTodo(id: number): void {}
 }

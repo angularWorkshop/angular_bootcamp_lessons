@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -7,6 +8,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [AppComponent],
     }).compileComponents();
 
@@ -22,71 +24,86 @@ describe('AppComponent', () => {
   it('should render the heading', () => {
     const heading = host.querySelector('h1');
 
-    expect(heading?.textContent?.trim()).toBe('Task List');
+    expect(heading?.textContent?.trim()).toBe('Todo List');
   });
 
-  it('should render 3 task items initially', () => {
-    const items = host.querySelectorAll('[data-testid="task-item"]');
+  it('should render 2 initial todo items', () => {
+    const items = host.querySelectorAll('[data-testid="todo-item"]');
 
-    expect(items.length).toBe(3);
+    expect(items.length).toBe(2);
   });
 
-  it('should show 1-based index for each task', () => {
-    const indices = getAll('task-index');
+  it('should render initial todo texts', () => {
+    const texts = getAll('todo-text');
 
-    expect(indices).toEqual(['1', '2', '3']);
+    expect(texts).toEqual(['Buy groceries', 'Read Angular docs']);
   });
 
-  it('should render task titles in order', () => {
-    const titles = getAll('task-title');
+  it('should add a new todo when clicking Add with text', async () => {
+    await typeInInput('Walk the dog');
+    clickButton('add-btn');
 
-    expect(titles).toEqual(['Set up project', 'Create components', 'Write tests']);
+    const texts = getAll('todo-text');
+    expect(texts).toEqual(['Buy groceries', 'Read Angular docs', 'Walk the dog']);
   });
 
-  it('should update the list after clicking Refresh', () => {
-    clickButton('refresh-btn');
+  it('should clear the input after adding a todo', async () => {
+    await typeInInput('Walk the dog');
+    clickButton('add-btn');
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    const titles = getAll('task-title');
-    expect(titles).toEqual(['Create components', 'Write tests', 'Deploy to production']);
+    const input = host.querySelector('[data-testid="new-todo-input"]') as HTMLInputElement;
+    expect(input.value).toBe('');
   });
 
-  it('should re-number indices after refresh', () => {
-    clickButton('refresh-btn');
+  it('should not add a todo when input is empty', () => {
+    clickButton('add-btn');
 
-    const indices = getAll('task-index');
-    expect(indices).toEqual(['1', '2', '3']);
+    const items = host.querySelectorAll('[data-testid="todo-item"]');
+    expect(items.length).toBe(2);
   });
 
-  it('should show empty message after clicking Clear All', () => {
-    clickButton('clear-btn');
+  it('should not add a todo when input is only whitespace', async () => {
+    await typeInInput('   ');
+    clickButton('add-btn');
+
+    const items = host.querySelectorAll('[data-testid="todo-item"]');
+    expect(items.length).toBe(2);
+  });
+
+  it('should remove a todo when clicking its Remove button', () => {
+    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
+    (removeBtns[0] as HTMLButtonElement).click();
+    fixture.detectChanges();
+
+    const texts = getAll('todo-text');
+    expect(texts).toEqual(['Read Angular docs']);
+  });
+
+  it('should show empty message after removing all todos', () => {
+    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
+    (removeBtns[0] as HTMLButtonElement).click();
+    fixture.detectChanges();
+
+    const removeBtns2 = host.querySelectorAll('[data-testid="remove-btn"]');
+    (removeBtns2[0] as HTMLButtonElement).click();
+    fixture.detectChanges();
 
     const empty = host.querySelector('[data-testid="empty-message"]');
-    expect(empty).toBeTruthy();
-    expect(empty?.textContent?.trim()).toBe('No tasks');
+    expect(empty?.textContent?.trim()).toBe('No todos yet');
   });
 
-  it('should not show task items when list is empty', () => {
-    clickButton('clear-btn');
+  it('should handle add after remove correctly', async () => {
+    const removeBtns = host.querySelectorAll('[data-testid="remove-btn"]');
+    (removeBtns[0] as HTMLButtonElement).click();
+    fixture.detectChanges();
 
-    const items = host.querySelectorAll('[data-testid="task-item"]');
-    expect(items.length).toBe(0);
-  });
+    await typeInInput('New task');
+    clickButton('add-btn');
 
-  it('should not show empty message when list has items', () => {
-    const empty = host.querySelector('[data-testid="empty-message"]');
-
-    expect(empty).toBeNull();
-  });
-
-  it('should show items again after clear then refresh', () => {
-    clickButton('clear-btn');
-    clickButton('refresh-btn');
-
-    const items = host.querySelectorAll('[data-testid="task-item"]');
-    expect(items.length).toBe(3);
-
-    const empty = host.querySelector('[data-testid="empty-message"]');
-    expect(empty).toBeNull();
+    const texts = getAll('todo-text');
+    expect(texts).toEqual(['Read Angular docs', 'New task']);
   });
 
   function clickButton(testId: string): void {
@@ -95,6 +112,15 @@ describe('AppComponent', () => {
     expect(btn).toBeTruthy();
     btn?.click();
     fixture.detectChanges();
+  }
+
+  async function typeInInput(value: string): Promise<void> {
+    const input = host.querySelector('[data-testid="new-todo-input"]') as HTMLInputElement;
+
+    input.value = value;
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    await fixture.whenStable();
   }
 
   function getAll(testId: string): string[] {

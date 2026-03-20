@@ -1,17 +1,40 @@
 <main class="list-shell">
-  <p class="list-shell__eyebrow">Track &amp; Empty Exercise</p>
-  <h1 class="list-shell__title">Task List</h1>
+  <p class="list-shell__eyebrow">Dynamic List Exercise</p>
+  <h1 class="list-shell__title">Todo List</h1>
 
-  <div class="list-shell__actions">
-    <button class="btn" data-testid="refresh-btn" type="button" (click)="refresh()">Refresh</button>
-    <button class="btn btn--secondary" data-testid="clear-btn" type="button" (click)="clearAll()">Clear All</button>
+  <div class="add-form">
+    <input
+      class="add-form__input"
+      data-testid="new-todo-input"
+      type="text"
+      placeholder="New task..."
+      [(ngModel)]="newTodoText"
+    />
+    <button
+      class="btn"
+      data-testid="add-btn"
+      type="button"
+      (click)="addTodo()"
+    >
+      Add
+    </button>
   </div>
 
-  <ol class="task-list" data-testid="task-list">
-    <!-- TODO: используй @for для отрисовки tasks -->
-    <!-- Используй track task.id -->
-    <!-- Покажи номер через $index + 1 в <span data-testid="task-index"> -->
-    <!-- Покажи название в <span data-testid="task-title"> -->
-    <!-- Добавь @empty блок с <li data-testid="empty-message">No tasks</li> -->
-  </ol>
+  <ul class="todo-list" data-testid="todo-list">
+    @for (todo of todos; track todo.id) {
+      <li class="todo-item" data-testid="todo-item">
+        <span class="todo-item__text" data-testid="todo-text">{{ todo.text }}</span>
+        <button
+          class="todo-item__remove"
+          data-testid="remove-btn"
+          type="button"
+          (click)="removeTodo(todo.id)"
+        >
+          Remove
+        </button>
+      </li>
+    } @empty {
+      <li class="empty-message" data-testid="empty-message">No todos yet</li>
+    }
+  </ul>
 </main>
