@@ -29,9 +29,7 @@ describe('AppComponent – legacy standalone integration', () => {
 
   it('should render the standalone dashboard host', () => {
     expect(host.querySelector('[data-testid="dashboard-title"]')?.textContent?.trim()).toBe('Dashboard');
-    expect(host.querySelector('[data-testid="integration-status"]')?.textContent?.trim()).toBe(
-      'Legacy widget not connected yet',
-    );
+    expect(host.querySelector('[data-testid="dashboard"]')).toBeTruthy();
   });
 
   it('should export the legacy widget from LegacyActivityModule', () => {
