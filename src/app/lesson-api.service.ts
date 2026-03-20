@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { LessonDto } from './lesson-api.models';
+import { Observable, map } from 'rxjs';
+import { LessonApiResponse, LessonDto } from './lesson-api.models';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,6 @@ export class LessonApiService {
   public constructor(private readonly http: HttpClient) {}
 
   public getLessons(): Observable<LessonDto[]> {
-    // TODO: request the typed API response through HttpClient and return only the items array
-    return of([]);
+    return this.http.get<LessonApiResponse>(this.lessonsUrl).pipe(map((response) => response.items));
   }
 }
