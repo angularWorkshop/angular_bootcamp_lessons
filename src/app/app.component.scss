@@ -1,0 +1,52 @@
+.app-shell {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, sans-serif;
+
+  &__title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    a {
+      text-decoration: none;
+      color: #555;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.15s;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &.active {
+        background-color: #1976d2;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.page {
+  &__title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    color: #555;
+  }
+}
