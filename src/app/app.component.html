@@ -1,0 +1,55 @@
+<main class="lesson-feed">
+  <p class="lesson-feed__eyebrow">HttpClient Integration Exercise</p>
+  <h1 class="lesson-feed__title" data-testid="dashboard-title">{{ title }}</h1>
+
+  <section class="lesson-feed__intro">
+    <p class="lesson-feed__text">
+      The API service is already prepared. Your task is to connect it to the component and make the dashboard react to
+      successful, empty, and failed responses.
+    </p>
+    <p class="lesson-feed__text" data-testid="endpoint-note">Service endpoint: <code>{{ endpoint }}</code></p>
+  </section>
+
+  <section class="lesson-feed__actions">
+    <button class="lesson-feed__button" type="button" data-testid="load-lessons-btn" (click)="loadLessons()">
+      Load lessons
+    </button>
+  </section>
+
+  <section class="lesson-feed__content">
+    <div class="state-card state-card--loading" *ngIf="isLoading" data-testid="loading-state">
+      <p class="state-card__title">Loading lesson feed...</p>
+      <p class="state-card__text">The component is waiting for the service response.</p>
+    </div>
+
+    <div class="state-card state-card--error" *ngIf="!isLoading && hasError" data-testid="error-state">
+      <p class="state-card__title">Could not load lessons</p>
+      <p class="state-card__text">Try the request again after checking the API result handling.</p>
+    </div>
+
+    <div class="state-card state-card--empty" *ngIf="!isLoading && !hasError && lessons.length === 0" data-testid="empty-state">
+      <p class="state-card__title">No lessons loaded yet</p>
+      <p class="state-card__text">Use the button above to request the lesson collection.</p>
+    </div>
+
+    <section class="results-panel" *ngIf="!isLoading && !hasError && lessons.length > 0" data-testid="success-state">
+      <div class="results-panel__summary">
+        <p class="results-panel__summary-line" data-testid="summary-total">Loaded {{ lessons.length }} lessons</p>
+        <p class="results-panel__summary-line" data-testid="summary-published">
+          Published {{ publishedCount }} lessons
+        </p>
+      </div>
+
+      <ul class="results-panel__list">
+        <li class="lesson-card" *ngFor="let lesson of lessons" [attr.data-testid]="'lesson-card-' + lesson.id">
+          <p class="lesson-card__title" data-testid="lesson-title">{{ lesson.title }}</p>
+          <p class="lesson-card__meta">
+            <span data-testid="lesson-level">{{ lesson.level }}</span>
+            <span data-testid="lesson-duration">{{ lesson.durationMinutes }} min</span>
+            <span data-testid="lesson-status">{{ lesson.published ? 'Published' : 'Draft' }}</span>
+          </p>
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
