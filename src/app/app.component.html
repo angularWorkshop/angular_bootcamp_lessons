@@ -1,0 +1,51 @@
+<div class="tracker" data-testid="tracker">
+  <h1 class="tracker__title" data-testid="title">Task Tracker</h1>
+
+  <div class="tracker__input-row">
+    <input
+      class="tracker__input"
+      data-testid="new-task-input"
+      placeholder="New task..."
+      [value]="newTaskTitle"
+      (input)="newTaskTitle = $any($event.target).value"
+      (keydown.enter)="addTask()"
+    />
+    <button
+      class="tracker__add-btn"
+      data-testid="add-btn"
+      (click)="addTask()"
+    >Add</button>
+  </div>
+
+  <ul class="tracker__list" data-testid="task-list">
+    @for (task of tasks(); track task.id) {
+      <li class="tracker__item" [attr.data-testid]="'task-' + task.id">
+        <input
+          type="checkbox"
+          class="tracker__checkbox"
+          [checked]="task.done"
+          (change)="toggleTask(task.id)"
+          [attr.data-testid]="'toggle-' + task.id"
+        />
+        <span
+          class="tracker__item-title"
+          [class.tracker__item-title--done]="task.done"
+          [attr.data-testid]="'title-' + task.id"
+        >{{ task.title }}</span>
+        <button
+          class="tracker__remove-btn"
+          (click)="removeTask(task.id)"
+          [attr.data-testid]="'remove-' + task.id"
+        >✕</button>
+      </li>
+    } @empty {
+      <li class="tracker__empty" data-testid="empty-message">No tasks yet</li>
+    }
+  </ul>
+
+  <div class="tracker__stats" data-testid="stats">
+    <span data-testid="total-count">Total: {{ totalCount() }}</span>
+    <span data-testid="completed-count">Done: {{ completedCount() }}</span>
+    <span data-testid="remaining-count">Remaining: {{ remainingCount() }}</span>
+  </div>
+</div>

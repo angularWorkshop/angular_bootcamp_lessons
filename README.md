@@ -1,27 +1,39 @@
-# AngularDefinitiveGuideLessons
+# Exercise 18.1 — Extract Business Logic into a Service (starter version)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+**Branch:** `lesson-topic-18-exercise-01-extract-service`
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Learn to separate business logic from the component by extracting it into an Angular service, using `inject()` for dependency injection.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A Task Tracker where:
+- Tasks are stored and managed inside a `TaskService`
+- The component is thin — only UI and service calls
+- Stats (total, completed, remaining) are computed in the service
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Create `task.service.ts` with `@Injectable({ providedIn: 'root' })`
+2. Move task signal, `addTask`, `removeTask`, `toggleTask` into the service
+3. Add computed fields: `totalCount`, `completedCount`, `remainingCount`
+4. Inject the service in the component via `inject(TaskService)`
+5. Replace direct data access with service calls
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+| File | Role |
+|------|------|
+| `app.component.ts` | Component with inline logic (needs refactoring) |
+| `app.component.html` | Template (no changes needed) |
+| `app.component.scss` | Styles (no changes needed) |
+| `app.component.spec.ts` | Tests (do not modify) |
+| `task.service.ts` | **Create this file** |
 
-## Running end-to-end tests
+## Commands
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm start          # dev server
+npm test -- --runInBand   # run tests
+```
