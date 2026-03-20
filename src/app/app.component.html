@@ -1,0 +1,54 @@
+<main class="search-shell">
+  <p class="search-shell__eyebrow">RxJS Search Exercise</p>
+  <h1 class="search-shell__title" data-testid="search-title">{{ title }}</h1>
+
+  <section class="search-shell__intro">
+    <p class="search-shell__text">
+      Fast typing can trigger overlapping requests. This dashboard should debounce the input and keep only the latest
+      search response visible in the UI.
+    </p>
+  </section>
+
+  <section class="search-shell__controls">
+    <label class="search-shell__label" for="lesson-search">Search lessons</label>
+    <input
+      id="lesson-search"
+      class="search-shell__input"
+      type="text"
+      data-testid="search-input"
+      [value]="query"
+      placeholder="Search RxJS lessons"
+      (input)="updateQuery(searchBox.value)"
+      #searchBox
+    />
+  </section>
+
+  <section class="search-shell__content">
+    <div class="search-state search-state--idle" *ngIf="!isSearching && activeQuery === ''" data-testid="idle-state">
+      <p class="search-state__title">Type a search query</p>
+      <p class="search-state__text">The dashboard will debounce the input before calling the service.</p>
+    </div>
+
+    <div class="search-state search-state--loading" *ngIf="isSearching" data-testid="searching-state">
+      <p class="search-state__title">Searching for "{{ activeQuery }}"...</p>
+      <p class="search-state__text">Only the latest request should be allowed to update the screen.</p>
+    </div>
+
+    <section class="search-results" *ngIf="!isSearching && activeQuery !== ''" data-testid="results-state">
+      <div class="search-results__summary">
+        <p class="search-results__line" data-testid="summary-query">Latest query: {{ activeQuery }}</p>
+        <p class="search-results__line" data-testid="summary-count">Found {{ results.length }} lessons</p>
+      </div>
+
+      <ul class="search-results__list">
+        <li class="search-card" *ngFor="let result of results" [attr.data-testid]="'result-card-' + result.id">
+          <p class="search-card__title" data-testid="result-title">{{ result.title }}</p>
+          <p class="search-card__meta">
+            <span data-testid="result-format">{{ result.format }}</span>
+            <span data-testid="result-level">{{ result.level }}</span>
+          </p>
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
