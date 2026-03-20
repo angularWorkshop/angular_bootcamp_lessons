@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { catchError, of, tap } from 'rxjs';
 import { LessonSuggestion } from './lesson-suggestions.models';
 import { LessonSuggestionsService } from './lesson-suggestions.service';
 
@@ -24,6 +25,18 @@ export class AppComponent {
     this.isUsingFallback = false;
     this.suggestions = [];
 
-    // TODO: handle request errors through catchError and switch the UI to fallback suggestions
+    this.lessonSuggestionsService
+      .getSuggestions()
+      .pipe(
+        catchError(() => {
+          this.isUsingFallback = true;
+          return of(this.fallbackSuggestions);
+        }),
+        tap((suggestions) => {
+          this.suggestions = suggestions;
+          this.isLoading = false;
+        }),
+      )
+      .subscribe();
   }
 }
