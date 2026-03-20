@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { tap } from 'rxjs';
 import { LessonPreview } from './lesson-stream.models';
 import { LessonStreamService } from './lesson-stream.service';
 
@@ -18,7 +19,15 @@ export class AppComponent {
     this.isLoading = true;
     this.lessons = [];
 
-    // TODO: connect the lesson stream through an RxJS pipeline and move the success updates into the stream flow
+    this.lessonStreamService
+      .getLessonStream()
+      .pipe(
+        tap((lessons) => {
+          this.lessons = lessons;
+          this.isLoading = false;
+        }),
+      )
+      .subscribe();
   }
 
   protected get totalDuration(): number {
