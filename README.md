@@ -1,27 +1,51 @@
-# AngularDefinitiveGuideLessons
+# Angular App Initialization
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Build the first visible Angular screen and make sure the starter project renders a clean launch checklist.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- a launch page titled `Angular Launch Checklist`
+- a short intro that explains the starter state of the project
+- three visible checklist cards for the first setup steps
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- keep the root component available under the `app-root` selector
+- finish the missing checklist item so the page describes the full initialization flow
+- make the starter screen match the expectations from the test suite
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
+- `src/app/app.component.spec.ts`
 
-## Running end-to-end tests
+## What can be changed
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/app.component.ts`
+- `src/app/app.component.html`
+- `src/app/app.component.scss`
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is the `lesson` branch.
+- Some tests are expected to fail before the learner completes the task.
+
+## Commands
+
+Run the app:
+
+```bash
+npm start
+```
+
+Run tests:
+
+```bash
+npm test -- --runInBand
+```

@@ -1,0 +1,62 @@
+.page {
+  min-height: 100vh;
+  padding: 48px 24px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+  color: #122033;
+}
+
+.hero,
+.checklist {
+  width: min(920px, 100%);
+  margin: 0 auto;
+}
+
+.hero {
+  margin-bottom: 28px;
+}
+
+.hero__eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3659d9;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.75rem);
+  line-height: 1.05;
+}
+
+.hero__subtitle {
+  max-width: 52rem;
+  margin: 14px 0 0;
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+.checklist {
+  display: grid;
+  gap: 16px;
+}
+
+.checklist__card {
+  padding: 22px;
+  border: 1px solid #dbe7ff;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.08);
+}
+
+.checklist__card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.checklist__card p {
+  margin: 0;
+  line-height: 1.55;
+  color: #475569;
+}

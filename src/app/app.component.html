@@ -1,0 +1,14 @@
+<main class="page">
+  <section class="hero">
+    <p class="hero__eyebrow">{{ environmentLabel }}</p>
+    <h1>{{ title }}</h1>
+    <p class="hero__subtitle">{{ subtitle }}</p>
+  </section>
+
+  <section class="checklist" aria-label="Launch checklist">
+    <article class="checklist__card" *ngFor="let step of steps; let index = index" [attr.data-testid]="'launch-step-' + index">
+      <h2>{{ step.label }}</h2>
+      <p>{{ step.description }}</p>
+    </article>
+  </section>
+</main>
