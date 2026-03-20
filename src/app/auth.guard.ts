@@ -1,12 +1,15 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
-// TODO: Implement a functional canActivate guard.
-// If the user is NOT logged in (use AuthService.isLoggedIn),
-// redirect to '/login' and return false.
-// If the user IS logged in, return true.
-//
-// Hint: use inject(AuthService) and inject(Router) inside the function.
+export const authGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
 
-export const authGuard: CanActivateFn = (route, state) => {
-  return true;
+  if (auth.isLoggedIn()) {
+    return true;
+  }
+
+  router.navigate(['/login']);
+  return false;
 };

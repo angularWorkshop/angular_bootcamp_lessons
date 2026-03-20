@@ -31,6 +31,10 @@ describe('AppComponent – route guards', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should create the app component', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
