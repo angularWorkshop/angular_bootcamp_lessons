@@ -3,14 +3,9 @@
 
   <div class="app-shell__layout">
     <nav class="app-shell__nav" data-testid="nav">
-      <!--
-        TODO: Add routerLinkActive="active" to each link so the active one gets highlighted.
-        For the Dashboard link (path="/"), also add [routerLinkActiveOptions]="{ exact: true }"
-        so it doesn't stay active on every page.
-      -->
-      <a routerLink="/" data-testid="nav-dashboard">Dashboard</a>
-      <a routerLink="/settings" data-testid="nav-settings">Settings</a>
-      <a routerLink="/profile" data-testid="nav-profile">Profile</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-testid="nav-dashboard">Dashboard</a>
+      <a routerLink="/settings" routerLinkActive="active" data-testid="nav-settings">Settings</a>
+      <a routerLink="/profile" routerLinkActive="active" data-testid="nav-profile">Profile</a>
     </nav>
 
     <section class="app-shell__content">
