@@ -5,6 +5,6 @@ import { LegacyActivityWidgetComponent } from './legacy-activity-widget.componen
 @NgModule({
   declarations: [LegacyActivityWidgetComponent],
   imports: [CommonModule],
-  exports: [],
+  exports: [LegacyActivityWidgetComponent],
 })
 export class LegacyActivityModule {}

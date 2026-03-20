@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { LegacyActivityModule } from './legacy-activity.module';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LegacyActivityModule],
   template: `
     <section class="dashboard" data-testid="dashboard">
       <div class="dashboard__header">
@@ -15,9 +16,7 @@ import { Component } from '@angular/core';
         </p>
       </div>
 
-      <div class="dashboard__placeholder" data-testid="integration-status">
-        Legacy widget not connected yet
-      </div>
+      <app-legacy-activity-widget></app-legacy-activity-widget>
     </section>
   `,
   styles: [
@@ -45,15 +44,6 @@ import { Component } from '@angular/core';
         margin: 0;
         max-width: 60ch;
         line-height: 1.5;
-      }
-
-      .dashboard__placeholder {
-        padding: 24px;
-        border: 2px dashed #fb923c;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.8);
-        color: #9a3412;
-        font-weight: 600;
       }
     `,
   ],
