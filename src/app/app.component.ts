@@ -17,16 +17,27 @@ export class AppComponent {
   protected state: PageState = 'empty';
   protected products: Product[] = [];
 
-  // TODO: реализуй метод — установи state в 'loading', очисти products
-  showLoading(): void {}
+  showLoading(): void {
+    this.state = 'loading';
+    this.products = [];
+  }
 
-  // TODO: реализуй метод — установи state в 'success', заполни products
-  // [{ id: 1, name: 'Laptop', price: 1200 }, { id: 2, name: 'Keyboard', price: 85 }, { id: 3, name: 'Monitor', price: 450 }]
-  showSuccess(): void {}
+  showSuccess(): void {
+    this.state = 'success';
+    this.products = [
+      { id: 1, name: 'Laptop', price: 1200 },
+      { id: 2, name: 'Keyboard', price: 85 },
+      { id: 3, name: 'Monitor', price: 450 },
+    ];
+  }
 
-  // TODO: реализуй метод — установи state в 'empty', очисти products
-  showEmpty(): void {}
+  showEmpty(): void {
+    this.state = 'empty';
+    this.products = [];
+  }
 
-  // TODO: реализуй метод — установи state в 'error', очисти products
-  showError(): void {}
+  showError(): void {
+    this.state = 'error';
+    this.products = [];
+  }
 }
