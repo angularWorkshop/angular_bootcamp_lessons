@@ -2,16 +2,18 @@
   <p class="task-shell__eyebrow">Class &amp; Style Binding Exercise</p>
   <h1 class="task-shell__title">Task Tracker</h1>
 
-  <!-- TODO: добавь [class.task-card--urgent]="task.isUrgent" -->
-  <!-- TODO: добавь [class.task-card--done]="task.status === 'done'" -->
-  <section class="task-card" data-testid="task-card">
+  <section
+    class="task-card"
+    data-testid="task-card"
+    [class.task-card--urgent]="task.isUrgent"
+    [class.task-card--done]="task.status === 'done'"
+  >
     <p class="task-card__title" data-testid="task-title">{{ task.title }}</p>
 
     <p class="task-card__status" data-testid="task-status">{{ task.status }}</p>
 
     <div class="task-card__progress">
-      <!-- TODO: добавь [style.width.%]="progress" на этот элемент -->
-      <div class="task-card__bar" data-testid="progress-bar"></div>
+      <div class="task-card__bar" data-testid="progress-bar" [style.width.%]="progress"></div>
     </div>
 
     <div class="task-card__actions">

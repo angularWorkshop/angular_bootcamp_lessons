@@ -1,28 +1,16 @@
 # Class & Style Bindings
 
-This branch contains the starter version of the class and style binding exercise.
+This branch contains the completed solution for the class and style binding exercise.
 
 ## Goal
 
-Make a task tracker card that visually reacts to state changes: CSS classes toggle based on urgency and completion, and a progress bar width reflects task progress via style binding.
+A task tracker card that visually reacts to state changes through CSS class and inline style bindings.
 
-## What the learner should build
+## What the solution demonstrates
 
-The UI must include:
-
-- a heading: `Task Tracker`
-- a task card with title and status text
-- a progress bar that fills based on task progress
-- a toggle button for urgency
-- a button to advance the task status
-
-## What the learner should implement
-
-The methods and event bindings are already in place. The learner must add:
-
-- `[class.task-card--urgent]="task.isUrgent"` on the card element
-- `[class.task-card--done]="task.status === 'done'"` on the card element
-- `[style.width.%]="progress"` on the progress bar element
+- `[class.task-card--urgent]="task.isUrgent"` toggles a red border on urgency
+- `[class.task-card--done]="task.status === 'done'"` dims the card when the task is complete
+- `[style.width.%]="progress"` drives the progress bar width from component data
 
 ## Files
 
@@ -31,15 +19,10 @@ The methods and event bindings are already in place. The learner must add:
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts`
 
-## What can be changed
-
-- `src/app/app.component.html` — add the class and style bindings
-
 ## Notes
 
-- This is the `lesson` branch.
-- Tests that check CSS classes and progress bar width will fail until the bindings are added.
-- The `answer` branch contains the finished reference solution.
+- This is the `answer` branch — reference implementation.
+- All tests should pass.
 
 ## Commands
 
