@@ -6,9 +6,19 @@
   </section>
 
   <section class="checklist" aria-label="Launch checklist">
-    <article class="checklist__card" *ngFor="let step of steps; let index = index" [attr.data-testid]="'launch-step-' + index">
-      <h2>{{ step.label }}</h2>
-      <p>{{ step.description }}</p>
+    <article class="checklist__card" data-testid="launch-step-project">
+      <h2>{{ projectStepTitle }}</h2>
+      <p>{{ projectStepDescription }}</p>
+    </article>
+
+    <article class="checklist__card" data-testid="launch-step-serve">
+      <h2>{{ serveStepTitle }}</h2>
+      <p>{{ serveStepDescription }}</p>
+    </article>
+
+    <article class="checklist__card" data-testid="launch-step-verify">
+      <h2>{{ verifyStepTitle }}</h2>
+      <p>{{ verifyStepDescription }}</p>
     </article>
   </section>
 </main>

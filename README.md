@@ -4,11 +4,11 @@ This branch contains the completed solution for the exercise.
 
 ## Goal
 
-Build the first visible Angular screen and make sure the starter project renders a clean launch checklist.
+Build the first visible Angular screen and make sure the starter project shows the essential initialization steps.
 
 ## What the solution demonstrates
 
-- a complete launch page titled `Angular Launch Checklist`
+- a complete launch page titled `Angular App Initialization`
 - three finished checklist cards that describe the initialization flow
 - a stable `app-root` entry shell that can be used for the next lessons
 
