@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './home.component';
+import { AboutComponent } from './about.component';
+import { ContactComponent } from './contact.component';
 
-// TODO: Define routes for the three pages:
-// - '' (empty path)       → HomeComponent
-// - 'about'               → AboutComponent
-// - 'contact'             → ContactComponent
-
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+];

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
-import { RouterTestingHarness } from '@angular/router/testing';
+import { provideRouter, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { HomeComponent } from './home.component';
@@ -15,7 +14,7 @@ describe('AppComponent – routing', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [HomeComponent, AboutComponent, ContactComponent],
+      imports: [RouterOutlet, RouterLink, HomeComponent, AboutComponent, ContactComponent],
       providers: [provideRouter(routes)],
     }).compileComponents();
 
