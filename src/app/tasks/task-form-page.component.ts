@@ -76,7 +76,7 @@ export class TaskFormPageComponent implements OnInit {
 
     request$.subscribe({
       next: () => {
-        void this.router.navigateByUrl('/tasks');
+        // TODO: return the user to the task board after a successful save
       },
     });
   }

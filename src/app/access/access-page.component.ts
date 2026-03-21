@@ -15,6 +15,6 @@ export class AccessPageComponent {
 
   protected unlockWorkspace(): void {
     this.workspaceSessionService.unlock();
-    void this.router.navigateByUrl('/tasks');
+    // TODO: move the user into the guarded workspace after unlocking access
   }
 }

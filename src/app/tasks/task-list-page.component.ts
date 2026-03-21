@@ -43,9 +43,7 @@ export class TaskListPageComponent implements OnInit {
         this.state = tasks.length ? 'success' : 'empty';
       },
       error: () => {
-        this.tasks = [];
-        this.state = 'error';
-        this.errorMessage = 'Could not sync tasks. Try the mock request again.';
+        // TODO: surface the list error state so the board can render a retry UI
       },
     });
   }
