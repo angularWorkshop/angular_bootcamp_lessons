@@ -1,4 +1,4 @@
-import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 
 function teamCodePrefixValidator(prefix: string): ValidatorFn {
@@ -21,10 +21,9 @@ function teamCodePrefixValidator(prefix: string): ValidatorFn {
 export class AppComponent {
   protected readonly title = 'Workspace Provisioning Form';
   protected readonly workspaceForm = this.formBuilder.nonNullable.group({
-    workspaceName: [''],
-    teamCode: [''],
-    ownerEmail: [''],
-    // TODO: add built-in validators and the custom TEAM- prefix validator
+    workspaceName: ['', [Validators.required, Validators.minLength(4)]],
+    teamCode: ['', [Validators.required, teamCodePrefixValidator('TEAM-')]],
+    ownerEmail: ['', [Validators.required, Validators.email]],
   });
 
   constructor(private readonly formBuilder: FormBuilder) {}
