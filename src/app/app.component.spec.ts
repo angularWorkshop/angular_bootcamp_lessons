@@ -28,21 +28,21 @@ describe('AppComponent', () => {
     click('filter-blocked');
 
     expect(host.querySelectorAll('[data-testid^="card-"]').length).toBe(1);
-    expect(cardTitles()).toEqual(['TODO']);
-    expect(isActive('filter-blocked')).toBe(false);
+    expect(cardTitles()).toEqual(['Access audit']);
+    expect(isActive('filter-blocked')).toBe(true);
   });
 
   it('should filter cards by search query from the input field', () => {
     typeSearch('mia');
 
-    expect(cardTitles()).toEqual(['TODO']);
+    expect(cardTitles()).toEqual(['Checkout polish']);
   });
 
   it('should render an empty state when filters hide every release card', () => {
     click('filter-ready');
     typeSearch('nina');
 
-    expect(getText('empty-state')).toBe('TODO');
+    expect(getText('empty-state')).toBe('No releases match the current filters.');
   });
 
   function click(testId: string): void {
