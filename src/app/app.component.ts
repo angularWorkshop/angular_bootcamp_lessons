@@ -28,7 +28,9 @@ export class AppComponent {
   }
 
   protected connectPreview(): void {
-    // TODO: react to responseForm.valueChanges and keep the status preview in sync
+    this.responseForm.valueChanges.subscribe(() => {
+      this.syncStatus(this.responseForm.getRawValue());
+    });
   }
 
   private syncStatus(formValue: EscalationFormValue): void {
