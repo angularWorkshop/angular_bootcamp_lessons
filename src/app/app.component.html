@@ -1,0 +1,51 @@
+<main class="roster-shell">
+  <section class="roster-shell__intro">
+    <p class="roster-shell__eyebrow">FormArray Basics</p>
+    <h1 class="roster-shell__title" data-testid="roster-title">{{ title }}</h1>
+    <p class="roster-shell__text">
+      A static form is not enough here. The roster has to grow and shrink as the event team adds or removes speakers.
+    </p>
+  </section>
+
+  <section class="roster-shell__layout">
+    <form class="roster-form" [formGroup]="rosterForm">
+      <label class="roster-form__field">
+        <span class="roster-form__label">Event name</span>
+        <input class="roster-form__input" type="text" formControlName="eventName" data-testid="event-name-input" />
+      </label>
+
+      <div class="roster-form__array" formArrayName="speakers">
+        <div class="speaker-row" *ngFor="let speaker of speakers.controls; let index = index">
+          <label class="roster-form__field roster-form__field--compact">
+            <span class="roster-form__label">Speaker {{ index + 1 }}</span>
+            <input class="roster-form__input" [formControlName]="index" [attr.data-testid]="'speaker-input-' + index" />
+          </label>
+
+          <button
+            class="speaker-row__remove"
+            type="button"
+            [attr.data-testid]="'remove-speaker-' + index"
+            (click)="removeSpeaker(index)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <button class="roster-form__button" type="button" (click)="addSpeaker()" data-testid="add-speaker-btn">
+        Add speaker
+      </button>
+    </form>
+
+    <section class="roster-card">
+      <p class="roster-card__eyebrow">Live Roster</p>
+      <p class="roster-card__line" data-testid="speaker-count">Speakers: {{ speakers.length }}</p>
+
+      <ul class="roster-card__list">
+        <li class="roster-card__item" *ngFor="let speaker of speakers.value; let index = index" [attr.data-testid]="'speaker-preview-' + index">
+          {{ speaker || 'Awaiting speaker' }}
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
