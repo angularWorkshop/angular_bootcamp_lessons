@@ -1,0 +1,50 @@
+.page {
+  min-height: 100vh;
+  padding: 48px 24px;
+  background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+  color: #431407;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hero,
+.card {
+  max-width: 760px;
+  margin: 0 auto 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 36px;
+}
+
+.lede {
+  margin: 0;
+  line-height: 1.6;
+  color: #7c2d12;
+}
+
+.card {
+  padding: 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 40px rgba(154, 52, 18, 0.12);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.8;
+}
