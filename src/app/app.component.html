@@ -1,0 +1,65 @@
+<main class="release-lab">
+  <header class="release-lab__hero">
+    <p class="release-lab__eyebrow">Reactive Forms Basics</p>
+    <h1 class="release-lab__title" data-testid="release-title">{{ title }}</h1>
+    <p class="release-lab__text">
+      This screen should be driven by a reactive form, not by loose template inputs. Create the FormGroup first, then
+      let the UI read its live state.
+    </p>
+  </header>
+
+  <section class="release-lab__checklist">
+    <article class="release-card">
+      <p class="release-card__label">Control Map</p>
+      <p class="release-card__value" data-testid="field-count">Controls: {{ fieldCount }}</p>
+    </article>
+
+    <article class="release-card">
+      <p class="release-card__label">Live Preview</p>
+      <p class="release-card__value" data-testid="preview-name">
+        Release: {{ readValue('releaseName', 'Awaiting release name') }}
+      </p>
+      <p class="release-card__value" data-testid="preview-owner">Owner: {{ readValue('owner', 'Awaiting owner') }}</p>
+      <p class="release-card__value" data-testid="preview-environment">
+        Environment: {{ readValue('environment', 'Awaiting environment') }}
+      </p>
+    </article>
+  </section>
+
+  <section class="release-lab__workspace">
+    <form
+      *ngIf="hasReactiveForm(); else missingReactiveForm"
+      class="release-form"
+      [formGroup]="releaseForm"
+      data-testid="release-form"
+    >
+      <label class="release-form__field">
+        <span class="release-form__label">Release name</span>
+        <input class="release-form__input" type="text" formControlName="releaseName" data-testid="release-name-input" />
+      </label>
+
+      <label class="release-form__field">
+        <span class="release-form__label">Release owner</span>
+        <input class="release-form__input" type="text" formControlName="owner" data-testid="owner-input" />
+      </label>
+
+      <label class="release-form__field">
+        <span class="release-form__label">Target environment</span>
+        <select class="release-form__input" formControlName="environment" data-testid="environment-select">
+          <option value="staging">staging</option>
+          <option value="production">production</option>
+          <option value="sandbox">sandbox</option>
+        </select>
+      </label>
+    </form>
+
+    <ng-template #missingReactiveForm>
+      <section class="release-form release-form--missing" data-testid="missing-form-state">
+        <p class="release-form__missing-title">Reactive form is not wired yet.</p>
+        <p class="release-form__missing-text">
+          Create a FormGroup with three controls so the editor and preview can start working together.
+        </p>
+      </section>
+    </ng-template>
+  </section>
+</main>
