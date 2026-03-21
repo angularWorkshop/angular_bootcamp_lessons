@@ -1,4 +1,4 @@
-import { fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of, delay } from 'rxjs';
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
 
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
-    service = TestBed.inject(EmailReservationService);
+    service = fixture.debugElement.injector.get(EmailReservationService);
     fixture.detectChanges();
   });
 
@@ -33,44 +33,44 @@ describe('AppComponent', () => {
     expect(submitButton?.disabled).toBe(true);
   });
 
-  it('should debounce validation and only call the reservation service for the latest email', fakeAsync(() => {
+  it('should debounce validation and only call the reservation service for the latest email', async () => {
     const reservationSpy = jest.spyOn(service, 'isTaken').mockReturnValue(of(false));
 
     fillInput('first@example.com');
-    tick(150);
+    await wait(180);
     fillInput('second@example.com');
-    tick(150);
+    await wait(180);
 
     expect(reservationSpy).not.toHaveBeenCalled();
 
-    tick(150);
+    await wait(160);
 
     expect(reservationSpy).toHaveBeenCalledTimes(1);
     expect(reservationSpy).toHaveBeenCalledWith('second@example.com');
-  }));
+  });
 
-  it('should expose the pending status and then the taken-email error', fakeAsync(() => {
+  it('should expose the pending status and then the taken-email error', async () => {
     jest.spyOn(service, 'isTaken').mockReturnValue(of(true).pipe(delay(100)));
 
     fillInput('reserved@workshop.dev');
-    tick(300);
+    await wait(320);
     fixture.detectChanges();
 
     expect(getText('status-label')).toBe('Status: PENDING');
     expect(getText('checking-state')).toBe('Checking email availability...');
 
-    tick(100);
+    await wait(120);
     fixture.detectChanges();
 
     expect(getText('status-label')).toBe('Status: INVALID');
     expect(getText('email-taken-error')).toBe('This email is already reserved.');
-  }));
+  });
 
-  it('should accept an available email and enable submit after async validation finishes', fakeAsync(() => {
+  it('should accept an available email and enable submit after async validation finishes', async () => {
     jest.spyOn(service, 'isTaken').mockReturnValue(of(false).pipe(delay(100)));
 
     fillInput('free@workshop.dev');
-    tick(400);
+    await wait(420);
     fixture.detectChanges();
 
     const submitButton = host.querySelector('[data-testid="submit-btn"]') as HTMLButtonElement | null;
@@ -78,7 +78,7 @@ describe('AppComponent', () => {
     expect(getText('status-label')).toBe('Status: VALID');
     expect(getText('available-state')).toBe('Email is available.');
     expect(submitButton?.disabled).toBe(false);
-  }));
+  });
 
   function fillInput(value: string): void {
     const input = host.querySelector('[data-testid="email-input"]') as HTMLInputElement | null;
@@ -96,5 +96,9 @@ describe('AppComponent', () => {
 
     expect(element).toBeTruthy();
     return element?.textContent?.trim() ?? '';
+  }
+
+  function wait(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 });
