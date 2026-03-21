@@ -1,0 +1,39 @@
+<main class="page">
+  <section class="shell">
+    <p class="eyebrow">Topic 22.2</p>
+    <h1 data-testid="scenario-title">Invite Flow Scenario Testing Lab</h1>
+    <p class="lede">
+      The component already models a real user journey. The exercise is to test the whole flow through
+      form input, selection, submit, and success state.
+    </p>
+
+    <form class="form" [formGroup]="inviteForm" (ngSubmit)="submitInvite()">
+      <label class="field">
+        <span>Name</span>
+        <input type="text" data-testid="name-input" formControlName="name" placeholder="Reviewer name" />
+      </label>
+
+      <label class="field">
+        <span>Role</span>
+        <select data-testid="role-select" formControlName="role">
+          <option value="">Choose role</option>
+          <option value="Reviewer">Reviewer</option>
+          <option value="Approver">Approver</option>
+        </select>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" data-testid="urgent-checkbox" formControlName="urgent" />
+        <span>Mark invite as urgent</span>
+      </label>
+
+      <button type="submit" data-testid="submit-btn" [disabled]="inviteForm.invalid">
+        Send invite
+      </button>
+    </form>
+
+    <section class="success" *ngIf="successMessage" data-testid="success-state">
+      {{ successMessage }}
+    </section>
+  </section>
+</main>
