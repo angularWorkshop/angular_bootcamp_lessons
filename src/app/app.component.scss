@@ -1,0 +1,119 @@
+.email-shell {
+  min-height: 100vh;
+  padding: 36px 24px 48px;
+  background:
+    radial-gradient(circle at top left, rgba(147, 197, 253, 0.25), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  color: #16324f;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.email-shell__intro,
+.email-shell__layout {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.email-shell__eyebrow,
+.email-card__eyebrow {
+  margin: 0 0 10px;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.email-shell__title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+}
+
+.email-shell__text {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.email-shell__layout {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.email-form,
+.email-card {
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 18px 42px rgba(37, 99, 235, 0.08);
+}
+
+.email-form {
+  display: grid;
+  gap: 16px;
+}
+
+.email-form__field {
+  display: grid;
+  gap: 8px;
+}
+
+.email-form__label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.email-form__input {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: #fff;
+  font: inherit;
+  color: inherit;
+}
+
+.email-form__status,
+.email-form__message,
+.email-card__list {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.email-form__message--error {
+  color: #b91c1c;
+}
+
+.email-form__message--success {
+  color: #047857;
+}
+
+.email-form__button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+}
+
+.email-form__button:disabled {
+  opacity: 0.55;
+}
+
+.email-card__list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 640px) {
+  .email-shell {
+    padding: 20px 16px 32px;
+  }
+}

@@ -1,0 +1,48 @@
+<main class="email-shell">
+  <section class="email-shell__intro">
+    <p class="email-shell__eyebrow">Async Validators</p>
+    <h1 class="email-shell__title" data-testid="email-title">{{ title }}</h1>
+    <p class="email-shell__text">
+      This signup flow should wait for an async reservation check before it trusts the email. The form needs to expose
+      that pending state to the UI instead of pretending the field is ready immediately.
+    </p>
+  </section>
+
+  <section class="email-shell__layout">
+    <form class="email-form" [formGroup]="signupForm" data-testid="email-form">
+      <label class="email-form__field">
+        <span class="email-form__label">Email for early access</span>
+        <input class="email-form__input" type="email" formControlName="email" data-testid="email-input" />
+      </label>
+
+      <p class="email-form__status" data-testid="status-label">Status: {{ signupForm.status }}</p>
+
+      <div class="email-form__message" *ngIf="emailControl.pending" data-testid="checking-state">
+        Checking email availability...
+      </div>
+      <div class="email-form__message email-form__message--error" *ngIf="emailControl.hasError('emailTaken')" data-testid="email-taken-error">
+        This email is already reserved.
+      </div>
+      <div
+        class="email-form__message email-form__message--success"
+        *ngIf="emailControl.valid && emailControl.value && !emailControl.pending"
+        data-testid="available-state"
+      >
+        Email is available.
+      </div>
+
+      <button class="email-form__button" type="button" [disabled]="signupForm.invalid || signupForm.pending" data-testid="submit-btn">
+        Continue
+      </button>
+    </form>
+
+    <section class="email-card">
+      <p class="email-card__eyebrow">Validation Goals</p>
+      <ul class="email-card__list">
+        <li>debounce the async check before calling the service</li>
+        <li>cancel the previous validation flow when the user keeps typing</li>
+        <li>keep the form in <code>PENDING</code> while the async check is running</li>
+      </ul>
+    </section>
+  </section>
+</main>
