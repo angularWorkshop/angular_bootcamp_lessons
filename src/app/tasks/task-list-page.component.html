@@ -1,0 +1,36 @@
+<section class="board">
+  <div class="board__header">
+    <div>
+      <p class="board__eyebrow">Task Board</p>
+      <h2 data-testid="task-board-title">Tasks Workspace</h2>
+    </div>
+    <button type="button" data-testid="create-task-btn" (click)="goToCreateTask()">Create Task</button>
+  </div>
+
+  <section class="state" *ngIf="state === 'loading'" data-testid="list-loading">
+    Loading tasks...
+  </section>
+
+  <section class="state state--error" *ngIf="state === 'error'" data-testid="list-error">
+    <p>{{ errorMessage }}</p>
+    <button type="button" data-testid="retry-load-btn" (click)="retryLoad()">Retry</button>
+  </section>
+
+  <section class="state" *ngIf="state === 'empty'" data-testid="list-empty">
+    No tasks yet. Create the first one from this frontend-only workspace.
+  </section>
+
+  <section class="grid" *ngIf="state === 'success'">
+    <article class="task-card" *ngFor="let task of tasks" [attr.data-testid]="'task-card-' + task.id">
+      <div class="task-card__top">
+        <p class="task-card__status">{{ task.status }}</p>
+        <p class="task-card__urgent" *ngIf="task.urgent">Urgent</p>
+      </div>
+      <h3>{{ task.title }}</h3>
+      <p>Owner: {{ task.owner }}</p>
+      <button type="button" [attr.data-testid]="'edit-task-' + task.id" (click)="goToEditTask(task.id)">
+        Edit
+      </button>
+    </article>
+  </section>
+</section>

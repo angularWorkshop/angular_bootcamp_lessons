@@ -1,0 +1,61 @@
+<section class="editor">
+  <div class="editor__header">
+    <div>
+      <p class="editor__eyebrow">{{ mode === 'create' ? 'Create flow' : 'Edit flow' }}</p>
+      <h2 data-testid="task-form-title">
+        {{ mode === 'create' ? 'Create a task' : 'Edit task' }}
+      </h2>
+    </div>
+    <button type="button" data-testid="cancel-task-btn" (click)="cancel()">Back to board</button>
+  </div>
+
+  <section class="editor__state" *ngIf="state === 'loading'" data-testid="form-loading">
+    Loading task details...
+  </section>
+
+  <section class="editor__state editor__state--error" *ngIf="state === 'error'" data-testid="form-error">
+    {{ errorMessage }}
+  </section>
+
+  <form class="editor__grid" *ngIf="state === 'ready'" [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <div class="editor__form">
+      <label class="field">
+        <span>Title</span>
+        <input type="text" data-testid="title-input" formControlName="title" placeholder="Task title" />
+      </label>
+
+      <label class="field">
+        <span>Owner</span>
+        <input type="text" data-testid="owner-input" formControlName="owner" placeholder="Owner name" />
+      </label>
+
+      <label class="field">
+        <span>Status</span>
+        <select data-testid="status-select" formControlName="status">
+          <option value="Backlog">Backlog</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" data-testid="urgent-checkbox" formControlName="urgent" />
+        <span>Mark as urgent</span>
+      </label>
+
+      <button type="submit" data-testid="save-task-btn" [disabled]="taskForm.invalid">
+        {{ mode === 'create' ? 'Create task' : 'Save task' }}
+      </button>
+    </div>
+
+    <aside class="preview" data-testid="task-preview">
+      <p class="preview__eyebrow">Live preview</p>
+      <h3 data-testid="preview-title">{{ taskForm.get('title')?.value || 'Untitled task' }}</h3>
+      <p data-testid="preview-owner">Owner: {{ taskForm.get('owner')?.value || 'No owner yet' }}</p>
+      <p data-testid="preview-status">Status: {{ taskForm.get('status')?.value }}</p>
+      <p data-testid="preview-urgent">
+        {{ taskForm.get('urgent')?.value ? 'Urgent delivery' : 'Standard priority' }}
+      </p>
+    </aside>
+  </form>
+</section>

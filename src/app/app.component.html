@@ -1,0 +1,27 @@
+<main class="shell">
+  <header class="shell__header">
+    <div>
+      <p class="shell__eyebrow">Final Section</p>
+      <h1 data-testid="shell-title">Frontend Capstone: Tasks Workspace</h1>
+      <p class="shell__lede">
+        This capstone intentionally stays frontend-only: routing, guard, reactive form, service layer, and tests all
+        work without a backend.
+      </p>
+    </div>
+
+    <div class="shell__controls">
+      <p class="shell__status" data-testid="workspace-state">
+        Workspace: {{ workspaceSessionService.isUnlocked() ? 'Unlocked' : 'Locked' }}
+      </p>
+      <div class="shell__actions">
+        <button type="button" data-testid="nav-access-btn" (click)="goToAccess()">Access</button>
+        <button type="button" data-testid="nav-tasks-btn" (click)="goToTasks()">Tasks</button>
+        <button type="button" data-testid="nav-create-btn" (click)="goToCreateTask()">New Task</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="shell__content">
+    <router-outlet></router-outlet>
+  </section>
+</main>
