@@ -1,0 +1,93 @@
+<main class="handover-shell">
+  <section class="handover-shell__intro">
+    <p class="handover-shell__eyebrow">Reactive Error UX</p>
+    <h1 class="handover-shell__title" data-testid="handover-title">{{ title }}</h1>
+    <p class="handover-shell__text">
+      The validators already exist. Your task is to make the error experience feel correct: quiet at first, helpful
+      after interaction, and clear after an invalid submit.
+    </p>
+  </section>
+
+  <section class="handover-shell__layout">
+    <form class="handover-form" [formGroup]="handoverForm" (ngSubmit)="submitRequest()" data-testid="handover-form">
+      <label class="handover-form__field">
+        <span class="handover-form__label">Handover reason</span>
+        <textarea
+          class="handover-form__input handover-form__input--textarea"
+          formControlName="handoverReason"
+          data-testid="handover-reason-input"
+        ></textarea>
+      </label>
+      <div
+        class="handover-error"
+        *ngIf="shouldShowError('handoverReason', 'required')"
+        data-testid="reason-required-error"
+      >
+        Handover reason is required.
+      </div>
+      <div
+        class="handover-error"
+        *ngIf="shouldShowError('handoverReason', 'minlength')"
+        data-testid="reason-minlength-error"
+      >
+        Handover reason must be at least 12 characters.
+      </div>
+
+      <label class="handover-form__field">
+        <span class="handover-form__label">Replacement engineer</span>
+        <input
+          class="handover-form__input"
+          type="text"
+          formControlName="replacementEngineer"
+          data-testid="replacement-input"
+        />
+      </label>
+      <div
+        class="handover-error"
+        *ngIf="shouldShowError('replacementEngineer', 'required')"
+        data-testid="replacement-required-error"
+      >
+        Replacement engineer is required.
+      </div>
+
+      <label class="handover-form__field">
+        <span class="handover-form__label">Contact email</span>
+        <input class="handover-form__input" type="email" formControlName="contactEmail" data-testid="contact-email-input" />
+      </label>
+      <div
+        class="handover-error"
+        *ngIf="shouldShowError('contactEmail', 'required')"
+        data-testid="email-required-error"
+      >
+        Contact email is required.
+      </div>
+      <div
+        class="handover-error"
+        *ngIf="shouldShowError('contactEmail', 'email')"
+        data-testid="email-invalid-error"
+      >
+        Enter a valid email address.
+      </div>
+
+      <button class="handover-form__button" type="submit" [disabled]="handoverForm.invalid" data-testid="submit-btn">
+        Save handover
+      </button>
+    </form>
+
+    <section class="handover-card" *ngIf="savedHandover; else emptyState" data-testid="saved-state">
+      <p class="handover-card__eyebrow">Saved Handover</p>
+      <p class="handover-card__line" data-testid="saved-reason">Reason: {{ savedHandover?.handoverReason }}</p>
+      <p class="handover-card__line" data-testid="saved-replacement">
+        Replacement: {{ savedHandover?.replacementEngineer }}
+      </p>
+      <p class="handover-card__line" data-testid="saved-email">Contact: {{ savedHandover?.contactEmail }}</p>
+    </section>
+
+    <ng-template #emptyState>
+      <section class="handover-card handover-card--empty" data-testid="empty-state">
+        <p class="handover-card__eyebrow">Saved Handover</p>
+        <p class="handover-card__line">No handover request saved yet.</p>
+      </section>
+    </ng-template>
+  </section>
+</main>

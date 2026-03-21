@@ -1,0 +1,115 @@
+.handover-shell {
+  min-height: 100vh;
+  padding: 36px 24px 48px;
+  background:
+    radial-gradient(circle at top right, rgba(250, 204, 21, 0.28), transparent 26%),
+    linear-gradient(180deg, #fffdf7 0%, #fff7ed 100%);
+  color: #4a2d16;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.handover-shell__intro,
+.handover-shell__layout {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.handover-shell__eyebrow,
+.handover-card__eyebrow {
+  margin: 0 0 10px;
+  color: #b45309;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.handover-shell__title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+}
+
+.handover-shell__text {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.handover-shell__layout {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.handover-form,
+.handover-card {
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(217, 119, 6, 0.18);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 18px 42px rgba(180, 83, 9, 0.1);
+}
+
+.handover-form {
+  display: grid;
+  gap: 14px;
+}
+
+.handover-form__field {
+  display: grid;
+  gap: 8px;
+}
+
+.handover-form__label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.handover-form__input {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(217, 119, 6, 0.18);
+  background: #fff;
+  font: inherit;
+  color: inherit;
+}
+
+.handover-form__input--textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.handover-error {
+  font-size: 14px;
+  color: #b91c1c;
+}
+
+.handover-form__button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+}
+
+.handover-form__button:disabled {
+  opacity: 0.55;
+}
+
+.handover-card__line {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .handover-shell {
+    padding: 20px 16px 32px;
+  }
+}
