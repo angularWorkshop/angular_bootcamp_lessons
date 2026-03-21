@@ -29,7 +29,7 @@ describe('AppComponent', () => {
     typeName('Mia');
     selectRole('Reviewer');
 
-    expect(getSubmitButton().disabled).toBe(true);
+    expect(getSubmitButton().disabled).toBe(false);
   });
 
   it('should show a success message after submitting a valid invite', () => {
@@ -37,7 +37,7 @@ describe('AppComponent', () => {
     selectRole('Approver');
     clickSubmit();
 
-    expect(getText('success-state')).toBe('TODO');
+    expect(getText('success-state')).toBe('Nina invited as Approver');
   });
 
   it('should include the urgent suffix when the user submits an urgent invite', () => {
@@ -46,7 +46,7 @@ describe('AppComponent', () => {
     toggleUrgent();
     clickSubmit();
 
-    expect(getText('success-state')).toBe('TODO');
+    expect(getText('success-state')).toBe('Alex invited as Reviewer (urgent)');
   });
 
   function typeName(value: string): void {
