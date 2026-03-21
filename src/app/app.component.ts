@@ -15,7 +15,7 @@ interface ReleasePayload {
 })
 export class AppComponent {
   protected readonly title = 'Release Approval Desk';
-  protected readonly releaseForm = this.formBuilder.group({
+  protected readonly releaseForm = this.formBuilder.nonNullable.group({
     releaseName: ['Phoenix Cutover'],
     approver: [''],
     environment: ['production'],
@@ -26,6 +26,13 @@ export class AppComponent {
   constructor(private readonly formBuilder: FormBuilder) {}
 
   protected submitRelease(): void {
-    // TODO: read the reactive form values and build the submitted payload
+    const rawValue = this.releaseForm.getRawValue();
+
+    this.submittedPayload = {
+      releaseLabel: rawValue.releaseName.trim(),
+      targetEnvironment: rawValue.environment,
+      approvedBy: rawValue.approver.trim(),
+      rollbackPlanRequired: rawValue.rollbackPlan,
+    };
   }
 }
