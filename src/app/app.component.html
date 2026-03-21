@@ -1,0 +1,39 @@
+<main class="workspace-lab">
+  <section class="workspace-lab__hero">
+    <p class="workspace-lab__eyebrow">Reactive Validators</p>
+    <h1 class="workspace-lab__title" data-testid="workspace-title">{{ title }}</h1>
+    <p class="workspace-lab__text">
+      This form should block provisioning until all reactive validators pass, including one custom rule for the team
+      code.
+    </p>
+  </section>
+
+  <section class="workspace-lab__layout">
+    <form class="workspace-form" [formGroup]="workspaceForm" data-testid="workspace-form">
+      <label class="workspace-form__field">
+        <span class="workspace-form__label">Workspace name</span>
+        <input class="workspace-form__input" type="text" formControlName="workspaceName" data-testid="workspace-name-input" />
+      </label>
+
+      <label class="workspace-form__field">
+        <span class="workspace-form__label">Team code</span>
+        <input class="workspace-form__input" type="text" formControlName="teamCode" data-testid="team-code-input" />
+      </label>
+
+      <label class="workspace-form__field">
+        <span class="workspace-form__label">Owner email</span>
+        <input class="workspace-form__input" type="email" formControlName="ownerEmail" data-testid="owner-email-input" />
+      </label>
+    </form>
+
+    <section class="workspace-card">
+      <p class="workspace-card__eyebrow">Validation Pulse</p>
+      <p class="workspace-card__line" data-testid="form-readiness">{{ readinessLabel }}</p>
+      <p class="workspace-card__line" data-testid="workspace-name-state">
+        Workspace name: {{ controlState('workspaceName') }}
+      </p>
+      <p class="workspace-card__line" data-testid="team-code-state">Team code: {{ controlState('teamCode') }}</p>
+      <p class="workspace-card__line" data-testid="owner-email-state">Owner email: {{ controlState('ownerEmail') }}</p>
+    </section>
+  </section>
+</main>

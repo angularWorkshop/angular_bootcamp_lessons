@@ -1,0 +1,91 @@
+.workspace-lab {
+  min-height: 100vh;
+  padding: 36px 24px 48px;
+  background:
+    radial-gradient(circle at top left, rgba(52, 211, 153, 0.26), transparent 30%),
+    linear-gradient(180deg, #f7fffb 0%, #eefcf5 100%);
+  color: #113c2f;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.workspace-lab__hero,
+.workspace-lab__layout {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.workspace-lab__eyebrow,
+.workspace-card__eyebrow {
+  margin: 0 0 10px;
+  color: #047857;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.workspace-lab__title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+}
+
+.workspace-lab__text {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.workspace-lab__layout {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.workspace-form,
+.workspace-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 44px rgba(5, 150, 105, 0.09);
+}
+
+.workspace-form {
+  display: grid;
+  gap: 16px;
+}
+
+.workspace-form__field {
+  display: grid;
+  gap: 8px;
+}
+
+.workspace-form__label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.workspace-form__input {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(5, 150, 105, 0.18);
+  font: inherit;
+  color: inherit;
+  background: #fff;
+}
+
+.workspace-card__line {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .workspace-lab {
+    padding: 20px 16px 32px;
+  }
+}
