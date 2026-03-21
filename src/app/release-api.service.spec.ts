@@ -54,7 +54,7 @@ describe('ReleaseApiService', () => {
       },
     ]);
 
-    expect(receivedStatus).toBe('TODO');
+    expect(receivedStatus).toBe('blocked');
   });
 
   it('should post to the retry endpoint for a specific release', () => {
@@ -69,7 +69,7 @@ describe('ReleaseApiService', () => {
     expect(request.request.method).toBe('POST');
     request.flush({ message: 'Retry queued' });
 
-    expect(receivedMessage).toBe('TODO');
+    expect(receivedMessage).toBe('Retry queued');
   });
 
   it('should return a fallback message when retry request fails', () => {
@@ -86,6 +86,6 @@ describe('ReleaseApiService', () => {
       statusText: 'Server Error',
     });
 
-    expect(receivedMessage).toBe('TODO');
+    expect(receivedMessage).toBe('Retry failed');
   });
 });
