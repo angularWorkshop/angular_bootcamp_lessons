@@ -28,11 +28,11 @@ export class AppComponent {
   }
 
   protected addModule(): void {
-    // TODO: add a new module FormGroup with its own nested lessons FormArray
+    this.modules.push(this.createModule('', ['']));
   }
 
   protected addLesson(moduleIndex: number): void {
-    // TODO: add a new lesson control into the nested lessons FormArray
+    this.lessonsAt(moduleIndex).push(this.formBuilder.nonNullable.control(''));
   }
 
   private createModule(moduleTitle: string, lessons: string[]): FormGroup {
