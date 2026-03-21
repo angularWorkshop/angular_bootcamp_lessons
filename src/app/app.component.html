@@ -1,0 +1,66 @@
+<main class="page">
+  <section class="panel">
+    <p class="eyebrow">Topic 22.1</p>
+    <h1 data-testid="dom-title">Release Board DOM Testing Lab</h1>
+    <p class="lede">
+      The component is ready. The exercise is to test what the DOM does when a user filters and searches.
+    </p>
+
+    <div class="toolbar">
+      <div class="filters">
+        <button
+          type="button"
+          data-testid="filter-all"
+          [class.active]="isActive('all')"
+          (click)="setFilter('all')">
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-ready"
+          [class.active]="isActive('ready')"
+          (click)="setFilter('ready')">
+          Ready
+        </button>
+        <button
+          type="button"
+          data-testid="filter-watch"
+          [class.active]="isActive('watch')"
+          (click)="setFilter('watch')">
+          Watch
+        </button>
+        <button
+          type="button"
+          data-testid="filter-blocked"
+          [class.active]="isActive('blocked')"
+          (click)="setFilter('blocked')">
+          Blocked
+        </button>
+      </div>
+
+      <label class="search">
+        <span>Search</span>
+        <input
+          type="text"
+          data-testid="search-input"
+          placeholder="Search release or owner"
+          (input)="setQuery(searchInput.value)"
+          #searchInput />
+      </label>
+    </div>
+  </section>
+
+  <section class="grid" *ngIf="visibleCards.length; else emptyState">
+    <article class="card" *ngFor="let card of visibleCards" [attr.data-testid]="'card-' + card.name">
+      <p class="card__state">{{ card.state | uppercase }}</p>
+      <h2>{{ card.name }}</h2>
+      <p>Owner: {{ card.owner }}</p>
+    </article>
+  </section>
+
+  <ng-template #emptyState>
+    <section class="empty" data-testid="empty-state">
+      No releases match the current filters.
+    </section>
+  </ng-template>
+</main>
