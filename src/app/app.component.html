@@ -1,0 +1,64 @@
+<main class="curriculum-shell">
+  <section class="curriculum-shell__intro">
+    <p class="curriculum-shell__eyebrow">Nested FormArray</p>
+    <h1 class="curriculum-shell__title" data-testid="curriculum-title">{{ title }}</h1>
+    <p class="curriculum-shell__text">
+      A curriculum builder has two levels of dynamic data: modules and lessons inside each module. This exercise is
+      about wiring both layers into one nested reactive structure.
+    </p>
+  </section>
+
+  <section class="curriculum-shell__layout">
+    <form class="curriculum-form" [formGroup]="curriculumForm">
+      <label class="curriculum-form__field">
+        <span class="curriculum-form__label">Program name</span>
+        <input class="curriculum-form__input" type="text" formControlName="programName" data-testid="program-name-input" />
+      </label>
+
+      <div class="curriculum-form__modules" formArrayName="modules">
+        <section class="module-card" *ngFor="let module of modules.controls; let moduleIndex = index" [formGroupName]="moduleIndex">
+          <label class="curriculum-form__field">
+            <span class="curriculum-form__label">Module {{ moduleIndex + 1 }}</span>
+            <input class="curriculum-form__input" formControlName="moduleTitle" [attr.data-testid]="'module-input-' + moduleIndex" />
+          </label>
+
+          <div class="module-card__lessons" formArrayName="lessons">
+            <label class="curriculum-form__field curriculum-form__field--compact" *ngFor="let lesson of lessonsAt(moduleIndex).controls; let lessonIndex = index">
+              <span class="curriculum-form__label">Lesson {{ moduleIndex + 1 }}.{{ lessonIndex + 1 }}</span>
+              <input
+                class="curriculum-form__input"
+                [formControlName]="lessonIndex"
+                [attr.data-testid]="'lesson-input-' + moduleIndex + '-' + lessonIndex"
+              />
+            </label>
+          </div>
+
+          <button
+            class="curriculum-form__button curriculum-form__button--secondary"
+            type="button"
+            [attr.data-testid]="'add-lesson-' + moduleIndex"
+            (click)="addLesson(moduleIndex)"
+          >
+            Add lesson
+          </button>
+        </section>
+      </div>
+
+      <button class="curriculum-form__button" type="button" (click)="addModule()" data-testid="add-module-btn">Add module</button>
+    </form>
+
+    <section class="curriculum-card">
+      <p class="curriculum-card__eyebrow">Structure Snapshot</p>
+      <p class="curriculum-card__line" data-testid="module-count">Modules: {{ modules.length }}</p>
+
+      <div class="curriculum-card__module" *ngFor="let module of modules.controls; let moduleIndex = index">
+        <p class="curriculum-card__module-title" [attr.data-testid]="'module-preview-' + moduleIndex">
+          {{ moduleTitleAt(moduleIndex) }}
+        </p>
+        <p class="curriculum-card__line" [attr.data-testid]="'lesson-count-' + moduleIndex">
+          Lessons: {{ lessonsAt(moduleIndex).length }}
+        </p>
+      </div>
+    </section>
+  </section>
+</main>
