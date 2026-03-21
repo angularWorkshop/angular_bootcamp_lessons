@@ -20,10 +20,10 @@ export class AppComponent {
   }
 
   protected addSpeaker(): void {
-    // TODO: add a new speaker control to the FormArray
+    this.speakers.push(this.formBuilder.nonNullable.control(''));
   }
 
   protected removeSpeaker(index: number): void {
-    // TODO: remove the selected speaker control from the FormArray
+    this.speakers.removeAt(index);
   }
 }
