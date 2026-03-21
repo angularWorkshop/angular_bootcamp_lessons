@@ -1,0 +1,43 @@
+<main class="pulse-shell">
+  <section class="pulse-shell__intro">
+    <p class="pulse-shell__eyebrow">Reactive Live Updates</p>
+    <h1 class="pulse-shell__title" data-testid="pulse-title">{{ title }}</h1>
+    <p class="pulse-shell__text">
+      A reactive form can do more than submit. It can drive live UI state while the user edits controls. Keep the
+      response preview synchronized with the form.
+    </p>
+  </section>
+
+  <section class="pulse-shell__layout">
+    <form class="response-form" [formGroup]="responseForm" data-testid="response-form">
+      <label class="response-form__field">
+        <span class="response-form__label">Severity</span>
+        <select class="response-form__input" formControlName="severity" data-testid="severity-select">
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+        </select>
+      </label>
+
+      <label class="response-form__field">
+        <span class="response-form__label">Primary channel</span>
+        <select class="response-form__input" formControlName="channel" data-testid="channel-select">
+          <option value="slack">slack</option>
+          <option value="meet">meet</option>
+          <option value="war-room">war-room</option>
+        </select>
+      </label>
+
+      <label class="response-form__checkbox">
+        <input type="checkbox" formControlName="rollbackPlan" data-testid="rollback-plan-checkbox" />
+        <span>Rollback plan is prepared</span>
+      </label>
+    </form>
+
+    <section class="pulse-card" data-testid="pulse-card">
+      <p class="pulse-card__eyebrow">Live Response Preview</p>
+      <p class="pulse-card__headline" data-testid="status-headline">{{ statusHeadline }}</p>
+      <p class="pulse-card__note" data-testid="status-note">{{ statusNote }}</p>
+    </section>
+  </section>
+</main>
