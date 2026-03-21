@@ -23,7 +23,7 @@ describe('ReleaseHealthService', () => {
       warnings: 2,
     });
 
-    expect(service.getBadge(snapshot)).toBe('TODO');
+    expect(service.getBadge(snapshot)).toBe('STAGING-YELLOW');
   });
 
   it('should escalate a production release with blockers', () => {
@@ -32,11 +32,11 @@ describe('ReleaseHealthService', () => {
       blockers: 1,
     });
 
-    expect(service.shouldEscalate(snapshot)).toBe(false);
+    expect(service.shouldEscalate(snapshot)).toBe(true);
   });
 
   it('should format reviewer summary for an empty reviewer list', () => {
-    expect(service.formatReviewerSummary([])).toBe('TODO');
+    expect(service.formatReviewerSummary([])).toBe('No reviewers assigned');
   });
 
   function createSnapshot(overrides: Partial<ReleaseSnapshot> = {}): ReleaseSnapshot {
