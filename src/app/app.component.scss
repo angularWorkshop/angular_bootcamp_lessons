@@ -1,0 +1,116 @@
+.approval-desk {
+  min-height: 100vh;
+  padding: 36px 24px 48px;
+  background:
+    linear-gradient(135deg, rgba(191, 219, 254, 0.55), transparent 38%),
+    linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  color: #102a43;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.approval-desk__intro,
+.approval-desk__layout {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.approval-desk__eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.approval-desk__title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+}
+
+.approval-desk__text {
+  max-width: 720px;
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.approval-desk__layout {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.approval-form,
+.payload-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 22px 48px rgba(37, 99, 235, 0.1);
+}
+
+.approval-form {
+  display: grid;
+  gap: 16px;
+}
+
+.approval-form__field {
+  display: grid;
+  gap: 8px;
+}
+
+.approval-form__label,
+.payload-card__eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.approval-form__input {
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(29, 78, 216, 0.2);
+  border-radius: 14px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+.approval-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.approval-form__button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payload-card__line {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.payload-card--empty {
+  display: grid;
+  align-content: start;
+}
+
+@media (max-width: 640px) {
+  .approval-desk {
+    padding: 20px 16px 32px;
+  }
+}

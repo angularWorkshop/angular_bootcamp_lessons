@@ -1,0 +1,59 @@
+<main class="approval-desk">
+  <section class="approval-desk__intro">
+    <p class="approval-desk__eyebrow">Reactive Submit Flow</p>
+    <h1 class="approval-desk__title" data-testid="approval-title">{{ title }}</h1>
+    <p class="approval-desk__text">
+      The form already exists as a reactive model. Your task is to submit it and turn its raw values into a payload
+      that the release summary can render.
+    </p>
+  </section>
+
+  <section class="approval-desk__layout">
+    <form class="approval-form" [formGroup]="releaseForm" (ngSubmit)="submitRelease()" data-testid="approval-form">
+      <label class="approval-form__field">
+        <span class="approval-form__label">Release name</span>
+        <input class="approval-form__input" type="text" formControlName="releaseName" data-testid="release-name-input" />
+      </label>
+
+      <label class="approval-form__field">
+        <span class="approval-form__label">Approver</span>
+        <input class="approval-form__input" type="text" formControlName="approver" data-testid="approver-input" />
+      </label>
+
+      <label class="approval-form__field">
+        <span class="approval-form__label">Target environment</span>
+        <select class="approval-form__input" formControlName="environment" data-testid="environment-select">
+          <option value="production">production</option>
+          <option value="staging">staging</option>
+          <option value="sandbox">sandbox</option>
+        </select>
+      </label>
+
+      <label class="approval-form__checkbox">
+        <input type="checkbox" formControlName="rollbackPlan" data-testid="rollback-checkbox" />
+        <span>Rollback plan is required</span>
+      </label>
+
+      <button class="approval-form__button" type="submit" data-testid="submit-release-btn">Submit release</button>
+    </form>
+
+    <section class="payload-card" *ngIf="submittedPayload; else emptyState" data-testid="payload-state">
+      <p class="payload-card__eyebrow">Submitted Payload</p>
+      <p class="payload-card__line" data-testid="payload-label">Release: {{ submittedPayload?.releaseLabel }}</p>
+      <p class="payload-card__line" data-testid="payload-environment">
+        Environment: {{ submittedPayload?.targetEnvironment }}
+      </p>
+      <p class="payload-card__line" data-testid="payload-approver">Approved by: {{ submittedPayload?.approvedBy }}</p>
+      <p class="payload-card__line" data-testid="payload-rollback">
+        Rollback plan: {{ submittedPayload?.rollbackPlanRequired ? 'required' : 'optional' }}
+      </p>
+    </section>
+
+    <ng-template #emptyState>
+      <section class="payload-card payload-card--empty" data-testid="empty-state">
+        <p class="payload-card__eyebrow">Submitted Payload</p>
+        <p class="payload-card__line">Nothing submitted yet.</p>
+      </section>
+    </ng-template>
+  </section>
+</main>
