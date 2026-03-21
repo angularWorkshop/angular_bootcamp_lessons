@@ -1,0 +1,76 @@
+.page {
+  min-height: 100vh;
+  padding: 48px 24px;
+  background: linear-gradient(180deg, #f5f7fb 0%, #eef2f7 100%);
+  color: #1f2937;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hero {
+  max-width: 760px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+.lede {
+  margin: 0;
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.card__label {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.card__title {
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+
+.card__status {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.card__text {
+  margin: 0 0 6px;
+  color: #475569;
+}
