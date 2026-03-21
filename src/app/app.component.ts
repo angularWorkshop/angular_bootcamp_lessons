@@ -9,7 +9,9 @@ import { FormBuilder } from '@angular/forms';
 export class AppComponent {
   protected readonly title = 'Release Brief Studio';
   protected readonly releaseForm = this.formBuilder.group({
-    // TODO: add releaseName, owner, and environment controls through FormGroup
+    releaseName: [''],
+    owner: [''],
+    environment: ['staging'],
   });
 
   constructor(private readonly formBuilder: FormBuilder) {}
