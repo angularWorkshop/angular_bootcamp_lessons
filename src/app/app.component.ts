@@ -39,7 +39,8 @@ export class AppComponent {
     controlName: 'handoverReason' | 'replacementEngineer' | 'contactEmail',
     errorKey: string,
   ): boolean {
-    // TODO: show errors only after interaction with the control or after submit
-    return false;
+    const control = this.handoverForm.controls[controlName];
+
+    return control.hasError(errorKey) && (control.touched || this.submitted);
   }
 }
