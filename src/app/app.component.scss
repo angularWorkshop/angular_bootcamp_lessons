@@ -1,0 +1,23 @@
+.directory {
+  max-width: 560px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: sans-serif;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+
+  [data-testid="user-email"] {
+    color: #666;
+  }
+}
