@@ -1,32 +1,27 @@
 # Tabs via Content Projection
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Create `TabsComponent` + `TabComponent` using content projection and `@ContentChildren`.
 
-## What the learner should build
+## What the solution demonstrates
 
-- Dynamic tab buttons based on projected `app-tab` items
-- Default active tab on initial render
-- Switching active tab and content on click
-
-## What the learner should implement
-
-- Complete projected tabs synchronization in `tabs.component.ts`
-- Activate/deactivate tab panels on selection
+- Dynamic tab buttons based on projected children
+- Initial active tab selection
+- Active tab switching with synchronized content panels
 
 ## Files
 
-- `src/app/tabs.component.ts` — main TODO
+- `src/app/tabs.component.ts`
 - `src/app/tab.component.ts`
 - `src/app/app.component.spec.ts`
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before completion.
+- This is the `answer` branch.
+- The test suite should pass.
 
 ## Commands
 

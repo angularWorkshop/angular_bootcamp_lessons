@@ -51,11 +51,23 @@ export class TabsComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    // TODO: set default active tab and keep projected tabs synchronized.
+    this.syncTabs(0);
+    this.tabs.changes.subscribe(() => this.syncTabs(this.activeIndex));
   }
 
   protected selectTab(index: number): void {
-    this.activeIndex = index;
-    // TODO: activate selected tab and deactivate others.
+    this.syncTabs(index);
+  }
+
+  private syncTabs(index: number): void {
+    const tabs = this.tabsArray;
+    if (!tabs.length) {
+      return;
+    }
+
+    this.activeIndex = Math.max(0, Math.min(index, tabs.length - 1));
+    tabs.forEach((tab, tabIndex) => {
+      tab.active = tabIndex === this.activeIndex;
+    });
   }
 }
