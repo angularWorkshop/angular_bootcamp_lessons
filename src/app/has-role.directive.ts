@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit, Renderer2 } from '@angular/core';
 import { UserRoleService } from './user-role.service';
 
 @Directive({
   selector: '[appHasRole]',
   standalone: true,
 })
-export class HasRoleDirective implements OnChanges {
+export class HasRoleDirective implements OnInit, OnChanges {
   @Input('appHasRole') requiredRole: 'admin' | 'viewer' = 'viewer';
 
   constructor(
@@ -14,9 +14,18 @@ export class HasRoleDirective implements OnChanges {
     private readonly userRoleService: UserRoleService,
   ) {}
 
+  ngOnInit(): void {
+    this.applyVisibility();
+  }
+
   ngOnChanges(): void {
-    // TODO: hide element when role mismatch.
+    this.applyVisibility();
+  }
+
+  private applyVisibility(): void {
     const role = this.userRoleService.currentRole;
-    this.renderer.setAttribute(this.host.nativeElement, 'data-role-seen', role);
+    const isVisible = role === this.requiredRole;
+
+    this.renderer.setStyle(this.host.nativeElement, 'display', isVisible ? '' : 'none');
   }
 }
