@@ -1,0 +1,19 @@
+<div class="review" data-testid="review">
+  <h1 class="review__title" data-testid="title">Product Review</h1>
+
+  <!-- TODO: Replace placeholders with actual components -->
+  <!-- <app-star-rating [(rating)]="userRating" /> -->
+  <!-- <app-toggle [(checked)]="recommend" /> -->
+  <div data-testid="rating-placeholder">TODO: add star-rating component</div>
+  <div data-testid="toggle-placeholder">TODO: add toggle component</div>
+
+  <p data-testid="rating-display">Rating: {{ userRating() }} / 5</p>
+  <p data-testid="recommend-display">Would recommend: {{ recommend() ? 'Yes' : 'No' }}</p>
+
+  <button
+    data-testid="reset-btn"
+    (click)="reset()"
+  >
+    Reset
+  </button>
+</div>
