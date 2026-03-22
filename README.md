@@ -1,27 +1,38 @@
-# AngularDefinitiveGuideLessons
+# Async Pipe HTTP Feed
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Load lesson data from `HttpClient` and render it via `AsyncPipe`.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- HTTP request for lesson feed data
+- Loading state while request is pending
+- List rendering through template async binding
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Remove manual subscription from `AppComponent`
+- Expose observable stream for the template
+- Use `async` pipe in `app.component.html`
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/app.component.ts` — currently uses manual subscribe (target fix)
+- `src/app/app.component.html`
+- `src/app/lesson-feed.service.ts`
+- `src/app/app.component.spec.ts`
 
-## Running end-to-end tests
+## Notes
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- This is the `lesson` branch.
+- Some tests are expected to fail before completion.
 
-## Further help
+## Commands
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm start
+npm test -- --runInBand
+```

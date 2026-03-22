@@ -1,0 +1,20 @@
+<main class="page">
+  <section class="panel">
+    <p class="eyebrow">Topic 24.2</p>
+    <h1 data-testid="title">Lesson feed via HTTP</h1>
+    <p class="lede">
+      Starter task: render HTTP data through <code>AsyncPipe</code> without manual subscription.
+    </p>
+  </section>
+
+  <section class="panel" *ngIf="isLoading" data-testid="loading-state">
+    Loading lessons...
+  </section>
+
+  <section class="grid" *ngIf="!isLoading">
+    <article class="card" *ngFor="let lesson of lessons; let index = index" [attr.data-testid]="'lesson-' + index">
+      <h2>{{ lesson.title }}</h2>
+      <p [attr.data-testid]="'level-' + index">{{ lesson.level }}</p>
+    </article>
+  </section>
+</main>
