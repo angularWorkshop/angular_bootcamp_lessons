@@ -1,0 +1,54 @@
+.page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f4f7fb;
+  color: #0f172a;
+  font-family: Arial, sans-serif;
+}
+
+.panel {
+  margin: 0 auto 1rem;
+  max-width: 960px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.lede {
+  margin: 0.5rem 0 0;
+  color: #334155;
+}
+
+.grid {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #dbe1ea;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.metric {
+  margin: 0.15rem 0;
+  font-family: 'Courier New', monospace;
+}
