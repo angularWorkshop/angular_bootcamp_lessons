@@ -1,0 +1,25 @@
+<main class="page">
+  <section class="panel">
+    <p class="eyebrow">Topic 24.3</p>
+    <h1 data-testid="title">Custom highlight pipe lab</h1>
+    <p class="lede">Starter task: highlight search matches in list items through a standalone pipe.</p>
+
+    <label class="query">
+      Query
+      <input
+        data-testid="query-input"
+        type="text"
+        [value]="query"
+        (input)="setQuery(queryInput.value)"
+        #queryInput />
+    </label>
+  </section>
+
+  <section class="panel">
+    <ul>
+      <li *ngFor="let snippet of snippets; let index = index" [attr.data-testid]="'snippet-' + index">
+        <span [innerHTML]="snippet | highlight: query"></span>
+      </li>
+    </ul>
+  </section>
+</main>

@@ -1,27 +1,38 @@
-# AngularDefinitiveGuideLessons
+# Custom Highlight Pipe
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+This branch contains the starter version of the exercise.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Create a standalone `highlight` pipe and apply it in a searchable list.
 
-## Code scaffolding
+## What the learner should build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Pipe `highlight` that wraps query matches in `<mark>`
+- Case-insensitive match handling
+- DOM rendering through `[innerHTML]`
 
-## Build
+## What the learner should implement
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Finish `transform()` in `src/app/highlight.pipe.ts`
+- Keep search behavior and template structure intact
+- Make both component and pipe tests green
 
-## Running unit tests
+## Files
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app/highlight.pipe.ts` — main TODO
+- `src/app/highlight.pipe.spec.ts` — pipe unit tests
+- `src/app/app.component.html`
+- `src/app/app.component.spec.ts`
 
-## Running end-to-end tests
+## Notes
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- This is the `lesson` branch.
+- Some tests are expected to fail before completion.
 
-## Further help
+## Commands
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm start
+npm test -- --runInBand
+```
