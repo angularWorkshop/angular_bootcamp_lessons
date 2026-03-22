@@ -1,0 +1,49 @@
+.editor {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: sans-serif;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+
+      &.active {
+        background: #1976d2;
+        color: #fff;
+        border-color: #1976d2;
+      }
+    }
+  }
+
+  &__form {
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+[data-testid="modified-badge"] {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: #ff9800;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,29 @@
+<div class="editor" data-testid="editor">
+  <h1 class="editor__title" data-testid="title">Product Editor</h1>
+
+  <div class="editor__list" data-testid="product-list">
+    @for (product of products; track product.id) {
+      <button
+        [attr.data-testid]="'product-' + product.id"
+        [class.active]="product.id === selectedId()"
+        (click)="selectProduct(product.id)"
+      >
+        {{ product.name }}
+      </button>
+    }
+  </div>
+
+  <div class="editor__form" data-testid="form">
+    <input
+      data-testid="edit-input"
+      [value]="editName()"
+      (input)="editName.set($any($event.target).value)"
+    />
+
+    <p data-testid="editing-display">Editing: {{ editName() }}</p>
+    <p data-testid="original-display">Original: {{ originalName() }}</p>
+    @if (isModified()) {
+      <span data-testid="modified-badge">Modified</span>
+    }
+  </div>
+</div>
