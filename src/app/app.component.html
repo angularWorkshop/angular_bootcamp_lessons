@@ -7,14 +7,18 @@
     </p>
   </section>
 
-  <section class="panel" *ngIf="isLoading" data-testid="loading-state">
-    Loading lessons...
-  </section>
+  <ng-container *ngIf="lessons$ | async as lessons; else loadingTemplate">
+    <section class="grid">
+      <article class="card" *ngFor="let lesson of lessons; let index = index" [attr.data-testid]="'lesson-' + index">
+        <h2>{{ lesson.title }}</h2>
+        <p [attr.data-testid]="'level-' + index">{{ lesson.level }}</p>
+      </article>
+    </section>
+  </ng-container>
 
-  <section class="grid" *ngIf="!isLoading">
-    <article class="card" *ngFor="let lesson of lessons; let index = index" [attr.data-testid]="'lesson-' + index">
-      <h2>{{ lesson.title }}</h2>
-      <p [attr.data-testid]="'level-' + index">{{ lesson.level }}</p>
-    </article>
-  </section>
+  <ng-template #loadingTemplate>
+    <section class="panel" data-testid="loading-state">
+      Loading lessons...
+    </section>
+  </ng-template>
 </main>
