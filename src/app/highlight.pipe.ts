@@ -10,7 +10,9 @@ export class HighlightPipe implements PipeTransform {
       return value ?? '';
     }
 
-    // TODO: wrap matches with <mark>...</mark> and keep case-insensitive behavior.
-    return value;
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(escapedQuery, 'gi');
+
+    return value.replace(pattern, (match) => `<mark>${match}</mark>`);
   }
 }

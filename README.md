@@ -1,34 +1,29 @@
 # Custom Highlight Pipe
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Create a standalone `highlight` pipe and apply it in a searchable list.
 
-## What the learner should build
+## What the solution demonstrates
 
-- Pipe `highlight` that wraps query matches in `<mark>`
-- Case-insensitive match handling
-- DOM rendering through `[innerHTML]`
-
-## What the learner should implement
-
-- Finish `transform()` in `src/app/highlight.pipe.ts`
-- Keep search behavior and template structure intact
-- Make both component and pipe tests green
+- Standalone pipe with safe regex escaping
+- Case-insensitive highlighting with `<mark>`
+- List rendering with `[innerHTML]` and live query updates
+- Separate pipe unit tests plus component behavior tests
 
 ## Files
 
-- `src/app/highlight.pipe.ts` — main TODO
-- `src/app/highlight.pipe.spec.ts` — pipe unit tests
+- `src/app/highlight.pipe.ts`
+- `src/app/highlight.pipe.spec.ts`
 - `src/app/app.component.html`
 - `src/app/app.component.spec.ts`
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before completion.
+- This is the `answer` branch.
+- The test suite should pass.
 
 ## Commands
 
