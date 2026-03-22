@@ -1,34 +1,28 @@
 # Pipes Formatting
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Display a product feed and format raw data through Angular pipes.
 
-## What the learner should build
+## What the solution demonstrates
 
-- Product names rendered in uppercase
-- Product prices formatted through `CurrencyPipe`
-- Product release dates formatted through `DatePipe`
-
-## What the learner should implement
-
-- Update the template in `src/app/app.component.html`
-- Replace raw values with pipe expressions
-- Keep current UI structure and test ids
+- `UpperCasePipe` for product names
+- `CurrencyPipe` with explicit display and precision settings
+- `DatePipe` with a stable output format
 
 ## Files
 
 - `src/app/app.component.ts` — source data
-- `src/app/app.component.html` — main task
+- `src/app/app.component.html` — final pipe-based template
 - `src/app/app.component.scss`
 - `src/app/app.component.spec.ts` — tests
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before completion.
+- This is the `answer` branch.
+- It contains the finished reference implementation.
 
 ## Commands
 

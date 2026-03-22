@@ -10,15 +10,13 @@
   <section class="grid">
     <article class="card" *ngFor="let product of products; let index = index" [attr.data-testid]="'product-' + index">
       <h2 [attr.data-testid]="'name-' + index">
-        {{ product.name }}
+        {{ product.name | uppercase }}
       </h2>
       <p class="metric" [attr.data-testid]="'price-' + index">
-        {{ product.price }}
-        <!-- TODO: format with CurrencyPipe and explicit display format -->
+        {{ product.price | currency: 'USD' : 'symbol' : '1.2-2' }}
       </p>
       <p class="metric" [attr.data-testid]="'date-' + index">
-        {{ product.releasedAt }}
-        <!-- TODO: format with DatePipe -->
+        {{ product.releasedAt | date: 'yyyy-MM-dd' }}
       </p>
       <p [attr.data-testid]="'description-' + index">
         {{ product.description }}
