@@ -1,0 +1,17 @@
+<main class="page">
+  <section class="panel">
+    <p class="eyebrow">Topic 25.3</p>
+    <h1 data-testid="title">Directive composition field</h1>
+    <p class="lede">
+      Starter task: compose `focus highlight` and `auto trim` behaviors through `hostDirectives`.
+    </p>
+  </section>
+
+  <section class="panel">
+    <app-profile-name-field
+      [value]="name"
+      (valueChange)="name = $event"></app-profile-name-field>
+
+    <p data-testid="preview">Preview: {{ name }}</p>
+  </section>
+</main>

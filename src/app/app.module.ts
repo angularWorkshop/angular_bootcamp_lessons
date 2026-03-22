@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ProfileNameFieldComponent } from './profile-name-field.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    ProfileNameFieldComponent,
     RouterOutlet,
     BrowserModule
   ],
