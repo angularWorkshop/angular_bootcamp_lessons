@@ -7,8 +7,15 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
   template: `
     <article class="card">
-      <!-- TODO: split projection into [card-header], [card-body], [card-footer] -->
-      <ng-content></ng-content>
+      <header data-testid="card-header-slot">
+        <ng-content select="[card-header]"></ng-content>
+      </header>
+      <section data-testid="card-body-slot">
+        <ng-content select="[card-body]"></ng-content>
+      </section>
+      <footer data-testid="card-footer-slot">
+        <ng-content select="[card-footer]"></ng-content>
+      </footer>
     </article>
   `,
   styles: [
