@@ -1,33 +1,28 @@
 # hostDirectives Composition
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Compose multiple directives on a field component via `hostDirectives`.
 
-## What the learner should build
+## What the solution demonstrates
 
-- Focus highlight behavior on component host
-- Auto trim behavior on field blur
-- Composition of both directives inside component metadata
-
-## What the learner should implement
-
-- Add `hostDirectives` configuration in `profile-name-field.component.ts`
-- Complete trimming logic in `auto-trim.directive.ts`
+- `hostDirectives` composition in standalone component metadata
+- Focus state styling through `FocusHighlightDirective`
+- Input trimming on blur through `AutoTrimDirective`
 
 ## Files
 
-- `src/app/profile-name-field.component.ts` — composition TODO
-- `src/app/auto-trim.directive.ts` — trim TODO
+- `src/app/profile-name-field.component.ts`
 - `src/app/focus-highlight.directive.ts`
+- `src/app/auto-trim.directive.ts`
 - `src/app/app.component.spec.ts`
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before completion.
+- This is the `answer` branch.
+- The test suite should pass.
 
 ## Commands
 

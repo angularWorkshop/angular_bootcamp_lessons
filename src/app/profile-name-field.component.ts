@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AutoTrimDirective } from './auto-trim.directive';
+import { FocusHighlightDirective } from './focus-highlight.directive';
 
 @Component({
   selector: 'app-profile-name-field',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  // TODO: compose FocusHighlightDirective + AutoTrimDirective with hostDirectives.
+  hostDirectives: [FocusHighlightDirective, AutoTrimDirective],
   template: `
     <label class="field">
       Profile name
