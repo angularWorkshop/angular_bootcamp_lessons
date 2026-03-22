@@ -1,32 +1,27 @@
 # Tooltip Directive
 
-This branch contains the starter version of the exercise.
+This branch contains the completed solution for the exercise.
 
 ## Goal
 
 Implement `appTooltip` as a standalone attribute directive.
 
-## What the learner should build
+## What the solution demonstrates
 
-- Tooltip appears on hover over a target element
-- Tooltip text comes from directive input
-- Tooltip disappears on mouse leave
-
-## What the learner should implement
-
-- Finish tooltip rendering logic in `src/app/tooltip.directive.ts`
-- Keep `AppComponent` API and test ids unchanged
+- Input-driven tooltip text
+- Hover enter/leave handling via `@HostListener`
+- Dynamic tooltip element creation and cleanup through `Renderer2`
 
 ## Files
 
-- `src/app/tooltip.directive.ts` — main TODO
+- `src/app/tooltip.directive.ts`
 - `src/app/app.component.html`
 - `src/app/app.component.spec.ts`
 
 ## Notes
 
-- This is the `lesson` branch.
-- Some tests are expected to fail before completion.
+- This is the `answer` branch.
+- The test suite should pass.
 
 ## Commands
 
