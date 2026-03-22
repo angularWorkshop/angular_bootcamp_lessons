@@ -1,27 +1,34 @@
-# AngularDefinitiveGuideLessons
+# Exercise 27.1 — Signal Inputs (completed solution)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+**Branch:** `answer-topic-27-exercise-01-signal-inputs`
 
-## Development server
+## Goal
+Learn to use signal-based inputs (`input()`, `input.required()`) and derive computed values from them.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What the learner should build
+A Team Members page displaying user cards. Each card receives data through signal-based inputs and computes derived values (full name, initials, role label).
 
-## Code scaffolding
+## What the learner should implement
+1. Create `user-card.component.ts` — standalone component with:
+   - `user = input.required<User>()` — required signal input
+   - `showEmail = input(true)` — optional signal input
+   - `fullName = computed(...)` — firstName + lastName
+   - `initials = computed(...)` — first letters uppercased
+   - `roleLabel = computed(...)` — human-readable role
+2. Implement the card template with proper `data-testid` attributes
+3. Import `UserCardComponent` in `AppComponent` and render cards
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Files
+| File | Role |
+|---|---|
+| `user.model.ts` | User interface |
+| `user-card.component.ts` | Completed component |
+| `app.component.ts` | Parent — holds data, passes to cards |
+| `app.component.html` | Parent template — renders cards |
+| `app.component.spec.ts` | Tests (all green) |
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Commands
+```bash
+npm start
+npm test -- --runInBand
+```
