@@ -1,0 +1,19 @@
+<div class="catalog" data-testid="catalog">
+  <h1 class="catalog__title" data-testid="title">Product Catalog</h1>
+
+  <!-- TODO: Replace with <app-category-filter> -->
+  <!-- Pass [categories]="categories" -->
+  <!-- Handle (selected)="onCategorySelected($event)" -->
+  <!-- Handle (cleared)="onFilterCleared()" -->
+  <div data-testid="filter-placeholder">
+    TODO: add category filter component here
+  </div>
+
+  <p class="catalog__selected" data-testid="selected-category">
+    {{ displayCategory() }}
+  </p>
+
+  <p class="catalog__counter" data-testid="change-count">
+    Filter changes: {{ filterChangeCount() }}
+  </p>
+</div>
