@@ -1,0 +1,22 @@
+<div class="team" data-testid="team">
+  <h1 class="team__title" data-testid="title">Team Members</h1>
+
+  <button
+    class="team__toggle-btn"
+    data-testid="toggle-emails"
+    (click)="toggleEmails()"
+  >
+    {{ showEmails() ? 'Hide Emails' : 'Show Emails' }}
+  </button>
+
+  <!-- TODO: Replace the placeholder below with <app-user-card> for each user -->
+  <!-- Use @for to iterate over users() -->
+  <!-- Pass [user]="u" and [showEmail]="showEmails()" -->
+  <div class="team__list" data-testid="user-list">
+    @for (u of users(); track u.id) {
+      <div class="team__placeholder" [attr.data-testid]="'placeholder-' + u.id">
+        {{ u.firstName }} {{ u.lastName }} — TODO: replace with app-user-card
+      </div>
+    }
+  </div>
+</div>
