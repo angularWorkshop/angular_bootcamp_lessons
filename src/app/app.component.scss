@@ -1,0 +1,26 @@
+.viewer {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: sans-serif;
+
+  &__buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+
+      &.active {
+        background: #1976d2;
+        color: #fff;
+        border-color: #1976d2;
+      }
+    }
+  }
+}

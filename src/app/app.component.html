@@ -1,0 +1,31 @@
+<div class="viewer" data-testid="viewer">
+  <h1 data-testid="title">Product Viewer</h1>
+
+  <div class="viewer__buttons" data-testid="product-buttons">
+    @for (id of productIds; track id) {
+      <button
+        [attr.data-testid]="'product-btn-' + id"
+        [class.active]="id === selectedId()"
+        (click)="selectProduct(id)"
+      >
+        Product {{ id }}
+      </button>
+    }
+  </div>
+
+  @if (productResource.isLoading()) {
+    <p data-testid="loading">Loading...</p>
+  }
+
+  @if (productResource.value(); as product) {
+    <div data-testid="product-details">
+      <h2 data-testid="product-name">{{ product.name }}</h2>
+      <p data-testid="product-price">Price: ${{ product.price }}</p>
+      <p data-testid="product-description">{{ product.description }}</p>
+    </div>
+  }
+
+  <button data-testid="reload-btn" (click)="productResource.reload()">Reload</button>
+
+  <p data-testid="status">Status: {{ productResource.status() }}</p>
+</div>
