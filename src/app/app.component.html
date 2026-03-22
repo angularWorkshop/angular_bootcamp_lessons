@@ -1,0 +1,16 @@
+<div class="review" data-testid="review">
+  <h1 class="review__title" data-testid="title">Product Review</h1>
+
+  <app-star-rating [(rating)]="userRating" />
+  <app-toggle [(checked)]="recommend" />
+
+  <p data-testid="rating-display">Rating: {{ userRating() }} / 5</p>
+  <p data-testid="recommend-display">Would recommend: {{ recommend() ? 'Yes' : 'No' }}</p>
+
+  <button
+    data-testid="reset-btn"
+    (click)="reset()"
+  >
+    Reset
+  </button>
+</div>
