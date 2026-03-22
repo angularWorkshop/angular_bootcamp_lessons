@@ -16,8 +16,8 @@ export class AppComponent {
   // TODO: Declare selectedId = signal(1)
 
   // TODO: Declare productResource = resource({
-  //   request: () => ({ id: this.selectedId() }),
-  //   loader: async ({ request }) => this.productService.getProduct(request.id),
+  //   params: () => ({ id: this.selectedId() }),
+  //   loader: async ({ params }) => this.productService.getProduct(params.id),
   // })
 
   protected selectProduct(id: number): void {

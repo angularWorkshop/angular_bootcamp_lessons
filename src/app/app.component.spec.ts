@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ProductService } from './product.service';
 
@@ -7,9 +7,11 @@ function getText(el: HTMLElement, testId: string): string {
   return target ? target.textContent!.trim() : '';
 }
 
-function click(fixture: ComponentFixture<any>, testId: string): void {
+async function clickAndSettle(fixture: ComponentFixture<any>, testId: string): Promise<void> {
   const el = fixture.nativeElement.querySelector(`[data-testid="${testId}"]`);
   el?.click();
+  fixture.detectChanges();
+  await fixture.whenStable();
   fixture.detectChanges();
 }
 
@@ -49,50 +51,46 @@ describe('Exercise 29.3 — resource() for Data Loading', () => {
     expect(btn?.classList.contains('active')).toBe(true);
   });
 
-  it('should load first product data', fakeAsync(() => {
+  it('should load first product data', async () => {
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     expect(getText(fixture.nativeElement, 'product-name')).toBe('Laptop Pro');
     expect(getText(fixture.nativeElement, 'product-price')).toBe('Price: $1299');
-  }));
+  });
 
-  it('should show product description', fakeAsync(() => {
+  it('should show product description', async () => {
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     expect(getText(fixture.nativeElement, 'product-description')).toBe('High-performance laptop');
-  }));
+  });
 
-  it('should load different product when button clicked', fakeAsync(() => {
+  it('should load different product when button clicked', async () => {
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
 
-    click(fixture, 'product-btn-2');
-    tick();
-    fixture.detectChanges();
+    await clickAndSettle(fixture, 'product-btn-2');
 
     expect(getText(fixture.nativeElement, 'product-name')).toBe('Wireless Mouse');
     expect(getText(fixture.nativeElement, 'product-price')).toBe('Price: $49');
-  }));
+  });
 
-  it('should update active button when switching', fakeAsync(() => {
+  it('should update active button when switching', async () => {
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
 
-    click(fixture, 'product-btn-3');
-    tick();
-    fixture.detectChanges();
+    await clickAndSettle(fixture, 'product-btn-3');
 
     const btn1 = fixture.nativeElement.querySelector('[data-testid="product-btn-1"]');
     const btn3 = fixture.nativeElement.querySelector('[data-testid="product-btn-3"]');
     expect(btn1?.classList.contains('active')).toBe(false);
     expect(btn3?.classList.contains('active')).toBe(true);
-  }));
+  });
 
   it('should render reload button', () => {
     fixture.detectChanges();
@@ -100,13 +98,13 @@ describe('Exercise 29.3 — resource() for Data Loading', () => {
     expect(btn).toBeTruthy();
   });
 
-  it('should render status display', fakeAsync(() => {
+  it('should render status display', async () => {
     fixture.detectChanges();
-    tick();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     const status = getText(fixture.nativeElement, 'status');
     // After loading, status should contain something (resolved, etc.)
     expect(status.length).toBeGreaterThan(0);
-  }));
+  });
 });
