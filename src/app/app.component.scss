@@ -1,0 +1,37 @@
+.page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: Arial, sans-serif;
+}
+
+.panel {
+  max-width: 880px;
+  margin: 0 auto 1rem;
+  background: #ffffff;
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.lede {
+  margin: 0.5rem 0 0;
+}
+
+button {
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
