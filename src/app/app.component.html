@@ -2,6 +2,11 @@
   <h1 data-testid="title">Performance Dashboard</h1>
   <p>Open the analytics section below.</p>
 
-  <!-- TODO: implement deferred loading for heavy analytics widget -->
-  <app-heavy-table></app-heavy-table>
+  @defer (on viewport) {
+    <app-heavy-table></app-heavy-table>
+  } @placeholder {
+    <p data-testid="placeholder">Scroll to load analytics table.</p>
+  } @loading {
+    <p data-testid="loading">Loading heavy widget...</p>
+  }
 </section>
