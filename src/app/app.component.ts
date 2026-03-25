@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  PLATFORM_ID,
+  ViewChild,
+  afterNextRender,
+  inject,
+} from '@angular/core';
 import { FakeChart } from './fake-chart';
 
 @Component({
@@ -6,20 +15,33 @@ import { FakeChart } from './fake-chart';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnDestroy {
+  private readonly platformId = inject(PLATFORM_ID);
+
   @ViewChild('chartHost', { static: true }) chartHost?: ElementRef<HTMLElement>;
 
   chartStatus = 'idle';
   private chartInstance?: FakeChart;
 
-  ngAfterViewInit(): void {
-    const host = this.chartHost?.nativeElement;
-    if (!host) {
-      return;
-    }
+  constructor() {
+    afterNextRender(() => {
+      if (!isPlatformBrowser(this.platformId)) {
+        return;
+      }
 
-    // TODO: move DOM integration to afterNextRender + browser guard.
-    const viewportWidth = window.innerWidth;
-    this.chartInstance = new FakeChart(host, viewportWidth);
+      const host = this.chartHost?.nativeElement;
+      if (!host) {
+        return;
+      }
+
+      const hostWidth = host.clientWidth > 0 ? host.clientWidth : 320;
+      this.chartInstance = new FakeChart(host, hostWidth);
+      this.chartStatus = 'ready';
+    });
+  }
+
+  ngOnDestroy() {
+    this.chartInstance?.destroy();
+    this.chartStatus = 'destroyed';
   }
 }
