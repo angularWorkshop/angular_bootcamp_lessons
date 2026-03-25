@@ -1,5 +1,6 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { interval } from 'rxjs';
 import { MetricsService } from './metrics.service';
 
 @Component({
@@ -9,20 +10,20 @@ import { MetricsService } from './metrics.service';
 })
 export class AppComponent implements OnInit {
   private readonly metricsService = inject(MetricsService);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly lessons = signal<string[]>([]);
   readonly heartbeat = signal(0);
-
-  private heartbeatSubscription?: Subscription;
 
   ngOnInit(): void {
     this.metricsService.getLifecycleLessons().subscribe((items) => {
       this.lessons.set(items);
     });
 
-    // TODO: replace manual subscription with takeUntilDestroyed().
-    this.heartbeatSubscription = interval(100).subscribe(() => {
-      this.heartbeat.update((value) => value + 1);
-    });
+    interval(100)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.heartbeat.update((value) => value + 1);
+      });
   }
 }
