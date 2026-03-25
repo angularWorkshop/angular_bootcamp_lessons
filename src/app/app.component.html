@@ -4,10 +4,33 @@
   <button #interactionTrigger type="button">Open Interaction Block</button>
   <button type="button" (click)="enableReady()">Enable Condition</button>
 
-  <!-- TODO: Add timer trigger block, when trigger block, @error blocks, and prefetch on idle. -->
-  @defer (on interaction(interactionTrigger)) {
+  @defer (on interaction(interactionTrigger); prefetch on idle) {
     <article data-testid="interaction-block">Interaction content loaded.</article>
   } @placeholder {
     <p>Click interaction button to load block.</p>
+  } @loading {
+    <p>Loading interaction block...</p>
+  } @error {
+    <p>Interaction block failed to load.</p>
+  }
+
+  @defer (on timer(3s)) {
+    <article data-testid="timer-block">Timer content loaded after 3s.</article>
+  } @placeholder {
+    <p>Timer block is waiting.</p>
+  } @loading {
+    <p>Loading timer block...</p>
+  } @error {
+    <p>Timer block failed to load.</p>
+  }
+
+  @defer (when isReady()) {
+    <article data-testid="when-block">Condition block loaded.</article>
+  } @placeholder {
+    <p>Condition is false. Press Enable Condition.</p>
+  } @loading {
+    <p>Loading conditional block...</p>
+  } @error {
+    <p>Conditional block failed to load.</p>
   }
 </section>
