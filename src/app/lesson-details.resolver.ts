@@ -1,13 +1,10 @@
 import { ResolveFn } from '@angular/router';
-import { of } from 'rxjs';
-import { LessonDetails } from './lesson-data.service';
+import { inject } from '@angular/core';
+import { LessonDataService, LessonDetails } from './lesson-data.service';
 
 export const lessonDetailsResolver: ResolveFn<LessonDetails> = (route) => {
   const id = route.paramMap.get('id') ?? '';
+  const lessonDataService = inject(LessonDataService);
 
-  // TODO: load details through LessonDataService by route id.
-  return of({
-    id,
-    title: 'TODO: resolver data',
-  });
+  return lessonDataService.getLessonById(id);
 };

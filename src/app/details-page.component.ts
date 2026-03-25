@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LessonDetails } from './lesson-data.service';
 
 @Component({
   selector: 'app-details-page',
@@ -14,6 +15,14 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsPageComponent {
   private readonly route = inject(ActivatedRoute);
 
-  routeId = this.route.snapshot.paramMap.get('id') ?? '';
-  title = 'Starter details page';
+  routeId = '';
+  title = '';
+
+  constructor() {
+    this.route.data.subscribe((data) => {
+      const lesson = data['lesson'] as LessonDetails | undefined;
+      this.routeId = lesson?.id ?? 'unknown';
+      this.title = lesson?.title ?? 'Unavailable lesson';
+    });
+  }
 }
