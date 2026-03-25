@@ -1,0 +1,13 @@
+﻿<section class="page">
+  <h1>Deferred Blocks Lab</h1>
+
+  <button #interactionTrigger type="button">Open Interaction Block</button>
+  <button type="button" (click)="enableReady()">Enable Condition</button>
+
+  <!-- TODO: Add timer trigger block, when trigger block, @error blocks, and prefetch on idle. -->
+  @defer (on interaction(interactionTrigger)) {
+    <article data-testid="interaction-block">Interaction content loaded.</article>
+  } @placeholder {
+    <p>Click interaction button to load block.</p>
+  }
+</section>
