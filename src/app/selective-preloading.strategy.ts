@@ -6,8 +6,11 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class SelectivePreloadingStrategy implements PreloadingStrategy {
-  // TODO: preload only routes with data.preload === true
   preload(route: Route, load: () => Observable<unknown>): Observable<unknown> {
+    if (route.data?.['preload'] === true) {
+      return load();
+    }
+
     return of(null);
   }
 }
