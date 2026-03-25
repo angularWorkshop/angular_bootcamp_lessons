@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-
+import { routes } from './app.routes';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    BrowserModule
-  ],
   declarations: [AppComponent],
-  bootstrap:  [AppComponent]
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
