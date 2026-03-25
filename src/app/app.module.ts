@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
     RouterOutlet,
     BrowserModule
   ],
+  // TODO: add provideClientHydration() for SSR-enabled hydration.
+  providers: [],
   declarations: [AppComponent],
   bootstrap:  [AppComponent]
 })

@@ -1,0 +1,19 @@
+<section class="page">
+  <h1 data-testid="title">SSR and Hydration Setup</h1>
+
+  <p class="lead" data-testid="lead">
+    This exercise wires the project for server-side rendering and client hydration.
+  </p>
+
+  <ul class="checklist">
+    @for (item of ssrChecklist; track item) {
+      <li class="checklist__item" [attr.data-testid]="'checkpoint-' + item">
+        {{ item }}
+      </li>
+    }
+  </ul>
+
+  <p class="hint" data-testid="hint">
+    TODO: configure hydration provider and remove browser-only bootstrap hacks.
+  </p>
+</section>
