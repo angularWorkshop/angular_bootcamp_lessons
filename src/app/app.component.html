@@ -1,0 +1,16 @@
+<section class="page">
+  <h1 data-testid="title">SSR-Safe Browser Integration</h1>
+
+  <p class="meta" data-testid="viewport">
+    Viewport width:
+    <strong>{{ viewportWidth() ?? 'unknown' }}</strong>
+  </p>
+
+  <p class="meta" data-testid="resize-count">
+    Resize events: {{ resizeEvents() }}
+  </p>
+
+  <p class="hint">
+    TODO: this component currently touches <code>window</code> too early for SSR.
+  </p>
+</section>
