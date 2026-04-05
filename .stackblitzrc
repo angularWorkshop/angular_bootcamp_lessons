@@ -1,6 +1,6 @@
 {
   "installDependencies": false,
-  "startCommand": "my-custom-command",
+  "startCommand": "npm run start:dev",
   "env": {
     "NODE_ENV": "development"
   }
