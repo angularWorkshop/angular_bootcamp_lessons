@@ -1,27 +1,28 @@
-# AngularDefinitiveGuideLessons
+# Capstone 1.2 - Dashboard Search, Filters, and Refresh
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+## Goal
 
-## Development server
+This capstone turns the dashboard into a reactive search screen.
+You will debounce text input, react immediately to filter changes, refresh the current result set, and ignore stale responses.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What you are training
 
-## Code scaffolding
+- build one RxJS pipeline for search, filters, and refresh
+- debounce text input without delaying status filter changes
+- use `switchMap` so old requests stop controlling the UI
+- keep the latest results, selection, and error state consistent
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Task
 
-## Build
+Finish the reactive flow in `src/app/app.component.ts`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Complete `updateStatus()` and `refreshDashboard()` so they notify the reactive pipeline.
+2. Complete `bindSearchFlow()` with debounce, merge, switchMap, and correct state handling.
+3. Make sure refresh repeats the current query and status instead of inventing a new path.
 
-## Running unit tests
+## Definition of done
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `npm test` passes
+- query input is debounced before the service is called
+- status filter changes trigger a request immediately
+- refresh repeats the current filters and stale requests do not overwrite new results
