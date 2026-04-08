@@ -1,27 +1,28 @@
-# AngularDefinitiveGuideLessons
+# Capstone 1.1 - Feature Dashboard Foundations
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+## Goal
 
-## Development server
+This capstone is the first time the early Angular topics have to work as one real screen.
+You will connect a service-driven dashboard, explicit UI states, card selection, and a details panel.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What you are training
 
-## Code scaffolding
+- compose one feature from components, signals, and a service
+- keep loading, empty, error, and success as honest screen states
+- synchronize list selection with the details panel
+- verify the feature through UI-focused Jest tests
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Task
 
-## Build
+Finish the dashboard flow in `src/app/app.component.ts`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Complete `loadDashboard()` so the screen handles loading, success, empty, and error states.
+2. Store the loaded lessons and select the first one after a successful response.
+3. Complete `selectLesson()` so the details panel follows the clicked card.
 
-## Running unit tests
+## Definition of done
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `npm test` passes
+- the dashboard shows the correct fallback state for each response type
+- clicking another lesson card updates the details panel
+- StackBlitz autostarts the app and watch mode through `npm run start:dev`

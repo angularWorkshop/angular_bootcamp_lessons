@@ -1,0 +1,105 @@
+<main class="shell">
+  <header class="hero">
+    <div>
+      <p class="hero__eyebrow">CAPSTONE PROJECT 1</p>
+      <h1 class="hero__title" data-testid="dashboard-title">{{ title }}</h1>
+      <p class="hero__text">Build one dashboard feature from components, signals, a service, and honest UI states.</p>
+    </div>
+
+    <button type="button" class="hero__action" data-testid="load-dashboard-btn" (click)="loadDashboard()">
+      Load dashboard
+    </button>
+  </header>
+
+  @if (screenState() === 'idle') {
+    <section class="state-card" data-testid="idle-state">
+      <h2>Ready to sync the learning dashboard</h2>
+      <p>Start the load flow and then make sure the screen behaves honestly for success, empty, and error responses.</p>
+    </section>
+  }
+
+  @if (screenState() === 'loading') {
+    <section class="state-card" data-testid="loading-state">
+      <h2>Loading dashboard cards...</h2>
+      <p>The screen is waiting for the service response and should not pretend that stale results are still valid.</p>
+    </section>
+  }
+
+  @if (screenState() === 'empty') {
+    <section class="state-card" data-testid="empty-state">
+      <h2>No lessons matched the current dashboard feed.</h2>
+      <p>The screen should stay usable even when the data source returns an empty list.</p>
+    </section>
+  }
+
+  @if (screenState() === 'error') {
+    <section class="state-card state-card--error" data-testid="error-state">
+      <h2>Could not sync the dashboard.</h2>
+      <p>Clear stale data and let the user try the request again from a known state.</p>
+    </section>
+  }
+
+  @if (screenState() === 'success') {
+    <section class="workspace" data-testid="success-state">
+      <article class="workspace__board">
+        <div class="workspace__summary">
+          <p class="workspace__summary-label">Dashboard snapshot</p>
+          <h2 data-testid="summary-total">{{ summaryLabel() }}</h2>
+          <p data-testid="summary-selection">Selected: {{ selectedLesson()?.title ?? 'Nothing selected yet' }}</p>
+        </div>
+
+        <section class="lesson-list" data-testid="lesson-list">
+          @for (lesson of lessons(); track lesson.id) {
+            <button
+              type="button"
+              class="lesson-card"
+              [class.lesson-card--selected]="lesson.id === selectedLessonId()"
+              [attr.data-testid]="'lesson-card-' + lesson.id"
+              (click)="selectLesson(lesson.id)">
+              <div class="lesson-card__meta">
+                <span class="lesson-card__track">{{ lesson.track }}</span>
+                <span class="lesson-card__status">{{ lesson.status }}</span>
+              </div>
+              <h3 class="lesson-card__title">{{ lesson.title }}</h3>
+              <p class="lesson-card__owner">Owner: {{ lesson.owner }}</p>
+              <p class="lesson-card__summary">{{ lesson.summary }}</p>
+            </button>
+          }
+        </section>
+      </article>
+
+      <aside class="details-panel" data-testid="details-panel">
+        @if (selectedLesson()) {
+          <p class="details-panel__eyebrow">Selected lesson</p>
+          <h2 class="details-panel__title" data-testid="detail-title">{{ selectedLesson()?.title }}</h2>
+          <p class="details-panel__summary">{{ selectedLesson()?.summary }}</p>
+
+          <dl class="details-grid">
+            <div>
+              <dt>Track</dt>
+              <dd data-testid="detail-track">{{ selectedLesson()?.track }}</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd data-testid="detail-status">{{ selectedLesson()?.status }}</dd>
+            </div>
+            <div>
+              <dt>Owner</dt>
+              <dd data-testid="detail-owner">{{ selectedLesson()?.owner }}</dd>
+            </div>
+            <div>
+              <dt>Learners</dt>
+              <dd data-testid="detail-learners">{{ selectedLesson()?.learners }}</dd>
+            </div>
+            <div>
+              <dt>Duration</dt>
+              <dd data-testid="detail-duration">{{ selectedLesson()?.durationMinutes }} min</dd>
+            </div>
+          </dl>
+        } @else {
+          <p class="details-panel__placeholder" data-testid="details-placeholder">Select a lesson to inspect its details.</p>
+        }
+      </aside>
+    </section>
+  }
+</main>
