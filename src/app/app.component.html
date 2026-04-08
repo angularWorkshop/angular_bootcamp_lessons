@@ -1,0 +1,45 @@
+<main class="shell">
+  <header class="hero">
+    <div>
+      <p class="hero__eyebrow">SECTION 16</p>
+      <h1 class="hero__title" data-testid="screen-title">{{ title }}</h1>
+      <p class="hero__text">Build a feature facade that keeps loading, refresh, selection, and details in one honest screen contract.</p>
+    </div>
+    <div class="hero__actions">
+      <button type="button" class="hero__action secondary" data-testid="mode-success" (click)="useMode('success')">Success mode</button>
+      <button type="button" class="hero__action secondary" data-testid="mode-empty" (click)="useMode('empty')">Empty mode</button>
+      <button type="button" class="hero__action secondary" data-testid="mode-error" (click)="useMode('error')">Error mode</button>
+      <button type="button" class="hero__action" data-testid="load-orders" (click)="facade.loadOrders()">Load orders</button>
+    </div>
+  </header>
+  @if (facade.screenState() === 'idle') { <section class="state-card" data-testid="idle-state"><h2>Ready to load the orders workspace</h2><p>Start the facade flow and keep the list, selection, and details panel synchronized.</p></section> }
+  @if (facade.screenState() === 'loading') { <section class="state-card" data-testid="loading-state"><h2>Loading orders…</h2><p>The screen should not show stale details while the next response is still in flight.</p></section> }
+  @if (facade.screenState() === 'empty') { <section class="state-card" data-testid="empty-state"><h2>No orders matched the current data source.</h2></section> }
+  @if (facade.screenState() === 'error') { <section class="state-card" data-testid="error-state"><h2>Could not sync the orders screen.</h2></section> }
+  @if (facade.screenState() === 'success') {
+    <section class="workspace" data-testid="success-state">
+      <article>
+        <div class="toolbar"><div class="toolbar__row"><h2 data-testid="summary-label">{{ facade.summaryLabel() }}</h2><button type="button" class="secondary" data-testid="refresh-orders" (click)="facade.refresh()">Refresh</button></div></div>
+        <section class="lesson-list" data-testid="orders-list">
+          @for (order of facade.orders(); track order.id) {
+            <button type="button" class="lesson-card" [class.lesson-card--selected]="order.id === facade.selectedOrderId()" [attr.data-testid]="'order-card-' + order.id" (click)="facade.selectOrder(order.id)">
+              <div class="lesson-card__meta"><span class="lesson-card__track">{{ order.status }}</span><span class="lesson-card__status">{{ order.priority }}</span></div>
+              <h3>{{ order.title }}</h3><p>{{ order.owner }}</p>
+            </button>
+          }
+        </section>
+      </article>
+      <aside class="details-panel" data-testid="details-panel">
+        @if (facade.selectedOrder()) {
+          <p class="details-panel__eyebrow">Selected order</p>
+          <h2 data-testid="detail-title">{{ facade.selectedOrder()?.title }}</h2>
+          <p class="details-panel__summary" data-testid="detail-summary">{{ facade.selectedOrder()?.summary }}</p>
+          <div class="details-grid">
+            <div><dt>Status</dt><dd data-testid="detail-status">{{ facade.selectedOrder()?.status }}</dd></div>
+            <div><dt>Owner</dt><dd data-testid="detail-owner">{{ facade.selectedOrder()?.owner }}</dd></div>
+          </div>
+        } @else { <p data-testid="details-placeholder">Select an order to inspect the details.</p> }
+      </aside>
+    </section>
+  }
+</main>

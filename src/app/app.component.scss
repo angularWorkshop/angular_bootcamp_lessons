@@ -1,0 +1,186 @@
+.shell {
+  min-height: 100vh;
+  padding: 32px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 28%),
+    linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  color: #0f172a;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.hero,
+.toolbar,
+.workspace,
+.table-card,
+.details-panel,
+.message-banner,
+.state-card,
+.dialog-card,
+.drawer,
+.filters-panel {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.hero,
+.toolbar,
+.message-banner,
+.state-card {
+  padding: 24px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hero__eyebrow,
+.details-panel__eyebrow,
+.workspace__summary-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.hero__text,
+.state-card p,
+.details-panel__summary,
+.message-banner p {
+  margin: 8px 0 0;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.hero__actions,
+.toolbar__row,
+.table-card__actions,
+.details-panel__actions,
+.dialog-card__actions,
+.drawer__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero__action,
+.toolbar button,
+.table-card button,
+.details-panel button,
+.dialog-card button,
+.drawer button {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hero__action.secondary,
+.toolbar button.secondary,
+.table-card button.secondary,
+.details-panel button.secondary,
+.dialog-card button.secondary,
+.drawer button.secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.workspace {
+  margin-top: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+  padding: 24px;
+}
+
+.lesson-list,
+.orders-table {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-card,
+.table-row {
+  width: 100%;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  padding: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lesson-card--selected,
+.table-row--selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.lesson-card__meta,
+.table-row__meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lesson-card__track,
+.lesson-card__status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.toolbar {
+  margin-top: 24px;
+}
+
+.toolbar__row {
+  align-items: end;
+}
+
+.toolbar label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.toolbar input,
+.toolbar select {
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.message-banner {
+  margin-top: 16px;
+}
