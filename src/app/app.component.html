@@ -1,0 +1,128 @@
+<main class="shell">
+  <header class="hero">
+    <div>
+      <p class="hero__eyebrow">CAPSTONE PROJECT 1</p>
+      <h1 class="hero__title" data-testid="dashboard-title">{{ title }}</h1>
+      <p class="hero__text">Treat search, filters, refresh, and stale-response protection as one reactive screen contract.</p>
+    </div>
+  </header>
+
+  <section class="toolbar" data-testid="toolbar">
+    <label class="toolbar__field">
+      <span>Search</span>
+      <input
+        type="text"
+        data-testid="search-input"
+        [value]="query"
+        placeholder="Search lessons by title, owner, or track"
+        (input)="updateQuery(($any($event.target)).value)" />
+    </label>
+
+    <label class="toolbar__field">
+      <span>Status</span>
+      <select data-testid="status-filter" [value]="activeStatus" (change)="updateStatus(($any($event.target)).value)">
+        <option value="all">All</option>
+        <option value="Live">Live</option>
+        <option value="Draft">Draft</option>
+        <option value="Archived">Archived</option>
+      </select>
+    </label>
+
+    <button type="button" class="toolbar__refresh" data-testid="refresh-btn" (click)="refreshDashboard()">
+      Refresh
+    </button>
+  </section>
+
+  @if (screenState() === 'idle') {
+    <section class="state-card" data-testid="idle-state">
+      <h2>Start with a query, a filter, or refresh.</h2>
+      <p>The screen should stay calm until the user asks for data.</p>
+    </section>
+  }
+
+  @if (screenState() === 'searching') {
+    <section class="state-card" data-testid="searching-state">
+      <h2>Searching the latest dashboard request...</h2>
+      <p>The next result should replace stale work instead of racing with it.</p>
+    </section>
+  }
+
+  @if (screenState() === 'empty') {
+    <section class="state-card" data-testid="empty-state">
+      <h2>No lessons matched the current search.</h2>
+      <p>Keep the toolbar available so the user can recover without resetting the whole screen.</p>
+    </section>
+  }
+
+  @if (screenState() === 'error') {
+    <section class="state-card state-card--error" data-testid="error-state">
+      <h2>Search could not be completed.</h2>
+      <p>The screen should drop stale results and wait for the next meaningful action.</p>
+    </section>
+  }
+
+  @if (screenState() === 'results') {
+    <section class="workspace" data-testid="results-state">
+      <article class="workspace__board">
+        <div class="workspace__summary">
+          <p class="workspace__summary-label">Active dashboard query</p>
+          <h2 data-testid="summary-query">Latest query: {{ activeQuery || 'All lessons' }}</h2>
+          <p data-testid="summary-status">Status filter: {{ activeStatus }}</p>
+          <p data-testid="summary-total">Found {{ results().length }} lessons</p>
+        </div>
+
+        <section class="lesson-list" data-testid="lesson-list">
+          @for (lesson of results(); track lesson.id) {
+            <button
+              type="button"
+              class="lesson-card"
+              [class.lesson-card--selected]="lesson.id === selectedLessonId()"
+              [attr.data-testid]="'lesson-card-' + lesson.id"
+              (click)="selectLesson(lesson.id)">
+              <div class="lesson-card__meta">
+                <span class="lesson-card__track">{{ lesson.track }}</span>
+                <span class="lesson-card__status" data-testid="lesson-status">{{ lesson.status }}</span>
+              </div>
+              <h3 class="lesson-card__title" data-testid="lesson-title">{{ lesson.title }}</h3>
+              <p class="lesson-card__owner">Owner: {{ lesson.owner }}</p>
+              <p class="lesson-card__summary">{{ lesson.summary }}</p>
+            </button>
+          }
+        </section>
+      </article>
+
+      <aside class="details-panel" data-testid="details-panel">
+        @if (selectedLesson()) {
+          <p class="details-panel__eyebrow">Selected lesson</p>
+          <h2 class="details-panel__title" data-testid="detail-title">{{ selectedLesson()?.title }}</h2>
+          <p class="details-panel__summary">{{ selectedLesson()?.summary }}</p>
+
+          <dl class="details-grid">
+            <div>
+              <dt>Track</dt>
+              <dd data-testid="detail-track">{{ selectedLesson()?.track }}</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd data-testid="detail-status">{{ selectedLesson()?.status }}</dd>
+            </div>
+            <div>
+              <dt>Owner</dt>
+              <dd data-testid="detail-owner">{{ selectedLesson()?.owner }}</dd>
+            </div>
+            <div>
+              <dt>Learners</dt>
+              <dd data-testid="detail-learners">{{ selectedLesson()?.learners }}</dd>
+            </div>
+            <div>
+              <dt>Duration</dt>
+              <dd data-testid="detail-duration">{{ selectedLesson()?.durationMinutes }} min</dd>
+            </div>
+          </dl>
+        } @else {
+          <p class="details-panel__placeholder" data-testid="details-placeholder">Select a lesson to inspect its details.</p>
+        }
+      </aside>
+    </section>
+  }
+</main>
