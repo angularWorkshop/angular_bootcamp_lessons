@@ -1,27 +1,25 @@
-# AngularDefinitiveGuideLessons
+# Таблица заказов с синхронизацией фильтров, сортировки и страницы через query params
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+## Goal
 
-## Development server
+Make the table reload-safe by keeping filters, sorting, and pagination in the URL.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What you are training
 
-## Code scaffolding
+- route hydration
+- URL-synchronized filters
+- shareable table state
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Task
 
-## Build
+Finish the TODOs in the Angular screen and its feature layer.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. hydrate the facade from query params
+2. push search and status changes into the router
+3. keep sorting and page in the same URL contract
 
-## Running unit tests
+## Done when
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `npm run test` passes
+- the screen behaves honestly for every checked state
+- the implementation keeps the feature logic out of the template
