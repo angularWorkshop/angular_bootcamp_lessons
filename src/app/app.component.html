@@ -1,0 +1,10 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 16</p><h1 class="hero__title">{{ title }}</h1><p class="hero__text">Keep filters, sort order, and page in the URL so the screen survives reloads and links.</p></div></header>
+  <section class="toolbar"><div class="toolbar__row">
+    <label>Search<input data-testid="search-input" [value]="facade.search()" (input)="facade.updateSearch(($any($event.target)).value)" /></label>
+    <label>Status<select data-testid="status-select" [value]="facade.statusFilter()" (change)="facade.updateStatus(($any($event.target)).value)"><option value="all">All</option><option value="Live">Live</option><option value="Draft">Draft</option></select></label>
+    <button type="button" class="secondary" data-testid="sort-owner" (click)="facade.changeSort('owner')">Sort by owner</button>
+    <button type="button" class="secondary" data-testid="next-page" (click)="facade.nextPage()">Next page</button>
+  </div></section>
+  <section class="workspace"><article class="table-card"><p data-testid="page-label">Page {{ facade.page() }}</p><p data-testid="status-label">Status {{ facade.statusFilter() }}</p><div class="orders-table">@for (row of facade.visibleRows(); track row.id) { <article class="table-row" [attr.data-testid]="'row-' + row.id"><h2>{{ row.title }}</h2><p [attr.data-testid]="'row-owner-' + row.id">{{ row.owner }}</p><p>{{ row.status }}</p></article> }</div></article></section>
+</main>
