@@ -1,0 +1,7 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 16</p><h1 class="hero__title">{{ title }}</h1><p class="hero__text">A selected entity should live in the URL together with the rest of the screen context.</p></div></header>
+  <section class="workspace">
+    <article class="lesson-list">@for (row of facade.rows(); track row.id) { <button type="button" class="lesson-card" [class.lesson-card--selected]="row.id === facade.selectedOrderId()" [attr.data-testid]="'deep-row-' + row.id" (click)="facade.selectOrder(row.id)"><div class="lesson-card__meta"><span class="lesson-card__track">{{ row.owner }}</span><span class="lesson-card__status">{{ row.status }}</span></div><h2>{{ row.title }}</h2></button> }</article>
+    <aside class="details-panel" data-testid="details-panel">@if (facade.selectedOrder()) { <p class="details-panel__eyebrow">Deep-linked order</p><h2 data-testid="detail-title">{{ facade.selectedOrder()?.title }}</h2><p data-testid="detail-summary">{{ facade.selectedOrder()?.summary }}</p><p data-testid="detail-owner">{{ facade.selectedOrder()?.owner }}</p> } @else { <p data-testid="details-placeholder">Select an order to inspect its details.</p> }</aside>
+  </section>
+</main>

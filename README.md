@@ -1,27 +1,25 @@
-# AngularDefinitiveGuideLessons
+# Deep-link в карточку сущности и восстановление состояния экрана после reload
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+## Goal
 
-## Development server
+Make the selected entity part of the URL so the details panel survives reloads and shared links.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What you are training
 
-## Code scaffolding
+- deep links through query params
+- selection restored from the route
+- preserving the rest of the screen context
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Task
 
-## Build
+Finish the TODOs in the Angular screen and its feature layer.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. hydrate selection from orderId in the route
+2. update query params when another card is selected
+3. keep search, status, and page while changing the selected card
 
-## Running unit tests
+## Done when
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `npm run test` passes
+- the screen behaves honestly for every checked state
+- the implementation keeps the feature logic out of the template
