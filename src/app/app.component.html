@@ -1,0 +1,14 @@
+<main class="shell">
+  <header class="hero">
+    <div><p class="hero__eyebrow">SECTION 16</p><h1 class="hero__title" data-testid="screen-title">{{ title }}</h1><p class="hero__text">Apply an optimistic status change, keep the UI instant, and roll it back honestly when the request fails.</p></div>
+    <div class="hero__actions"><button type="button" class="hero__action secondary" data-testid="fail-next-toggle" (click)="failNextToggle()">Fail next toggle</button></div>
+  </header>
+  <section class="message-banner" data-testid="message-banner"><p data-testid="screen-message">{{ facade.message() }}</p></section>
+  <section class="workspace"><article class="lesson-list">@for (order of facade.orders(); track order.id) {
+    <section class="lesson-card" [attr.data-testid]="'status-card-' + order.id">
+      <div class="lesson-card__meta"><span class="lesson-card__track">{{ order.owner }}</span><span class="lesson-card__status" [attr.data-testid]="'status-value-' + order.id">{{ order.status }}</span></div>
+      <h2>{{ order.title }}</h2>
+      <button type="button" class="hero__action" [attr.data-testid]="'toggle-status-' + order.id" (click)="facade.toggleStatus(order.id)">Toggle status</button>
+    </section>
+  }</article></section>
+</main>
