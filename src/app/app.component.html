@@ -1,0 +1,14 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">CAPSTONE 3</p><h1 class="hero__title">Operations Platform Hardening</h1><p class="hero__text">Combine SSR-safe browser access, accessibility, performance budget, and release telemetry into one release checklist.</p></div></header>
+  <section class="actions">
+    <button type="button" data-testid="persist-tab" (click)="persistLastTab()">Persist tab</button>
+    <button type="button" class="secondary" data-testid="mark-a11y" (click)="markA11yReady()">Mark a11y ready</button>
+    <button type="button" class="secondary" data-testid="show-secondary" (click)="showSecondaryBlock()">Show secondary block</button>
+    <button type="button" data-testid="connect-telemetry" (click)="connectTelemetry()">Connect telemetry</button>
+  </section>
+  <section class="banner">
+    <p data-testid="live-message">{{ liveMessage() }}</p>
+    <p data-testid="budget-status">{{ budgetStatus() }}</p>
+    <p data-testid="release-status">{{ releaseStatus() }}</p>
+  </section>
+</main>
