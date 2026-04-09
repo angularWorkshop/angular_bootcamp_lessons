@@ -1,0 +1,12 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 19</p><h1 class="hero__title">Track and Render Budget</h1><p class="hero__text">Move expensive list work into computed state and stabilize identity for each row.</p></div></header>
+  <section class="actions">
+    <button type="button" data-testid="show-all" (click)="setStatus('all')">All</button>
+    <button type="button" class="secondary" data-testid="show-live" (click)="setStatus('Live')">Live</button>
+  </section>
+  <section class="workspace">
+    @for (row of visibleRows(); track $index) {
+      <article class="card" data-testid="task-row">{{ row.title }}</article>
+    }
+  </section>
+</main>
