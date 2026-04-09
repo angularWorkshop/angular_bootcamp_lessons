@@ -1,0 +1,28 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 17</p><h1 class="hero__title">Bulk Delete Flow</h1><p class="hero__text">Confirm the destructive action, remove rows optimistically, and leave a short undo path.</p></div></header>
+  <section class="workspace">
+    <article class="list">
+      @for (row of rows; track row.id) {
+        <section class="row" [attr.data-testid]="'row-' + row.id">
+          <div class="inline"><span>{{ row.title }}</span><span class="badge" [attr.data-testid]="'selected-' + row.id">{{ row.selected ? 'selected' : 'idle' }}</span></div>
+          <button type="button" class="secondary" [attr.data-testid]="'toggle-' + row.id" (click)="toggleRow(row.id)">Toggle selection</button>
+        </section>
+      }
+    </article>
+    <div class="actions">
+      <button type="button" data-testid="request-delete" (click)="requestDeleteSelected()">Delete selected</button>
+    </div>
+    @if (confirmOpen) {
+      <section class="dialog" data-testid="confirm-dialog">
+        <p>Confirm the bulk delete.</p>
+        <div class="actions"><button type="button" data-testid="confirm-delete" (click)="confirmDelete()">Confirm delete</button></div>
+      </section>
+    }
+    @if (snackbar) {
+      <section class="banner" data-testid="snackbar">
+        <p>{{ snackbar }}</p>
+        <button type="button" class="secondary" data-testid="undo-delete" (click)="undoDelete()">Undo</button>
+      </section>
+    }
+  </section>
+</main>
