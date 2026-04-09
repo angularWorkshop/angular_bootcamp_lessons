@@ -1,0 +1,8 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 20</p><h1 class="hero__title">Shell Components Library</h1><p class="hero__text">Give the shared card component a predictable public API with slots and an action output.</p></div></header>
+  <app-shell-card title="Release note" tone="warning" (action)="handleAction()">
+    <p shellCardBody data-testid="projected-body">Deploy is ready for staging.</p>
+    <button shellCardAction type="button" class="secondary" data-testid="projected-button">Open checklist</button>
+  </app-shell-card>
+  <p data-testid="action-clicks">{{ actionClicks }}</p>
+</main>
