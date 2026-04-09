@@ -1,0 +1,14 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 18</p><h1 class="hero__title">Realtime Feed</h1><p class="hero__text">Treat the feed and the connection indicator as one coordinated screen.</p></div></header>
+  <section class="banner"><p data-testid="connection-status">{{ facade.connectionStatus() }}</p></section>
+  <section class="actions">
+    <button type="button" data-testid="push-event" (click)="stream.pushEvent('New comment from Mia')">Push event</button>
+    <button type="button" class="secondary" data-testid="disconnect" (click)="stream.disconnect()">Disconnect</button>
+    <button type="button" class="secondary" data-testid="reconnect" (click)="stream.reconnect()">Reconnect</button>
+  </section>
+  <section class="workspace">
+    @for (event of facade.events(); track event.id) {
+      <article class="card" [attr.data-testid]="'feed-event-' + event.id">{{ event.text }}</article>
+    }
+  </section>
+</main>
