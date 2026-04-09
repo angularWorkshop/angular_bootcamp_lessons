@@ -1,0 +1,19 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 18</p><h1 class="hero__title">{{ title }}</h1><p class="hero__text">Turn the upload zone into a queue with preview and progress for each file.</p></div></header>
+  <section class="drop-zone">
+    <div class="actions">
+      <button type="button" data-testid="simulate-drop" (click)="facade.acceptDemoFiles()">Simulate drop</button>
+      <button type="button" data-testid="start-uploads" (click)="facade.startUploads()">Start uploads</button>
+    </div>
+  </section>
+  <section class="workspace">
+    @for (file of facade.files(); track file.id) {
+      <article class="card" [attr.data-testid]="'file-' + file.id">
+        <h2>{{ file.name }}</h2>
+        <p [attr.data-testid]="'preview-' + file.id">{{ file.previewUrl }}</p>
+        <p [attr.data-testid]="'status-' + file.id">{{ file.status }}</p>
+        <p [attr.data-testid]="'progress-' + file.id">{{ file.progress }}</p>
+      </article>
+    }
+  </section>
+</main>
