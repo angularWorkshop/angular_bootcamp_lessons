@@ -1,0 +1,23 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 17</p><h1 class="hero__title" data-testid="screen-title">{{ title }}</h1><p class="hero__text">Connect validation, keyboard submit, aria attributes, and screen-reader feedback into one clear form flow.</p></div></header>
+  <section class="panel">
+    <p class="status" aria-live="polite" data-testid="live-region">{{ liveMessage }}</p>
+    <p class="sr-note" data-testid="focus-target">{{ firstInvalidFieldId }}</p>
+    <form class="form-grid" data-testid="profile-form" (ngSubmit)="submit()">
+      <label class="field">Name
+        <input name="name" data-testid="name-input" [(ngModel)]="form.name" [attr.aria-describedby]="errors.name ? 'name-error' : null" />
+      </label>
+      @if (errors.name) { <p id="name-error" class="error" data-testid="name-error">{{ errors.name }}</p> }
+
+      <label class="field">Email
+        <input name="email" data-testid="email-input" [(ngModel)]="form.email" [attr.aria-describedby]="errors.email ? 'email-error' : null" />
+      </label>
+      @if (errors.email) { <p id="email-error" class="error" data-testid="email-error">{{ errors.email }}</p> }
+
+      <div class="actions">
+        <button type="submit" data-testid="submit-button">Save profile</button>
+      </div>
+    </form>
+    @if (submitSuccess) { <p class="status status--success" data-testid="success-state">Profile saved.</p> }
+  </section>
+</main>
