@@ -1,0 +1,7 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 19</p><h1 class="hero__title">Release Hardening</h1><p class="hero__text">Turn runtime risks into explicit production guards and smoke results.</p></div></header>
+  <div class="actions"><button type="button" data-testid="run-hardening" (click)="runHardeningCheck()">Run hardening check</button></div>
+  <p class="sr-note" data-testid="debug-visible">{{ runtime.production && runtime.debugToolsEnabled ? 'debug-leak' : 'debug-safe' }}</p>
+  @if (errorSurface) { <p class="error" data-testid="error-surface">{{ errorSurface }}</p> }
+  <p data-testid="smoke-status">{{ smokeStatus }}</p>
+</main>
