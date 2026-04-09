@@ -1,0 +1,10 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 19</p><h1 class="hero__title">Deferred Secondary Workspace</h1><p class="hero__text">Keep the primary path visible first and load the secondary block only on demand.</p></div></header>
+  <section class="banner"><p data-testid="budget-status">{{ budgetStatus() }}</p></section>
+  <button type="button" data-testid="show-secondary" (click)="showSecondary()">Show secondary panel</button>
+  @defer (when secondaryVisible()) {
+    <section class="panel" data-testid="secondary-panel">Deferred analytics panel</section>
+  } @placeholder {
+    <section class="panel" data-testid="secondary-placeholder">Secondary panel is postponed.</section>
+  }
+</main>
