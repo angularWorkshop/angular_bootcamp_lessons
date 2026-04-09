@@ -1,0 +1,15 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 18</p><h1 class="hero__title">Jobs Monitor</h1><p class="hero__text">Avoid stale listeners, double subscriptions, and broken reconnect behavior.</p></div></header>
+  <section class="actions">
+    <button type="button" data-testid="start-monitoring" (click)="facade.startMonitoring()">Start</button>
+    <button type="button" class="secondary" data-testid="stop-monitoring" (click)="facade.stopMonitoring()">Stop</button>
+    <button type="button" class="secondary" data-testid="reconnect-monitoring" (click)="facade.reconnect()">Reconnect</button>
+    <button type="button" data-testid="emit-job" (click)="jobsStream.emit('Job finished')">Emit job</button>
+  </section>
+  <section class="banner"><p data-testid="listener-count">{{ jobsStream.activeListeners() }}</p></section>
+  <section class="workspace">
+    @for (event of facade.events(); track event + $index) {
+      <article class="card" data-testid="job-event">{{ event }}</article>
+    }
+  </section>
+</main>
