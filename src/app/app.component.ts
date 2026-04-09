@@ -1,3 +1,4 @@
+import { WorkspaceBadgeComponent } from './shared/workspace-badge/workspace-badge.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  protected readonly vm = { label: 'Core migrations', count: 4 };
+}
