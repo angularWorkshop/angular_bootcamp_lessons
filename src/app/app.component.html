@@ -1,0 +1,26 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 17</p><h1 class="hero__title">Drawer Editor Guard</h1><p class="hero__text">Keep the draft separate from the saved value and guard the close flow.</p></div></header>
+  <section class="workspace">
+    <article class="list">
+      @for (item of items; track item.id) {
+        <section class="row" [attr.data-testid]="'item-' + item.id">
+        <p [attr.data-testid]="'title-' + item.id">{{ item.title }}</p>
+          <button type="button" [attr.data-testid]="'edit-' + item.id" (click)="openEditor(item)">Edit</button>
+        </section>
+      }
+    </article>
+    @if (drawerOpen) {
+      <aside class="drawer" data-testid="editor-drawer">
+        <p class="meta-label">Draft editor</p>
+        <input data-testid="draft-input" [(ngModel)]="draftTitle" (ngModelChange)="updateDraft($event)" />
+        <p class="sr-note" data-testid="dirty-flag">{{ dirty ? 'dirty' : 'clean' }}</p>
+        @if (guardMessage) { <p class="error" data-testid="guard-message">{{ guardMessage }}</p> }
+        <div class="actions">
+          <button type="button" data-testid="attempt-close" class="secondary" (click)="attemptClose()">Close</button>
+          <button type="button" data-testid="cancel-changes" class="secondary" (click)="cancelChanges()">Cancel</button>
+          <button type="button" data-testid="save-changes" (click)="saveChanges()">Save</button>
+        </div>
+      </aside>
+    }
+  </section>
+</main>
