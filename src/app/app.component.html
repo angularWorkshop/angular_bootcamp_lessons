@@ -1,0 +1,24 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 17</p><h1 class="hero__title">{{ title }}</h1><p class="hero__text">Restore the right focus target after each filters-table transition.</p></div></header>
+  <section class="banner">
+    <p data-testid="live-region">{{ liveMessage }}</p>
+    <p class="sr-note" data-testid="focus-target">{{ focusTarget }}</p>
+  </section>
+  <section class="panel">
+    <button type="button" data-testid="open-filters" (click)="openFilters()">Open filters</button>
+    @if (filtersOpen) {
+      <section class="drawer" data-testid="filters-panel">
+        <p class="meta-label">Filters panel</p>
+        <input data-testid="filters-search" placeholder="Search in results" />
+        <div class="actions">
+          <button type="button" data-testid="apply-filters" (click)="applyFilters()">Apply</button>
+          <button type="button" class="secondary" data-testid="cancel-filters" (click)="cancelFilters()">Cancel</button>
+        </div>
+      </section>
+    }
+    <section class="table-card">
+      <h2 data-testid="results-heading">Results table</h2>
+      <p class="muted">The focus target should point here after a successful apply.</p>
+    </section>
+  </section>
+</main>
