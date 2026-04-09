@@ -1,0 +1,31 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">CAPSTONE 3</p><h1 class="hero__title">Operations Console</h1><p class="hero__text">Coordinate search, drawer editing, upload queue, and realtime jobs in one screen contract.</p></div></header>
+  <section class="actions">
+    <button type="button" data-testid="search-fraud" (click)="applySearch('Fraud')">Search Fraud</button>
+    <button type="button" class="secondary" data-testid="search-all" (click)="applySearch('')">Reset search</button>
+    <button type="button" class="secondary" data-testid="connect-jobs" (click)="connectJobs()">Connect jobs</button>
+    <button type="button" class="secondary" data-testid="emit-job" (click)="jobsStream.emit('Upload finished')">Emit job</button>
+  </section>
+  <section class="workspace">
+    <div class="orders-table">
+      @for (row of visibleRows(); track row.id) {
+        <button type="button" class="table-row" [attr.data-testid]="'row-' + row.id" (click)="openDrawer(row.id)">
+          {{ row.title }}
+        </button>
+      }
+    </div>
+    <aside class="details-panel">
+      <p data-testid="drawer-open">{{ drawerOpen() ? 'open' : 'closed' }}</p>
+      <p data-testid="drawer-title">{{ drawerDraftTitle() }}</p>
+      <button type="button" data-testid="queue-upload" (click)="queueUpload()">Queue upload</button>
+      <p data-testid="upload-count">{{ uploads().length }}</p>
+    </aside>
+  </section>
+  <section class="workspace">
+    <div class="table-card">
+      @for (job of jobs(); track job + $index) {
+        <article class="card" data-testid="job-event">{{ job }}</article>
+      }
+    </div>
+  </section>
+</main>
