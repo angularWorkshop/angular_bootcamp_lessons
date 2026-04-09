@@ -1,0 +1,11 @@
+<main class="shell">
+  <header class="hero"><div><p class="hero__eyebrow">SECTION 19</p><h1 class="hero__title">Runtime Config and Telemetry</h1><p class="hero__text">Read the feature flag from runtime config and send telemetry for both the main action and its failure path.</p></div></header>
+  <section class="banner"><p data-testid="environment">{{ runtime.environment }}</p></section>
+  @if (runtime.featureFlags.experimentalAction) {
+    <div class="actions">
+      <button type="button" data-testid="primary-action" (click)="trackPrimaryAction()">Run action</button>
+      <button type="button" class="secondary" data-testid="error-action" (click)="trackError()">Simulate error</button>
+    </div>
+  }
+  @if (errorMessage) { <p class="error" data-testid="error-message">{{ errorMessage }}</p> }
+</main>
