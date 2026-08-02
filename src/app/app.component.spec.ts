@@ -8,7 +8,7 @@ describe('Exercise 34.2 — afterNextRender for DOM integration', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
