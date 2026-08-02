@@ -5,8 +5,12 @@ import { AppComponent } from './app.component';
 import { HeavyTableComponent } from './heavy-table.component';
 
 @NgModule({
-  declarations: [AppComponent, HeavyTableComponent],
-  imports: [CommonModule, BrowserModule],
+  declarations: [
+    HeavyTableComponent
+  ],
+  imports: [CommonModule, BrowserModule,
+    AppComponent
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
