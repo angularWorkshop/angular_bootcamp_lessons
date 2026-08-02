@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
     }),
+    AppComponent
   ],
   bootstrap: [AppComponent],
 })
