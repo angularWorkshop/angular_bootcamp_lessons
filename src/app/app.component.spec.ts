@@ -48,7 +48,7 @@ describe('AppComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [{ provide: DashboardLessonsService, useValue: dashboardLessonsService }],
     }).compileComponents();
 
