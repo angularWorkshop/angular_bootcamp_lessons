@@ -11,9 +11,10 @@ import { errorRetryInterceptor } from './error-retry.interceptor';
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
-  declarations: [AppComponent],
+  declarations: [],
   providers: [provideHttpClient(withInterceptors([errorRetryInterceptor]))],
   bootstrap:  [AppComponent]
 })
