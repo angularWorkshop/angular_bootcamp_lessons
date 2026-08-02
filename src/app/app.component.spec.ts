@@ -10,7 +10,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [UploadRetryApiService, UploadRetryFacadeService],
     }).compileComponents();
 
