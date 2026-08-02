@@ -6,8 +6,8 @@ import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-details-page',
-  template: `,
   imports: [AsyncPipe],
+  template: `
     <section data-testid="details-page">
       <h2 data-testid="details-title">{{ (lesson$ | async)?.title }}</h2>
     </section>
