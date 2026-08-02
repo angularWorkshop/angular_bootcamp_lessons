@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { User } from './user.model';
-import { UserCardComponent } from './user-card.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [UserCardComponent],
+
 })
 export class AppComponent {
   protected readonly users = signal<User[]>([
