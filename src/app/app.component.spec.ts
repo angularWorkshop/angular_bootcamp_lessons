@@ -51,7 +51,7 @@ describe('AppComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [{ provide: DashboardSearchService, useValue: dashboardSearchService }],
     }).compileComponents();
 
