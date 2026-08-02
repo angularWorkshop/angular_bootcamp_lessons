@@ -11,9 +11,10 @@ import { authInterceptor } from './auth.interceptor';
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
-  declarations: [AppComponent],
+  declarations: [],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap:  [AppComponent]
 })
