@@ -11,9 +11,12 @@ import { DetailsPageComponent } from './details-page.component';
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
-  declarations: [AppComponent, DetailsPageComponent],
+  declarations: [
+    DetailsPageComponent
+  ],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
