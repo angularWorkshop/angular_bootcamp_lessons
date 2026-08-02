@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
   // TODO: add provideClientHydration() for SSR-enabled hydration.
   providers: [],
-  declarations: [AppComponent],
+  declarations: [],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
