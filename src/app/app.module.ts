@@ -12,9 +12,13 @@ import { ErrorPageComponent } from './error-page.component';
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
-  declarations: [AppComponent, DetailsPageComponent, ErrorPageComponent],
+  declarations: [
+    DetailsPageComponent,
+    ErrorPageComponent
+  ],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
