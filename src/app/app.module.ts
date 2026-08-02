@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
+import { LessonChecklistComponent } from './lesson-checklist.component';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { AppComponent } from './app.component';
     RouterOutlet,
     BrowserModule
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, LessonChecklistComponent],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
