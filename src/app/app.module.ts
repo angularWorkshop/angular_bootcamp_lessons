@@ -11,9 +11,10 @@ import { SearchBoxComponent } from './search-box.component';
     CommonModule,
     RouterOutlet,
     BrowserModule,
-    SearchBoxComponent
+    SearchBoxComponent,
+    AppComponent
   ],
-  declarations: [AppComponent],
+  declarations: [],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
