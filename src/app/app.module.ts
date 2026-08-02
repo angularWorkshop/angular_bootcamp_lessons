@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
-  declarations: [AppComponent],
+  declarations: [],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
