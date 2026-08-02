@@ -1,11 +1,9 @@
 import { Component, signal, computed } from '@angular/core';
-import { CategoryFilterComponent } from './category-filter.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [CategoryFilterComponent],
 })
 export class AppComponent {
   protected readonly categories = ['Electronics', 'Books', 'Clothing', 'Sports'];
