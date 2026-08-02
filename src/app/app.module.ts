@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    BrowserModule
+    BrowserModule,
+    AppComponent
   ],
   providers: [provideClientHydration()],
-  declarations: [AppComponent],
+  declarations: [],
   bootstrap:  [AppComponent]
 })
 export class AppModule { }
