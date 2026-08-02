@@ -10,7 +10,7 @@ describe('Exercise 34.1 — init and cleanup resources', () => {
     jest.useFakeTimers();
 
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
