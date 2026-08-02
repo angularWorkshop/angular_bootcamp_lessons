@@ -8,7 +8,7 @@ describe('Exercise 35.2 — SSR-safe component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
