@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  declarations: [],
+  imports: [BrowserModule, RouterModule.forRoot(routes),
+    AppComponent
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
