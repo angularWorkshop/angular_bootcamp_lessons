@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { LessonCard } from './lesson-data.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-details-page',
-  template: `
+  template: `,
+  imports: [AsyncPipe],
     <section data-testid="details-page">
       <h2 data-testid="details-title">{{ (lesson$ | async)?.title }}</h2>
     </section>
