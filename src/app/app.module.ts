@@ -6,12 +6,13 @@ import { routes } from './app.routes';
 import { SelectivePreloadingStrategy } from './selective-preloading.strategy';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: SelectivePreloadingStrategy,
     }),
+    AppComponent
   ],
   bootstrap: [AppComponent],
 })
