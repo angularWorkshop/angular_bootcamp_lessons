@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import { readdir, stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import process from 'node:process';
 
 const COLORS = {
@@ -14,6 +15,8 @@ const COLORS = {
 const WATCH_ROOTS = ['src'];
 const WATCH_FILES = ['angular.json', 'package.json', 'jest.config.js', 'tsconfig.json', 'tsconfig.spec.json'];
 const POLL_INTERVAL_MS = 1500;
+const JEST_BIN = './node_modules/jest/bin/jest.js';
+const NG_BIN = './node_modules/@angular/cli/bin/ng.js';
 
 let runNumber = 0;
 let isRunning = false;
@@ -108,6 +111,14 @@ function runCommand(label, command, args) {
       output += chunk.toString();
     });
 
+    child.on('error', error => {
+      resolve({
+        label,
+        code: 1,
+        output: String(error?.stack ?? error?.message ?? error),
+      });
+    });
+
     child.on('close', code => {
       resolve({
         label,
@@ -119,7 +130,12 @@ function runCommand(label, command, args) {
 }
 
 function startPreviewServer() {
-  const child = spawn('npm', ['run', 'start', '--', '--host', '0.0.0.0'], {
+  if (!existsSync(NG_BIN)) {
+    console.log(colorize('yellow', '[ng] Angular CLI is not installed yet. Skipping preview server.'));
+    return;
+  }
+
+  const child = spawn(process.execPath, [NG_BIN, 'serve', '--host', '0.0.0.0'], {
     stdio: ['ignore', 'pipe', 'pipe'],
     env: createColoredEnv(),
   });
@@ -135,6 +151,10 @@ function startPreviewServer() {
   child.on('close', code => {
     console.log(colorize(code === 0 ? 'yellow' : 'red', `[ng] preview server stopped with code ${code ?? 1}`));
   });
+
+  child.on('error', error => {
+    console.log(colorize('red', `[ng] ${error instanceof Error ? error.message : String(error)}`));
+  });
 }
 
 async function executeChecks(reason) {
@@ -149,7 +169,7 @@ async function executeChecks(reason) {
   printHeading(`Checking assignment status (#${runNumber})`, 'cyan');
   console.log(colorize('dim', `Reason: ${reason}`));
 
-  const tests = await runCommand('Jest', 'npm', ['run', 'test', '--', '--runInBand', '--watchAll=false', '--colors']);
+  const tests = await runCommand('Jest', process.execPath, [JEST_BIN, '--runInBand', '--watchAll=false', '--colors']);
 
   if (tests.code !== 0) {
     printHeading('TEST FAILURES', 'red');
