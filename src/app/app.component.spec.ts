@@ -6,7 +6,7 @@ describe('AppComponent', () => {
   let host: HTMLElement;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ declarations: [AppComponent] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [AppComponent], }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
