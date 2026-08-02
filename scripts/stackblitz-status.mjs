@@ -169,17 +169,41 @@ async function executeChecks(reason) {
   printHeading(`Checking assignment status (#${runNumber})`, 'cyan');
   console.log(colorize('dim', `Reason: ${reason}`));
 
+  const build = existsSync(NG_BIN)
+    ? await runCommand('Angular build', process.execPath, [
+        NG_BIN,
+        'build',
+        '--configuration',
+        'development',
+        '--progress=false',
+      ])
+    : {
+        label: 'Angular build',
+        code: 0,
+        output: 'Angular CLI is not installed yet. Build check skipped.',
+      };
   const tests = await runCommand('Jest', process.execPath, [JEST_BIN, '--runInBand', '--watchAll=false', '--colors']);
+
+  if (build.code !== 0) {
+    printHeading('BUILD ERRORS', 'red');
+    console.log(build.output || colorize('red', 'Angular build failed without output.'));
+  } else {
+    console.log(colorize('green', 'Angular build: OK'));
+  }
 
   if (tests.code !== 0) {
     printHeading('TEST FAILURES', 'red');
     console.log(tests.output || colorize('red', 'Jest failed without output.'));
+  } else {
+    console.log(colorize('green', 'Jest: OK'));
+  }
+
+  if (build.code !== 0 || tests.code !== 0) {
     printHeading('ASSIGNMENT STATUS: NOT COMPLETED', 'red');
     console.log(colorize('yellow', 'Fix the errors above and save the file to run checks again.'));
   } else {
-    console.log(colorize('green', 'Jest: OK'));
     printHeading('ASSIGNMENT STATUS: COMPLETED', 'green');
-    console.log(colorize('green', 'All tests passed. The current solution is valid.'));
+    console.log(colorize('green', 'Build and tests passed. The current solution is valid.'));
   }
 
   isRunning = false;
@@ -205,7 +229,7 @@ async function pollFiles() {
 }
 
 console.log(colorize('cyan', 'Angular StackBlitz status runner started.'));
-console.log(colorize('dim', 'Preview uses ng serve. Assignment status is based on Jest results.'));
+console.log(colorize('dim', 'Preview uses ng serve. Assignment status is based on Angular build and Jest results.'));
 
 startPreviewServer();
 lastSignature = await buildSignature();
