@@ -8,7 +8,7 @@ describe('Exercise 35.1 — SSR and hydration setup', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
