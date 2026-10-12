@@ -8,7 +8,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, ShellCardComponent],
+      imports: [AppComponent, ShellCardComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
