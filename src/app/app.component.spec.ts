@@ -8,7 +8,7 @@ describe('AppComponent', () => {
   let host: HTMLElement;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ declarations: [AppComponent] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [AppComponent] }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
@@ -20,14 +20,14 @@ describe('AppComponent', () => {
   });
 
   it('should keep shared presenters free from feature imports', () => {
-    const presenterPath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/shared/presenters/project-status.presenter.ts');
+    const presenterPath = path.join('.', 'src/app/shared/presenters/project-status.presenter.ts');
     const presenter = fs.readFileSync(presenterPath, 'utf8');
     expect(presenter).not.toContain('orders-facade.service');
     expect(presenter).toContain('ProjectStatusVm');
   });
 
   it('should keep core overview files dependent on shared contracts only', () => {
-    const overviewPath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/core/project-overview.ts');
+    const overviewPath = path.join('.', 'src/app/core/project-overview.ts');
     const overview = fs.readFileSync(overviewPath, 'utf8');
     expect(overview).not.toContain('orders-facade.service');
     expect(overview).toContain('ProjectStatusVm');
