@@ -11,7 +11,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [TelemetryService],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
   });
 
   it('should guard browser-only access with an SSR-safe check', () => {
-    const sourcePath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/app.component.ts');
+    const sourcePath = path.join('.', 'src/app/app.component.ts');
     const source = fs.readFileSync(sourcePath, 'utf8');
     expect(source).toContain("typeof window !== 'undefined'");
   });
