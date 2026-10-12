@@ -8,7 +8,7 @@ describe('AppComponent', () => {
   let host: HTMLElement;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ declarations: [AppComponent] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [AppComponent] }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
   });
 
   it('should use a stable track expression in the template', () => {
-    const templatePath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/app.component.html');
+    const templatePath = path.join('.', 'src/app/app.component.html');
     const template = fs.readFileSync(templatePath, 'utf8');
     expect(template).toContain('track row.id');
   });
