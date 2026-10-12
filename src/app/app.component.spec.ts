@@ -15,7 +15,7 @@ describe('AppComponent', () => {
     router = { navigate: jest.fn() };
 
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [
         TableStateFacadeService,
         { provide: Router, useValue: router },
