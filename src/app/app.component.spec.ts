@@ -10,7 +10,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, WorkspaceBadgeComponent],
+      imports: [AppComponent, WorkspaceBadgeComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     host = fixture.nativeElement as HTMLElement;
@@ -23,15 +23,15 @@ describe('AppComponent', () => {
   });
 
   it('should export the shared component and model through public-api.ts', () => {
-    const publicApiPath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/shared/public-api.ts');
+    const publicApiPath = path.join('.', 'src/app/shared/public-api.ts');
     const publicApiText = fs.readFileSync(publicApiPath, 'utf8');
     expect(publicApiText).toContain('workspace-badge.component');
     expect(publicApiText).toContain('workspace-badge.models');
   });
 
   it('should make feature hosts import the shared badge only through the public API', () => {
-    const catalogHostPath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/features/catalog/catalog-badge-host.ts');
-    const reportsHostPath = path.join('D:/Workspace/workshop/angular_bootcamp_lessons', 'src/app/features/reports/reports-badge-host.ts');
+    const catalogHostPath = path.join('.', 'src/app/features/catalog/catalog-badge-host.ts');
+    const reportsHostPath = path.join('.', 'src/app/features/reports/reports-badge-host.ts');
     const catalogHost = fs.readFileSync(catalogHostPath, 'utf8');
     const reportsHost = fs.readFileSync(reportsHostPath, 'utf8');
     expect(catalogHost).toContain('../../shared/public-api');
