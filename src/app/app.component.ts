@@ -8,6 +8,7 @@ interface ProductCard {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
