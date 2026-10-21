@@ -1,26 +1,11 @@
-<main class="page">
-  <section class="panel">
-    <p class="eyebrow">Topic 24.1</p>
-    <h1 data-testid="title">Product feed formatting board</h1>
-    <p class="lede">
-      Starter task: format names, prices, and release dates through Angular pipes.
-    </p>
-  </section>
-
-  <section class="grid">
-    <article class="card" *ngFor="let product of products; let index = index" [attr.data-testid]="'product-' + index">
-      <h2 [attr.data-testid]="'name-' + index">
-        {{ product.name | uppercase }}
-      </h2>
-      <p class="metric" [attr.data-testid]="'price-' + index">
-        {{ product.price | currency: 'USD' : 'symbol' : '1.2-2' }}
-      </p>
-      <p class="metric" [attr.data-testid]="'date-' + index">
-        {{ product.releasedAt | date: 'yyyy-MM-dd' }}
-      </p>
-      <p [attr.data-testid]="'description-' + index">
-        {{ product.description }}
-      </p>
+<main>
+  <h1>File display lab</h1>
+  <p>Keep display transformations in standalone, pure pipes.</p>
+  @for (file of files; track file.id) {
+    <article [attr.data-testid]="'file-' + file.id">
+      <h2>{{ file.name }}</h2>
+      <p class="size" data-testid="file-size">{{ file.bytes | fileSize: precision }}</p>
+      <p data-testid="file-description">{{ file.description | truncate: descriptionLimit }}</p>
     </article>
-  </section>
+  }
 </main>
