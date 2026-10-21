@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppCardComponent } from './app-card.component';
 import { AppComponent } from './app.component';
@@ -8,7 +9,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppCardComponent],
+      imports: [CommonModule, AppCardComponent],
       declarations: [AppComponent],
     }).compileComponents();
 
