@@ -1,16 +1,16 @@
-<main class="page">
-  <section class="panel">
-    <p class="eyebrow">Topic 25.1</p>
-    <h1 data-testid="title">Tooltip directive playground</h1>
-    <p class="lede">Starter task: implement hover tooltip behavior through an attribute directive.</p>
+<main>
+  <h1>Permission-driven workspace</h1>
+  <p>Change the local demo permissions and inspect which nodes exist in the DOM.</p>
+  <nav aria-label="Demo permissions">
+    <button (click)="auth.setPermissions(['viewer'])">Viewer</button>
+    <button (click)="auth.setPermissions(['viewer', 'admin'])">Admin</button>
+    <button (click)="auth.setPermissions(['viewer', 'editor'])">Editor</button>
+    <button (click)="auth.setPermissions([])">No permissions</button>
+  </nav>
+  <section>
+    <p *appHasPermission="'viewer'" data-testid="viewer-note">Read-only access</p>
+    <button *appHasPermission="'admin'" data-testid="admin-action">Delete user</button>
+    <article *appHasPermission="'editor'" data-testid="editor-panel">Content editor</article>
   </section>
-
-  <section class="panel">
-    <button
-      type="button"
-      data-testid="tooltip-target"
-      [appTooltip]="tooltipText">
-      Hover for helper tip
-    </button>
-  </section>
+  <p class="notice">This is an isolated UI exercise, not a replacement for server authorization.</p>
 </main>

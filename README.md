@@ -1,31 +1,25 @@
-# Tooltip Directive
+# Structural Permission Directive
 
-This branch contains the completed solution for the exercise.
+Reference solution. The exact same tests are used in the starter.
 
-## Goal
+## Task
 
-Implement `appTooltip` as a standalone attribute directive.
+Implement appHasPermission with TemplateRef and ViewContainerRef; replace repeated @if conditions in the real app with the structural directive.
 
-## What the solution demonstrates
+Use the provided AuthService.hasPermission and permissions$ stream. React to permission and input changes, create at most one view, remove unauthorized DOM, and unsubscribe/clear on destroy. Empty permission is denied. This is a local UI exercise, not server authorization.
 
-- Input-driven tooltip text
-- Hover enter/leave handling via `@HostListener`
-- Dynamic tooltip element creation and cleanup through `Renderer2`
+## Files to edit
 
-## Files
+src/app/has-permission.directive.ts, src/app/app.component.html
 
-- `src/app/tooltip.directive.ts`
-- `src/app/app.component.html`
-- `src/app/app.component.spec.ts`
-
-## Notes
-
-- This is the `answer` branch.
-- The test suite should pass.
-
-## Commands
+## Checks
 
 ```bash
-npm start
+npm install
 npm test -- --runInBand
+npm run build
 ```
+
+StackBlitz installs dependencies and starts the status runner automatically. Changes trigger another check. The starter reports NOT COMPLETED until the task is solved; the answer reports COMPLETED.
+
+Do not edit tests to complete the exercise.
