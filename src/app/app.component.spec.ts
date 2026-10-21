@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ProfileNameFieldComponent } from './profile-name-field.component';
@@ -8,7 +9,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfileNameFieldComponent],
+      imports: [CommonModule, ProfileNameFieldComponent],
       declarations: [AppComponent],
     }).compileComponents();
 
