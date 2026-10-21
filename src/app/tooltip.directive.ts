@@ -1,10 +1,14 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnDestroy, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appTooltip]',
   standalone: true,
 })
-export class TooltipDirective {
+export class TooltipDirective implements OnDestroy {
+  ngOnDestroy(): void {
+    this.onMouseLeave();
+  }
+
   @Input('appTooltip') tooltipText = '';
 
   private tooltipElement: HTMLElement | null = null;
