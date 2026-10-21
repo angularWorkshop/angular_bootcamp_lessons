@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as fs from 'fs';
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [CommonModule, HttpClientTestingModule],
       declarations: [AppComponent],
     }).compileComponents();
 
