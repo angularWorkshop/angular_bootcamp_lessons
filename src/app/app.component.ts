@@ -1,37 +1,21 @@
 import { Component } from '@angular/core';
-
-interface ProductCard {
-  name: string;
-  price: number;
-  releasedAt: string;
-  description: string;
-}
+import { FileSizePipe } from './file-size.pipe';
+import { TruncatePipe } from './truncate.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-root',
+  standalone: true,
+  imports: [FileSizePipe, TruncatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected readonly products: ProductCard[] = [
-    {
-      name: 'Team dashboard',
-      price: 1249.9,
-      releasedAt: '2025-11-03T00:00:00Z',
-      description: 'Project cockpit with widgets and quick actions.',
-    },
-    {
-      name: 'Billing analytics',
-      price: 780,
-      releasedAt: '2025-07-19T00:00:00Z',
-      description: 'Invoice insights with payment trend highlights.',
-    },
-    {
-      name: 'Audit timeline',
-      price: 99.5,
-      releasedAt: '2024-12-12T00:00:00Z',
-      description: 'Chronological activity feed for compliance checks.',
-    },
+  precision = 1;
+  descriptionLimit = 18;
+  files: { id: string; name: string; bytes: number | null; description: string | null }[] = [
+    { id: 'guide', name: 'course-guide.pdf', bytes: 2411724, description: 'A detailed guide for the frontend course.' },
+    { id: 'notes', name: 'notes.txt', bytes: 512, description: 'Short notes' },
+    { id: 'empty', name: 'empty.txt', bytes: 0, description: '' },
+    { id: 'pending', name: 'pending.dat', bytes: null, description: null },
   ];
 }

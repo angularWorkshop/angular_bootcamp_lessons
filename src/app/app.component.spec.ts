@@ -1,56 +1,44 @@
-import { CommonModule } from '@angular/common';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FileSizePipe } from './file-size.pipe';
+import { TruncatePipe } from './truncate.pipe';
 
-describe('AppComponent', () => {
+describe('file list integration', () => {
   let fixture: ComponentFixture<AppComponent>;
-  let host: HTMLElement;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CommonModule],
-      declarations: [AppComponent],
-    }).compileComponents();
-
+    await TestBed.configureTestingModule({ imports: [AppComponent] }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
-    host = fixture.nativeElement as HTMLElement;
     fixture.detectChanges();
   });
-
-  it('should create the component', () => {
-    expect(fixture.componentInstance).toBeTruthy();
+  afterEach(() => jest.restoreAllMocks());
+  const text = (f: ComponentFixture<AppComponent>, selector: string) =>
+    (f.nativeElement as HTMLElement).querySelector(selector)?.textContent?.trim();
+  it('renders all source rows', () => {
+    expect((fixture.nativeElement as HTMLElement).querySelectorAll('article')).toHaveLength(4);
   });
-
-  it('should render three product cards in the DOM', () => {
-    expect(getText('title')).toBe('Product feed formatting board');
-    expect(host.querySelectorAll('[data-testid^="product-"]').length).toBe(3);
+  it('formats file sizes and descriptions in the actual template', () => {
+    expect(text(fixture, '[data-testid="file-guide"] [data-testid="file-size"]')).toBe('2.3 MB');
+    expect(text(fixture, '[data-testid="file-guide"] [data-testid="file-description"]')).toBe('A detailed guide f...');
+    expect(text(fixture, '[data-testid="file-empty"] [data-testid="file-size"]')).toBe('0 B');
+    expect(text(fixture, '[data-testid="file-pending"] [data-testid="file-description"]')).toBe('');
   });
-
-  it('should format the first product price through CurrencyPipe', () => {
-    const price = getText('price-0').replace(/\u00A0/g, ' ');
-
-    expect(price).toContain('$');
-    expect(price).toContain('1,249.90');
-  });
-
-  it('should format release dates and uppercase names through pipes', () => {
-    expect(getText('date-0')).toBe('2025-11-03');
-    expect(getText('name-0')).toBe('TEAM DASHBOARD');
-  });
-
-  it('should reformat changed product data rather than hard-code the first card', () => {
-    const component = fixture.componentInstance as unknown as { products: { name: string; price: number; releasedAt: string }[] };
-    component.products[0] = { ...component.products[0], name: 'fresh release', price: 42.5, releasedAt: '2026-01-02T00:00:00Z' };
+  it('reformats changed inputs instead of hard-coding the initial display', () => {
+    fixture.componentInstance.files = [{ id: 'new', name: 'new.txt', bytes: 1536, description: 'hello world' }];
+    fixture.componentInstance.precision = 2;
+    fixture.componentInstance.descriptionLimit = 5;
     fixture.detectChanges();
-    expect(getText('name-0')).toBe('FRESH RELEASE');
-    expect(getText('price-0')).toContain('42.50');
-    expect(getText('date-0')).toBe('2026-01-02');
+    expect(text(fixture, '[data-testid="file-size"]')).toBe('1.50 KB');
+    expect(text(fixture, '[data-testid="file-description"]')).toBe('hello...');
   });
-
-  function getText(testId: string): string {
-    const element = host.querySelector(`[data-testid="${testId}"]`);
-
-    expect(element).toBeTruthy();
-    return element?.textContent?.trim() ?? '';
-  }
+  it('does not rerun pure transforms when their inputs stay unchanged', () => {
+    const size = jest.spyOn(FileSizePipe.prototype, 'transform');
+    const truncate = jest.spyOn(TruncatePipe.prototype, 'transform');
+    fixture.detectChanges();
+    expect(size).not.toHaveBeenCalled();
+    expect(truncate).not.toHaveBeenCalled();
+    fixture.componentInstance.files = [{ id: 'changed', name: 'new.txt', bytes: 2048, description: 'updated' }];
+    fixture.detectChanges();
+    expect(size).toHaveBeenCalled();
+    expect(truncate).toHaveBeenCalled();
+  });
 });
