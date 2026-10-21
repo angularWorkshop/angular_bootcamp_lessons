@@ -1,3 +1,5 @@
+import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { TooltipDirective } from './tooltip.directive';
@@ -8,7 +10,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TooltipDirective],
+      imports: [CommonModule, TooltipDirective],
       declarations: [AppComponent],
     }).compileComponents();
 
@@ -45,6 +47,22 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
     expect(host.querySelector('[data-testid="tooltip-popup"]')).toBeFalsy();
+  });
+
+  it('should not duplicate the tooltip on repeated mouseenter', () => {
+    const target = getTarget();
+    target.dispatchEvent(new Event('mouseenter'));
+    target.dispatchEvent(new Event('mouseenter'));
+    expect(target.querySelectorAll('[data-testid="tooltip-popup"]').length).toBe(1);
+  });
+
+  it('should remove an open tooltip when the directive is destroyed', () => {
+    const target = getTarget();
+    target.dispatchEvent(new Event('mouseenter'));
+    expect(target.querySelector('[data-testid="tooltip-popup"]')).toBeTruthy();
+    const directive = fixture.debugElement.query(By.directive(TooltipDirective)).injector.get(TooltipDirective);
+    directive.ngOnDestroy();
+    expect(target.querySelector('[data-testid="tooltip-popup"]')).toBeNull();
   });
 
   function getTarget(): HTMLButtonElement {
